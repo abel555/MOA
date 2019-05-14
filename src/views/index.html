@@ -5,17 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Inventario</title>
-    <link rel="stylesheet" href="https://bootswatch.com/4/superhero/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/index.css">
 </head>
 <body>
-    <div class="container-fluid p-4">
-        <div class="row" id="products">
-        </div>
+    <div class="content">
+        <nav class="first">
+          <ul>
+            <li><a href="/">Madera</a></li>
+            <li><a href="/">Calamina</a></li>
+            <li><a href="/">Ferreteria</a></li>
+            <li><a href="/">Ventas</a></li> 
+          </ul>
+      
+        </nav>
+
+        <main class="main">Main content</main>
     </div>
     <script>
             const { ipcRenderer } = require('electron');
             const products = document.querySelector('#products');
             // New Product
+            
             ipcRenderer.on('product:new', (e, newProduct) => {
                 
                   const newProductTemplate = `
@@ -45,6 +55,7 @@
                 });
               })
             });
+          
             // Remove All Products
             ipcRenderer.on('products:remove-all', e => {
               products.innerHTML = '';

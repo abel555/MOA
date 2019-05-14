@@ -1,0 +1,30 @@
+* {
+    box-sizing: border-box;
+}
+nav{
+    flex: 0 0 30%;
+}
+.first{
+    background: hsl(60, 80%, 50%);
+}
+
+.main{
+    background: hsl(200, 90%, 50%);
+    flex: 0 0 70%;
+}
+
+body{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.content{
+    display: flex;
+    flex: auto;
+}
+ul{
+    margin-top:0;
+    margin-bottom: 0;
+    padding-left: 0;
+    list-style: none;
+}
