@@ -5,22 +5,22 @@ nav{
     flex: 0 0 30%;
 }
 .first{
-    background: hsl(60, 80%, 50%);
+    
 }
 
 .main{
-    background: hsl(200, 90%, 50%);
+    
     flex: 0 0 70%;
     display: flex;
     flex: auto;
     flex-direction: column;
 }
 .options{
-    background: red;
+    
     flex: 0 0 25%;
 }
 .items{
-    background: green;
+    
     flex: 0 0 75%;
 }
 
@@ -38,4 +38,27 @@ ul{
     margin-bottom: 0;
     padding-left: 0;
     list-style: none;
+}
+/* tabla inventario madera */
+#customers {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
 }
