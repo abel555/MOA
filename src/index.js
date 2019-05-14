@@ -28,7 +28,7 @@ app.on('ready', () => {
         slashes: true
     }))
 
-    const mainMenu = Menu.buildFromTemplate(templateMenu);
+    const mainMenu = Menu.buildFromTemplate(templateMainMenu);
     Menu.setApplicationMenu (mainMenu);
     
     //Esta funcion sirve para que cuando cierre la ventana principal se cierre todo
@@ -51,17 +51,16 @@ function createNewProductWindow() {
     });
     //Para que la venta de nuevo producto no tenga la barra de las pestañas
     //No funciona en macOS
-    newProductWindow.setMenu(null);  
+    newProductWindow.setMenu(null);
     newProductWindow.loadURL(url.format({
         pathname: path.join(__dirname, 'views/new-product.html'),
         protocol: 'file',
         slashes: true
     }))
 
-
-    // newProductWindow.on('closed', ()=> {
-    //     newProductWindow = null;
-    // })
+    newProductWindow.on('closed', ()=> {
+        newProductWindow = null;
+    })
 
 }
 
@@ -70,36 +69,39 @@ ipcMain.on('product:new', (e, newProduct) => {
     newProductWindow.close();
 });
 
-const templateMenu = [
-    {
+const templateMainMenu = [
+    (process.platform === 'darwin' ? {
         ///Este label es obligatorio en macOS X, sin este como primero los demas se desordenan
         
         label: app.getName(),
+        
         submenu: [
             {
                 label: 'Option',
             }   
         ]
-    },
+    } :[]),
+
     {
-        label: 'File',
+        label: 'Archivo',
         submenu: [
             {
-                label: 'New product',
+                label: 'Nueva madera',
                 accelerator: 'Ctrl+N',
                 click(){
                     createNewProductWindow();
                 }
             },
+            
+            // {
+            //     label: 'Remover todos los productos',
+            //     accelerator: 'Ctrl+A',
+            //     click() {
+            //         mainWindow.webContents.send('products:remove-all');
+            //     }
+            // },
             {
-                label: 'opt 2',
-                accelerator: 'Ctrl+A',
-                click() {
-                    mainWindow.webContents.send('products:remove-all');
-                }
-            },
-            {
-                label: "Exit",
+                label: "Salir",
                 //Si darwin (darwin es para macos X)
                 accelerator: process.platform === 'darwin' ? 'command+Q' : "Ctrl+Q",
                 click() {
@@ -116,21 +118,27 @@ const templateMenu = [
             
     //     ]
     // },
-    // //Esta pestaña no funcionara en macOS X porque no acepta labels sin submenus
+    //Esta pestaña no funcionara en macOS X porque no acepta labels sin submenus
     // {
-    //     label: "Exit",
+    //     label: "Salir",
     //     //Si darwin (darwin es para macos X)
-    //     accelerator: process.platform === 'darwin' ? 'command+Q' : "Ctrl+Q",
-    //     click() {
-    //         app.quit();
-    //     }
+    //     submenu:[
+    //         {
+    //             label: "Cerrar aplicación",
+    //             //Si darwin (darwin es para macos X)
+    //             accelerator: process.platform === 'darwin' ? 'command+Q' : "Ctrl+Q",
+    //             click() {
+    //                 app.quit();
+    //             }
+    //         },
+    //     ]
     // },
 ];
 
 
 // Esta funcion agrega el primer label el nombre de la app en sistemas macOS
 // if(isMac()) {
-//     templateMenu.unshift({
+//     templateMainMenu.unshift({
 //         label: app.getName(),
 //         submenu: [
 //             {
@@ -145,7 +153,7 @@ const templateMenu = [
 // }
 // process.env.NODE_ENV === 'production'
 if (true) {
-    templateMenu.push ({
+    templateMainMenu.push ({
         label: 'DevTools',
         submenu: [
             {
