@@ -11,6 +11,17 @@ nav{
 .main{
     background: hsl(200, 90%, 50%);
     flex: 0 0 70%;
+    display: flex;
+    flex: auto;
+    flex-direction: column;
+}
+.options{
+    background: red;
+    flex: 0 0 25%;
+}
+.items{
+    background: green;
+    flex: 0 0 75%;
 }
 
 body{
