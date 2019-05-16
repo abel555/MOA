@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Inventario</title>
     <link rel="stylesheet" href="../css/index.css">
+    <script src="../JS/showListWoods.js" defer></script>
 </head>
+
 <body>
     <div class="content">
         <nav class="first">
@@ -27,90 +30,19 @@
             <button>Agregar Madera</button>
           </div>
           <div class="items">
-            <table id="customers">
+            <table id="woodList">
+                
                 <tr>
-                  <th>Company</th>
-                  <th>Contact</th>
-                  <th>Country</th>
-                </tr>
-                <tr>
-                  <td>Alfreds Futterkiste</td>
-                  <td>Maria Anders</td>
-                  <td>Germany</td>
-                </tr>
-                <tr>
-                  <td>Berglunds snabbköp</td>
-                  <td>Christina Berglund</td>
-                  <td>Sweden</td>
-                </tr>
-                <tr>
-                  <td>Centro comercial Moctezuma</td>
-                  <td>Francisco Chang</td>
-                  <td>Mexico</td>
-                </tr>
-                <tr>
-                  <td>Ernst Handel</td>
-                  <td>Roland Mendel</td>
-                  <td>Austria</td>
-                </tr>
-                <tr>
-                  <td>Island Trading</td>
-                  <td>Helen Bennett</td>
-                  <td>UK</td>
-                </tr>
-                <tr>
-                  <td>Königlich Essen</td>
-                  <td>Philip Cramer</td>
-                  <td>Germany</td>
-                </tr>
+                  <th>Nombre</th>
+                  <th>Tipo</th>
+                  <th>Cantidad</th>
+                  <th>Precio de compra</th>
+                  <th>Precio de venta</th>
+                </tr>                
+               
               </table>
           </div>
         </main>
     </div>
-    <script>
-            const { ipcRenderer } = require('electron');
-            const products = document.querySelector('#products');
-            // New Product
-            
-            ipcRenderer.on('product:new', (e, newProduct) => {
-                
-                  const newProductTemplate = `
-              <div class="col-xs-4 p-2">
-              <div class="card text-center">
-                  <div class="card-header">
-                    <h5 class="card-title">${newProduct.name}</h5>
-                  </div>
-                  <div class="card-body">
-                    ${newProduct.description}
-                    <hr>
-                    ${newProduct.price} $
-                  </div>
-                  <div class="card-footer">
-                    <button class="btn btn-danger btn-sm">
-                      DELETE
-                    </button>
-                  </div>
-              </div>
-              </div>
-            `;
-              products.innerHTML += newProductTemplate;
-              const btns = document.querySelectorAll('.btn.btn-danger');
-              btns.forEach(btn => {
-                btn.addEventListener('click', e => {
-                  e.target.parentElement.parentElement.parentElement.remove();
-                });
-              })
-            });
-          
-            // Remove All Products
-            ipcRenderer.on('products:remove-all', e => {
-              products.innerHTML = '';
-            });
-            
-            // Remove Single Product Hacer esto es lo correcto
-            function removeProduct(e) {
-            }
-          </script>
-            
 </body>
 </html>

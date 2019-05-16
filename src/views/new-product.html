@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Inventario</title>
+    <title>Agregar nueva madera</title>
     <link rel="stylesheet" href="https://bootswatch.com/4/superhero/bootstrap.min.css">
-    
+    <script src="../JS/newWood.js" defer></script>
 </head>
 <body>
     <form class="p-4">
@@ -23,23 +23,5 @@
           Save
         </button>
     </form>
-      <!-- Logic -->
-    <script>
-        const { ipcRenderer } = require('electron');
-        const form = document.querySelector('form');
-        form.addEventListener('submit', event => {
-            event.preventDefault();
-            const nameProduct = document.querySelector('#name').value;
-            const priceProduct = document.querySelector('#price').value;
-            const descProduct = document.querySelector('#description').value;
-            const newProduct = {
-                name: nameProduct,
-                price: priceProduct,
-                description: descProduct
-            };
-            ipcRenderer.send('product:new', newProduct);
-            console.log("xdxd");
-        });
-      </script>
 </body>
 </html>
