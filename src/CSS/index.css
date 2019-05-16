@@ -1,0 +1,64 @@
+* {
+    box-sizing: border-box;
+}
+nav{
+    flex: 0 0 30%;
+}
+.first{
+    
+}
+
+.main{
+    
+    flex: 0 0 70%;
+    display: flex;
+    flex: auto;
+    flex-direction: column;
+}
+.options{
+    
+    flex: 0 0 25%;
+}
+.items{
+    
+    flex: 0 0 75%;
+}
+
+body{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.content{
+    display: flex;
+    flex: auto;
+}
+ul{
+    margin-top:0;
+    margin-bottom: 0;
+    padding-left: 0;
+    list-style: none;
+}
+/* tabla inventario madera */
+#customers {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
