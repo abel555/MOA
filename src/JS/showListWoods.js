@@ -1,4 +1,4 @@
-const woodsList = require('../../data/WOODS_DETAILS.json');
+const woodsList = require('../data/WOODS_DETAILS.json');
 
 
 function chargeListInTable(){
