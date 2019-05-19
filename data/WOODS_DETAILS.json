@@ -1,10 +1,74 @@
-[{"id":48,"name":"Jamesy","type":"Ashpole","quantity":32,"sale_price":66,"purchase_price":76},
-{"id":9,"name":"Shana","type":"Degoe","quantity":49,"sale_price":39,"purchase_price":65},
-{"id":10,"name":"Shirl","type":"Hulme","quantity":21,"sale_price":78,"purchase_price":80},
-{"id":73,"name":"Irma","type":"Havvock","quantity":93,"sale_price":24,"purchase_price":48},
-{"id":29,"name":"Malvina","type":"McCool","quantity":24,"sale_price":80,"purchase_price":30},
-{"id":52,"name":"Randolph","type":"Kuhlmey","quantity":50,"sale_price":64,"purchase_price":58},
-{"id":24,"name":"Selinda","type":"Najara","quantity":68,"sale_price":88,"purchase_price":2},
-{"id":88,"name":"Austin","type":"Duddin","quantity":68,"sale_price":48,"purchase_price":40},
-{"id":28,"name":"Honor","type":"Rontree","quantity":30,"sale_price":40,"purchase_price":97},
-{"id":48,"name":"Veda","type":"Birk","quantity":68,"sale_price":37,"purchase_price":74}]
+[
+  {
+    "id": 48,
+    "name": "Jamesy",
+    "type": "Ashpole",
+    "quantity": 32,
+    "sale_price": 66,
+    "purchase_price": 76
+  },
+  {
+    "id": 9,
+    "name": "Shana",
+    "type": "Degoe",
+    "quantity": 49,
+    "sale_price": 39,
+    "purchase_price": 65
+  },
+  {
+    "id": 10,
+    "name": "Shirl",
+    "type": "Hulme",
+    "quantity": 21,
+    "sale_price": 78,
+    "purchase_price": 80
+  },
+  {
+    "id": 73,
+    "name": "Irma",
+    "type": "Havvock",
+    "quantity": 93,
+    "sale_price": 24,
+    "purchase_price": 48
+  },
+  {
+    "id": 29,
+    "name": "Malvina",
+    "type": "McCool",
+    "quantity": 24,
+    "sale_price": 80,
+    "purchase_price": 30
+  },
+  {
+    "id": 52,
+    "name": "Randolph",
+    "type": "Kuhlmey",
+    "quantity": 50,
+    "sale_price": 64,
+    "purchase_price": 58
+  },
+  {
+    "id": 24,
+    "name": "Selinda",
+    "type": "Najara",
+    "quantity": 68,
+    "sale_price": 88,
+    "purchase_price": 2
+  },
+  {
+    "id": 88,
+    "name": "Austin",
+    "type": "Duddin",
+    "quantity": 68,
+    "sale_price": 48,
+    "purchase_price": 40
+  },
+  {
+    "id": 28,
+    "name": "Honor",
+    "type": "Rontree",
+    "quantity": 30,
+    "sale_price": 40,
+    "purchase_price": 97
+  }
+]
