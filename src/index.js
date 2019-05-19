@@ -17,14 +17,12 @@ let mainWindow;
 let newProductWindow;
 
 function getWoodListFromJsonFile() {
-    let woodsJSON = fs.readFileSync('data/WOODS_DETAILS.json');
+    let woodsJSON = fs.readFileSync('src/data/WOODS_DETAILS.json');
     let woodList = JSON.parse(woodsJSON);
-    console.log(woodList);
     return woodList;
 }
-//Cuando se abre la app, ventana principal
+
 app.on('ready', () => {
-    getWoodListFromJsonFile();
     mainWindow = new BrowserWindow({
         webPreferences: {
             nodeIntegration: true,
@@ -85,26 +83,23 @@ ipcMain.on('product:new', (e, newProduct) => {
     woodList.push(newProduct);
     let newProductToJson = JSON.stringify(woodList, null, 2);
     
-    fs.writeFile('data/WOODS_DETAILS.json', newProductToJson, 'utf8',finished);
+    fs.writeFile('src/data/WOODS_DETAILS.json', newProductToJson, 'utf8',finished);
     function finished(err) {
-        console.log("se guardo");
     }
     mainWindow.reload();
     newProductWindow.close();
 });
 
 const templateMainMenu = [
-    (process.platform === 'darwin' ? {
-        ///Este label es obligatorio en macOS X, sin este como primero los demas se desordenan
-        
+    isMac() ? {
         label: app.getName(),
-        
         submenu: [
             {
-                label: 'Option',
+                label: 'Copiar',
+                role: 'Copy'
             }   
         ]
-    } :[]),
+    } :[],
 
     {
         label: 'Archivo',
@@ -116,72 +111,87 @@ const templateMainMenu = [
                     createNewProductWindow();
                 }
             },
-            
-            // {
-            //     label: 'Remover todos los productos',
-            //     accelerator: 'Ctrl+A',
-            //     click() {
-            //         mainWindow.webContents.send('products:remove-all');
-            //     }
-            // },
             {
                 label: "Salir",
-                //Si darwin (darwin es para macos X)
-                accelerator: process.platform === 'darwin' ? 'command+Q' : "Ctrl+Q",
-                click() {
-                    app.quit();
-                }
+                role: 'Quit'
             },
-            
         ]
     },
     
-    // {
-    //     label: "Edit",
-    //     submenu: [
-            
-    //     ]
-    // },
-    //Esta pestaña no funcionara en macOS X porque no acepta labels sin submenus
-    // {
-    //     label: "Salir",
-    //     //Si darwin (darwin es para macos X)
-    //     submenu:[
-    //         {
-    //             label: "Cerrar aplicación",
-    //             //Si darwin (darwin es para macos X)
-    //             accelerator: process.platform === 'darwin' ? 'command+Q' : "Ctrl+Q",
-    //             click() {
-    //                 app.quit();
-    //             }
-    //         },
-    //     ]
-    // },
+    {
+        label: 'Editar',
+        submenu: [
+            {
+                label: 'Deshacer',
+                role: 'Undo'
+            },
+            {
+                label: "Rehacer",
+                role: 'Redo'
+            },
+            {
+                type: 'separator'
+            },
+            {
+                label: "Cortar",
+                role: 'Cut'
+            },
+            {
+                label: "Copiar",
+                role: 'Copy'
+            },
+            {
+                label: "Pegar",
+                role: 'Paste'
+            },
+            {
+                label: "Pegar con el mismo estilo",
+                role: 'pasteAndMatchStyle'
+            },
+            {
+                label: "Borrar",
+                role: 'Delete'
+            },
+            {
+                label: "Seleccionar todo",
+                role: 'selectAll'
+            },
+        ]
+    },
+
+    {
+        label: 'Ver',
+        submenu: [
+            {
+                label: 'Tamaño real',
+                role: 'resetZoom'
+            },
+            {
+                label: "Acercar",
+                role: 'zoomIn'
+            },
+            {
+                label: "Alejar",
+                role: 'zoomOut'
+            },
+        ]
+    },
 ];
 
+function isMac() {
+    return process.platform === 'darwin';
+}
+function isInProduction() {
+    return process.env.NODE_ENV === 'production';
+}
 
-// Esta funcion agrega el primer label el nombre de la app en sistemas macOS
-// if(isMac()) {
-//     templateMainMenu.unshift({
-//         label: app.getName(),
-//         submenu: [
-//             {
-//                 label: 'Option',
-//             }   
-//         ]
-//     });
-// }
-
-// function isMac() {
-//     return process.platform === 'darwin';
-// }
-// process.env.NODE_ENV === 'production'
-if (true) {
+if (!isInProduction()) {
     templateMainMenu.push ({
         label: 'DevTools',
         submenu: [
             {
                 label: 'Show/hide Dev Tools like a inspector of chrome',
+                accelerator: 'command+D',
                 click(item, focusedWindow) {
                     focusedWindow.toggleDevTools();
                 }
