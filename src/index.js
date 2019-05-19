@@ -75,6 +75,10 @@ function createNewProductWindow() {
 
 }
 
+ipcMain.on('product:form',()=> {
+    createNewProductWindow();
+});
+
 ipcMain.on('product:new', (e, newProduct) => {
     let woodList = getWoodListFromJsonFile();
 
@@ -189,3 +193,5 @@ if (true) {
         ]
     })
 }
+
+module.exports = createNewProductWindow;

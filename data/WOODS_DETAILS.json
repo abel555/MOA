@@ -70,5 +70,45 @@
     "quantity": 30,
     "sale_price": 40,
     "purchase_price": 97
+  },
+  {
+    "id": 0,
+    "name": "asd",
+    "purchase_price": 10,
+    "quantity": -1,
+    "sale_price": "2",
+    "type": "xc"
+  },
+  {
+    "id": 0,
+    "name": "qwe",
+    "purchase_price": 10,
+    "quantity": -1,
+    "sale_price": "123",
+    "type": "ghj"
+  },
+  {
+    "id": 0,
+    "name": "asd",
+    "purchase_price": 10,
+    "quantity": -1,
+    "sale_price": "asd",
+    "type": "asd"
+  },
+  {
+    "id": 0,
+    "name": "zzz",
+    "purchase_price": 10,
+    "quantity": -1,
+    "sale_price": "223123",
+    "type": "zzzzzz"
+  },
+  {
+    "id": 0,
+    "name": "asd",
+    "purchase_price": 10,
+    "quantity": -1,
+    "sale_price": "123",
+    "type": "zxc"
   }
 ]
