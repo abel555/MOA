@@ -13,19 +13,24 @@
 
 <body>
   <div class="content">
-    <nav class="first">
-      <ul class="main-menu">
-        <li><a>Madera</a></li>
-        <li><a>Calamina</a></li>
-        <li><a>Ferreteria</a></li>
-        <li><a>Ventas</a></li> 
-      </ul>
-    </nav>
-    
+    <div class="first">
+      <div class="logo">
+        <img class="moalogo" src="../Assets/moa.png" alt="logo">
+        
+      </div>
+      <nav>
+        <ul class="main-menu">
+          <li><a>Madera</a></li>
+          <li><a>Calamina</a></li>
+          <li><a>Ferreteria</a></li>
+          <li><a>Ventas</a></li> 
+        </ul>
+      </nav>
+    </div>
     <main class="main">
       <div class="options">
         <form class="search-form" action="">
-          <input class="search-input" type="search">
+          <input class="search-input" type="search" placeholder="Ingrese para buscar...">
         </form>
         <form class="add-item-form" action="">
           <button class ="add-input" type="button" id="addNewWood">Agregar Madera</button>
@@ -34,7 +39,7 @@
       <div class="items">
         <table id="woodList">
             
-            <tr>
+            <tr class="table-title">
               <th>Nombre</th>
               <th>Tipo</th>
               <th>Cantidad</th>
@@ -42,7 +47,7 @@
               <th>Precio de venta</th>
             </tr>                
            
-          </table>
+        </table>
       </div>
     </main>
   </div>

@@ -110,5 +110,21 @@
     "quantity": -1,
     "sale_price": "123",
     "type": "zxc"
+  },
+  {
+    "id": 0,
+    "name": "superwood",
+    "purchase_price": 10,
+    "quantity": -1,
+    "sale_price": "20",
+    "type": "unrealistic"
+  },
+  {
+    "id": 0,
+    "name": "asdas",
+    "purchase_price": 10,
+    "quantity": -1,
+    "sale_price": "dsad",
+    "type": "sss"
   }
 ]
