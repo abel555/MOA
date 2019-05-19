@@ -5,3 +5,5 @@ jspm_packages/
 .node_repl_history
 # node-waf configuration
 .lock-wscript
+#Builds directories
+release-builds/

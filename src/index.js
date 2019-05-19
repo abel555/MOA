@@ -3,6 +3,10 @@ const { app , BrowserWindow, Menu, ipcMain} = require('electron');
 const url = require ('url'); 
 const path = require ('path');
 
+let fs = require('fs');
+
+
+
 if(process.env.NODE_ENV !== 'production') {
     require('electron-reload')(__dirname, {
         electron: path.join(__dirname, "../node_modules/", '.bin', 'electron'),
@@ -12,8 +16,15 @@ if(process.env.NODE_ENV !== 'production') {
 let mainWindow;
 let newProductWindow;
 
+function getWoodListFromJsonFile() {
+    let woodsJSON = fs.readFileSync('data/WOODS_DETAILS.json');
+    let woodList = JSON.parse(woodsJSON);
+    console.log(woodList);
+    return woodList;
+}
 //Cuando se abre la app, ventana principal
 app.on('ready', () => {
+    getWoodListFromJsonFile();
     mainWindow = new BrowserWindow({
         webPreferences: {
             nodeIntegration: true,
@@ -65,7 +76,16 @@ function createNewProductWindow() {
 }
 
 ipcMain.on('product:new', (e, newProduct) => {
-    mainWindow.webContents.send('product:new', newProduct);
+    let woodList = getWoodListFromJsonFile();
+
+    woodList.push(newProduct);
+    let newProductToJson = JSON.stringify(woodList, null, 2);
+    
+    fs.writeFile('data/WOODS_DETAILS.json', newProductToJson, 'utf8',finished);
+    function finished(err) {
+        console.log("se guardo");
+    }
+    mainWindow.reload();
     newProductWindow.close();
 });
 

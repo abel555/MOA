@@ -1,5 +1,5 @@
 const woodsList = require('../../data/WOODS_DETAILS.json');
-
+console.log(woodList);
 function chargeListInTable(){
 
   let woodProductDetails;
