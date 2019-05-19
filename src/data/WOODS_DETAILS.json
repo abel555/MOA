@@ -73,19 +73,11 @@
   },
   {
     "id": 0,
-    "name": "asd",
+    "name": "as",
     "purchase_price": 10,
     "quantity": -1,
-    "sale_price": "2",
-    "type": "xc"
-  },
-  {
-    "id": 0,
-    "name": "qwe",
-    "purchase_price": 10,
-    "quantity": -1,
-    "sale_price": "123",
-    "type": "ghj"
+    "sale_price": "asd",
+    "type": "zxc"
   },
   {
     "id": 0,
@@ -93,38 +85,6 @@
     "purchase_price": 10,
     "quantity": -1,
     "sale_price": "asd",
-    "type": "asd"
-  },
-  {
-    "id": 0,
-    "name": "zzz",
-    "purchase_price": 10,
-    "quantity": -1,
-    "sale_price": "223123",
-    "type": "zzzzzz"
-  },
-  {
-    "id": 0,
-    "name": "asd",
-    "purchase_price": 10,
-    "quantity": -1,
-    "sale_price": "123",
-    "type": "zxc"
-  },
-  {
-    "id": 0,
-    "name": "superwood",
-    "purchase_price": 10,
-    "quantity": -1,
-    "sale_price": "20",
-    "type": "unrealistic"
-  },
-  {
-    "id": 0,
-    "name": "asdas",
-    "purchase_price": 10,
-    "quantity": -1,
-    "sale_price": "dsad",
-    "type": "sss"
+    "type": "xxx"
   }
 ]
