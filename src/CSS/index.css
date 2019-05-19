@@ -17,13 +17,13 @@ nav{
     flex-direction: column;
 }
 .options{
-    background: red;
+    
     flex: 0 0 25%;
     display: flex;
     flex: auto;
 }
 .items{
-    background: green;
+   
     flex: 0 0 75%;
 }
 
@@ -90,11 +90,28 @@ ul{
     opacity: 0.6;
 
 }
-.add-item{
+.add-item-form{
     flex:20%;
-    background-color: #133157; /* Green */ 
+    
+}
+.add-input{
+    border-radius: 12px;
+    margin-top: 25%;
+    width: 90%;
+    height: 25%;
+    background-color: #3465A3; /* Green */ 
     color: white;
 }
-.search-label{
+.search-form{
     flex: 70%;
+}
+.search-input{
+    border-color: #3465A3;
+    border-width: 1px;
+    border-radius: 12px;
+    width: 50%;
+    height: 25%;
+    margin-top: 8%;
+    margin-left: 4%;
+    
 }
