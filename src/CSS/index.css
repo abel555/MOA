@@ -8,10 +8,13 @@
 }
 .logo{
     flex: 0 0 30%;
+    
+    text-align: center;
 }
 .moalogo{
+    
     max-width: 100%;
-    max-height: 100%;
+    height: 180px;
 }
 nav{
     flex: 0 0 70%;
