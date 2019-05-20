@@ -11,14 +11,19 @@ body{
     flex-direction: column;
     padding: 30px;
     box-shadow: -10px 11px 24px 1px rgba(0,0,0,0.75);
+    height: 400px;
 }
 .inputs-container{
-    flex: 0 0 90%;
+    flex: 0 0 85%;
     display: flex;
 }
 .button-container{
-    flex: 0 0 10%;
-    margin: 1em;
+    flex: 0 0 15%;
+       
+}
+.send-button{
+    width: 100%;
+    height: 200px; 
 }
 .left{
     flex: 0 0 50%;
