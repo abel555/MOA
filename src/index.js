@@ -49,8 +49,8 @@ app.on('ready', () => {
 
 function createNewProductWindow() {
     newProductWindow = new BrowserWindow({
-        width: 400,
-        height: 330,
+        width: 700,
+        height: 600,
         title: "Add A New Product",
         webPreferences: {
             nodeIntegration: true,
@@ -75,6 +75,7 @@ function createNewProductWindow() {
 
 ipcMain.on('product:form',()=> {
     createNewProductWindow();
+
 });
 
 ipcMain.on('product:new', (e, newProduct) => {

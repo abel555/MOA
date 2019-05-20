@@ -86,5 +86,37 @@
     "quantity": -1,
     "sale_price": "asd",
     "type": "xxx"
+  },
+  {
+    "id": 0,
+    "name": "",
+    "purchase_price": 10,
+    "quantity": -1,
+    "sale_price": "",
+    "type": ""
+  },
+  {
+    "id": 0,
+    "name": "",
+    "purchase_price": 10,
+    "quantity": -1,
+    "sale_price": "",
+    "type": ""
+  },
+  {
+    "id": 0,
+    "name": "abelardo",
+    "purchase_price": 10,
+    "quantity": -1,
+    "sale_price": "",
+    "type": "descrito"
+  },
+  {
+    "id": 0,
+    "name": "juanito",
+    "purchase_price": 10,
+    "quantity": -1,
+    "sale_price": "",
+    "type": ""
   }
 ]
