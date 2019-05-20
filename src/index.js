@@ -5,8 +5,6 @@ const path = require ('path');
 
 let fs = require('fs');
 
-
-
 if(process.env.NODE_ENV !== 'production') {
     require('electron-reload')(__dirname, {
         electron: path.join(__dirname, "../node_modules/", '.bin', 'electron'),
@@ -24,6 +22,8 @@ function getWoodListFromJsonFile() {
 
 app.on('ready', () => {
     mainWindow = new BrowserWindow({
+        width: 1300,
+        height: 720,
         webPreferences: {
             nodeIntegration: true,
             // nodeIntegrationInWorker: true,
@@ -60,7 +60,7 @@ function createNewProductWindow() {
     });
     //Para que la venta de nuevo producto no tenga la barra de las pestañas
     //No funciona en macOS
-    newProductWindow.setMenu(null);
+    // newProductWindow.setMenu(null);
     newProductWindow.loadURL(url.format({
         pathname: path.join(__dirname, 'views/new-product.html'),
         protocol: 'file',
@@ -79,28 +79,28 @@ ipcMain.on('product:form',()=> {
 });
 
 ipcMain.on('product:new', (e, newProduct) => {
-    let woodList = getWoodListFromJsonFile();
+    // let woodList = getWoodListFromJsonFile();
 
-    woodList.push(newProduct);
-    let newProductToJson = JSON.stringify(woodList, null, 2);
+    // woodList.push(newProduct);
+    // let newProductToJson = JSON.stringify(woodList, null, 2);
     
-    fs.writeFile('src/data/WOODS_DETAILS.json', newProductToJson, 'utf8',finished);
-    function finished(err) {
-    }
+    // fs.writeFile('src/data/WOODS_DETAILS.json', newProductToJson, 'utf8',finished);
+    // function finished(err) {
+    // }
     mainWindow.reload();
-    newProductWindow.close();
+    // newProductWindow.close();
 });
 
 const templateMainMenu = [
-    isMac() ? {
-        label: app.getName(),
-        submenu: [
-            {
-                label: 'Copiar',
-                role: 'Copy'
-            }   
-        ]
-    } :[],
+    // isMac() ? {
+    //     label: app.getName(),
+    //     submenu: [
+    //         {
+    //             label: 'Copiar',
+    //             role: 'Copy'
+    //         }   
+    //     ]
+    // } :[],
 
     {
         label: 'Archivo',
