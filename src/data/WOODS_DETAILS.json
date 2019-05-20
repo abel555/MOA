@@ -1,122 +1,80 @@
 [
   {
-    "id": 48,
-    "name": "Jamesy",
-    "type": "Ashpole",
-    "quantity": 32,
-    "sale_price": 66,
-    "purchase_price": 76
+    "idProduct": "777",
+    "descriptionProduct": "prueba",
+    "quantity": "777",
+    "purchase_price": "777",
+    "purchased_total": "777",
+    "name_product": "prueba",
+    "provider": "prueba",
+    "quantity_sold": "777",
+    "sale_price": "777",
+    "total_sold": "777",
+    "_id": "3p4HxjZ0SpgDTc0M"
   },
   {
-    "id": 9,
-    "name": "Shana",
-    "type": "Degoe",
-    "quantity": 49,
-    "sale_price": 39,
-    "purchase_price": 65
+    "idProduct": "1",
+    "descriptionProduct": "prueba",
+    "quantity": "1",
+    "purchase_price": "1",
+    "purchased_total": "1",
+    "name_product": "prueba",
+    "provider": "prueba",
+    "quantity_sold": "1",
+    "sale_price": "1",
+    "total_sold": "1",
+    "_id": "NtS0E6QhCWUkuhv4"
   },
   {
-    "id": 10,
-    "name": "Shirl",
-    "type": "Hulme",
-    "quantity": 21,
-    "sale_price": 78,
-    "purchase_price": 80
+    "idProduct": "6",
+    "descriptionProduct": "6",
+    "quantity": "6",
+    "purchase_price": "6",
+    "purchased_total": "6",
+    "name_product": "6",
+    "provider": "6",
+    "quantity_sold": "6",
+    "sale_price": "6",
+    "total_sold": "6",
+    "_id": "R13Kzi4UdcRyd0un"
   },
   {
-    "id": 73,
-    "name": "Irma",
-    "type": "Havvock",
-    "quantity": 93,
-    "sale_price": 24,
-    "purchase_price": 48
+    "idProduct": "444",
+    "descriptionProduct": "prueba",
+    "quantity": "444",
+    "purchase_price": "444",
+    "purchased_total": "444",
+    "name_product": "prueba",
+    "provider": "prueba",
+    "quantity_sold": "444",
+    "sale_price": "444",
+    "total_sold": "444",
+    "_id": "fdQn4S21U49FWsBF"
   },
   {
-    "id": 29,
-    "name": "Malvina",
-    "type": "McCool",
-    "quantity": 24,
-    "sale_price": 80,
-    "purchase_price": 30
+    "idProduct": "2",
+    "descriptionProduct": "2",
+    "quantity": "2",
+    "purchase_price": "2",
+    "purchased_total": "2",
+    "name_product": "2",
+    "provider": "2",
+    "quantity_sold": "2",
+    "sale_price": "2",
+    "total_sold": "2",
+    "_id": "jQFwCvUmZz8qNq8C"
   },
   {
-    "id": 52,
-    "name": "Randolph",
-    "type": "Kuhlmey",
-    "quantity": 50,
-    "sale_price": 64,
-    "purchase_price": 58
-  },
-  {
-    "id": 24,
-    "name": "Selinda",
-    "type": "Najara",
-    "quantity": 68,
-    "sale_price": 88,
-    "purchase_price": 2
-  },
-  {
-    "id": 88,
-    "name": "Austin",
-    "type": "Duddin",
-    "quantity": 68,
-    "sale_price": 48,
-    "purchase_price": 40
-  },
-  {
-    "id": 28,
-    "name": "Honor",
-    "type": "Rontree",
-    "quantity": 30,
-    "sale_price": 40,
-    "purchase_price": 97
-  },
-  {
-    "id": 0,
-    "name": "as",
-    "purchase_price": 10,
-    "quantity": -1,
-    "sale_price": "asd",
-    "type": "zxc"
-  },
-  {
-    "id": 0,
-    "name": "asd",
-    "purchase_price": 10,
-    "quantity": -1,
-    "sale_price": "asd",
-    "type": "xxx"
-  },
-  {
-    "id": 0,
-    "name": "",
-    "purchase_price": 10,
-    "quantity": -1,
-    "sale_price": "",
-    "type": ""
-  },
-  {
-    "id": 0,
-    "name": "",
-    "purchase_price": 10,
-    "quantity": -1,
-    "sale_price": "",
-    "type": ""
-  },
-  {
-    "id": 0,
-    "name": "abelardo",
-    "purchase_price": 10,
-    "quantity": -1,
-    "sale_price": "",
-    "type": "descrito"
-  },
-  {
-    "id": 0,
-    "name": "juanito",
-    "purchase_price": 10,
-    "quantity": -1,
-    "sale_price": "",
-    "type": ""
+    "idProduct": "000",
+    "descriptionProduct": "prueba",
+    "quantity": "000",
+    "purchase_price": "000",
+    "purchased_total": "000",
+    "name_product": "prueba",
+    "provider": "prueba",
+    "quantity_sold": "000",
+    "sale_price": "000",
+    "total_sold": "000",
+    "_id": "rDP4evrVRbaaWIKR"
   }
 ]

@@ -1,48 +1,74 @@
 const woodsList = require('../data/WOODS_DETAILS.json');
 
-
 function chargeListInTable(){
 
-  let woodProductDetails;
-  let name;
-  let type; 
+  let idProduct;
+  let descriptionProduct;
   let quantity;
-  let salePrice;
   let purcharsePrice;
+  let purchaseTotal;
 
-  let nameText;
-  let quantityText;
-  let typeText
-  let salePriceText;
-  let purcharsePriceText;
+  let nameProduct;
+  let provider;
+  let quantitySold;
+  let salePrice;
+  let totalSold;
 
   woodsList.forEach(function(woodProduct) {
     woodProductDetails = document.createElement("tr");
-    name = document.createElement("td");
-    type = document.createElement("td");
-    quantity = document.createElement("td");
-    salePrice = document.createElement("td");
-    purcharsePrice = document.createElement("td");
+    
+      idProduct = document.createElement("td");
+      nameProduct = document.createElement("td");
+      provider = document.createElement("td");
+      descriptionProduct = document.createElement("td");
+      quantity = document.createElement("td");
 
-    nameText = document.createTextNode(woodProduct.name);
-    typeText = document.createTextNode(woodProduct.type);
-    quantityText = document.createTextNode(woodProduct.quantity);
-    salePriceText = document.createTextNode(woodProduct.sale_price);
-    purcharsePriceText = document.createTextNode(woodProduct.purchase_price);
+      quantitySold = document.createElement("td");
+      purcharsePrice = document.createElement("td");
+      salePrice = document.createElement("td");
+      purchaseTotal = document.createElement("td");
+      totalSold = document.createElement("td");
+      
+      idProductText = document.createTextNode(woodProduct.idProduct);
+      nameProductText = document.createTextNode(woodProduct.name_product);
+      providerText = document.createTextNode(woodProduct.provider);
+      descriptionText = document.createTextNode(woodProduct.descriptionProduct);
+      quantityText = document.createTextNode(woodProduct.quantity);
+        
+      quantitySoldText = document.createTextNode(woodProduct.quantity_sold);
+      purcharsePriceText = document.createTextNode(woodProduct.purchase_price);
+      salePriceText = document.createTextNode(woodProduct.sale_price);
+      purchaseTotalText = document.createTextNode(woodProduct.purchased_total);
+      totalSoldText = document.createTextNode(woodProduct.total_sold);
 
-    name.appendChild(nameText);
-    type.appendChild(typeText);
-    quantity.appendChild(quantityText);
-    salePrice.appendChild(salePriceText);
-    purcharsePrice.appendChild(purcharsePriceText);
+      idProduct.appendChild(idProductText);
+      nameProduct.appendChild(nameProductText);
+      provider.appendChild(providerText);
+      descriptionProduct.appendChild(descriptionText);
+      quantity.appendChild(quantityText);
 
-    woodProductDetails.appendChild(name);
-    woodProductDetails.appendChild(type);
-    woodProductDetails.appendChild(quantity);
-    woodProductDetails.appendChild(salePrice);
-    woodProductDetails.appendChild(purcharsePriceText);
+      quantitySold.appendChild(quantitySoldText);
+      purcharsePrice.appendChild(purcharsePriceText);
+      salePrice.appendChild(salePriceText);
+      purchaseTotal.appendChild(purchaseTotalText);
+      totalSold.appendChild(totalSoldText);
 
-    document.querySelector("#woodList").appendChild(woodProductDetails);
+
+      
+      woodProductDetails.appendChild(idProduct);
+      woodProductDetails.appendChild(nameProduct);
+      woodProductDetails.appendChild(provider);
+      woodProductDetails.appendChild(descriptionProduct);
+      woodProductDetails.appendChild(quantity);
+
+      woodProductDetails.appendChild(quantitySold);
+      woodProductDetails.appendChild(purcharsePrice);
+      woodProductDetails.appendChild(salePrice);
+      woodProductDetails.appendChild(purcharsePrice);
+      woodProductDetails.appendChild(purchaseTotal);
+      woodProductDetails.appendChild(totalSold);
+
+      document.querySelector("#woodList").appendChild(woodProductDetails);
   });
 }
 chargeListInTable();
