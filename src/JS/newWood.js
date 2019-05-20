@@ -20,7 +20,6 @@ function saveInJson(newProduct) {
     function finished(err) {
         console.log(err);
     }
-    
 }
 form.addEventListener('submit', event => {
     
@@ -52,6 +51,6 @@ form.addEventListener('submit', event => {
         total_sold: totalSold,
         reaminingAmount: reaminingAmount
     };
-    saveInJson(newProduct);
+    // saveInJson(newProduct);
     ipcRenderer.send('product:new', newProduct);
 });

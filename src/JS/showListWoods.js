@@ -1,7 +1,15 @@
-const woodsList = require('../data/WOODS_DETAILS.json');
+const path = require('path');
+const fs = require('fs');
+const jsonFilename = path.resolve(__dirname, '..', 'data', 'WOODS_DETAILS.json');
+
+function getWoodListFromJsonFile() {
+  let woodsJSON = fs.readFileSync(jsonFilename);
+  let woodList = JSON.parse(woodsJSON);
+  return woodList;
+}
 
 function chargeListInTable(){
-
+  const woodsList = getWoodListFromJsonFile();
   let idProduct;
   let descriptionProduct;
   let quantity;
@@ -13,7 +21,7 @@ function chargeListInTable(){
   let quantitySold;
   let salePrice;
   let totalSold;
-
+  
   woodsList.forEach(function(woodProduct) {
     woodProductDetails = document.createElement("tr");
     

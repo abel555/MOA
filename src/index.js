@@ -13,11 +13,23 @@ if(process.env.NODE_ENV !== 'production') {
 
 let mainWindow;
 let newProductWindow;
+const jsonFilename = path.resolve(__dirname, '.', 'data', 'WOODS_DETAILS.json');
 
 function getWoodListFromJsonFile() {
-    let woodsJSON = fs.readFileSync('src/data/WOODS_DETAILS.json');
+    let woodsJSON = fs.readFileSync(jsonFilename);
     let woodList = JSON.parse(woodsJSON);
     return woodList;
+}
+
+function saveInJson(newProduct) {
+    let woodList = getWoodListFromJsonFile();
+    woodList.push(newProduct);
+    let newProductToJson = JSON.stringify(woodList, null, 2);
+    
+    fs.writeFile(jsonFilename, newProductToJson, finished);
+    
+    function finished(err) {
+    }
 }
 
 app.on('ready', () => {
@@ -26,8 +38,6 @@ app.on('ready', () => {
         height: 720,
         webPreferences: {
             nodeIntegration: true,
-            // nodeIntegrationInWorker: true,
-            // nodeIntegrationInSubFrames: true
         }
     });
 
@@ -40,7 +50,6 @@ app.on('ready', () => {
     const mainMenu = Menu.buildFromTemplate(templateMainMenu);
     Menu.setApplicationMenu (mainMenu);
     
-    //Esta funcion sirve para que cuando cierre la ventana principal se cierre todo
     mainWindow.on('closed', () => {
         app.quit();
     })
@@ -54,13 +63,10 @@ function createNewProductWindow() {
         title: "Add A New Product",
         webPreferences: {
             nodeIntegration: true,
-            // nodeIntegrationInWorker: true,
-            // nodeIntegrationInSubFrames: true
+            
         }
     });
-    //Para que la venta de nuevo producto no tenga la barra de las pestañas
-    //No funciona en macOS
-    // newProductWindow.setMenu(null);
+
     newProductWindow.loadURL(url.format({
         pathname: path.join(__dirname, 'views/new-product.html'),
         protocol: 'file',
@@ -75,33 +81,41 @@ function createNewProductWindow() {
 
 ipcMain.on('product:form',()=> {
     createNewProductWindow();
-
 });
 
 ipcMain.on('product:new', (e, newProduct) => {
-    // let woodList = getWoodListFromJsonFile();
-
-    // woodList.push(newProduct);
-    // let newProductToJson = JSON.stringify(woodList, null, 2);
-    
-    // fs.writeFile('src/data/WOODS_DETAILS.json', newProductToJson, 'utf8',finished);
-    // function finished(err) {
-    // }
+    saveInJson(newProduct);
     mainWindow.reload();
-    // newProductWindow.close();
+    newProductWindow.close();
 });
 
 const templateMainMenu = [
-    // isMac() ? {
-    //     label: app.getName(),
-    //     submenu: [
-    //         {
-    //             label: 'Copiar',
-    //             role: 'Copy'
-    //         }   
-    //     ]
-    // } :[],
+    isMac() ? {
+        label: app.getName(),
+        submenu: [
+            {
+                label: 'Copiar',
+                role: 'Copy'
+            }   
+        ]
+    } :[{
+        label: 'Archivo',
+        submenu: [
+            {
+                label: 'Nueva madera',
+                accelerator: 'Ctrl+N',
+                click(){
+                    createNewProductWindow();
+                }
+            },
+            {
+                label: "Salir",
+                role: 'Quit'
+            },
+        ]
+    },],
 
+    
     {
         label: 'Archivo',
         submenu: [
@@ -118,7 +132,6 @@ const templateMainMenu = [
             },
         ]
     },
-    
     {
         label: 'Editar',
         submenu: [

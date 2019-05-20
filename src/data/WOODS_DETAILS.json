@@ -76,5 +76,70 @@
     "sale_price": "000",
     "total_sold": "000",
     "_id": "rDP4evrVRbaaWIKR"
+  },
+  {
+    "descriptionProduct": "",
+    "idProduct": "",
+    "name_product": "",
+    "provider": "",
+    "purchase_price": "",
+    "purchased_total": "",
+    "quantity": "",
+    "quantity_sold": "",
+    "reaminingAmount": 0,
+    "sale_price": "",
+    "total_sold": ""
+  },
+  {
+    "descriptionProduct": "9",
+    "idProduct": "9",
+    "name_product": "9",
+    "provider": "9",
+    "purchase_price": "9",
+    "purchased_total": "9",
+    "quantity": "9",
+    "quantity_sold": "9",
+    "reaminingAmount": 0,
+    "sale_price": "9",
+    "total_sold": "9"
+  },
+  {
+    "descriptionProduct": "8",
+    "idProduct": "8",
+    "name_product": "8",
+    "provider": "8",
+    "purchase_price": "8",
+    "purchased_total": "8",
+    "quantity": "8",
+    "quantity_sold": "8",
+    "reaminingAmount": 0,
+    "sale_price": "8",
+    "total_sold": "8"
+  },
+  {
+    "descriptionProduct": "",
+    "idProduct": "x",
+    "name_product": "",
+    "provider": "",
+    "purchase_price": "",
+    "purchased_total": "",
+    "quantity": "",
+    "quantity_sold": "",
+    "reaminingAmount": 0,
+    "sale_price": "",
+    "total_sold": ""
+  },
+  {
+    "descriptionProduct": "",
+    "idProduct": "t",
+    "name_product": "",
+    "provider": "",
+    "purchase_price": "",
+    "purchased_total": "",
+    "quantity": "",
+    "quantity_sold": "",
+    "reaminingAmount": 0,
+    "sale_price": "",
+    "total_sold": ""
   }
 ]
