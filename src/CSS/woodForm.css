@@ -1,0 +1,40 @@
+body{
+    
+}
+.title{
+    text-align: center;
+    color: #504F4F;
+}
+.form-container{
+    background-color:#3465A3; 
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    box-shadow: -10px 11px 24px 1px rgba(0,0,0,0.75);
+}
+.inputs-container{
+    flex: 0 0 90%;
+    display: flex;
+}
+.button-container{
+    flex: 0 0 10%;
+    margin: 1em;
+}
+.left{
+    flex: 0 0 50%;
+    display: flex;
+    flex-direction: column;
+}
+.right{
+    flex: 0 0 50%;
+    display: flex;
+    flex-direction: column;
+}
+.inputs-container>div>input{
+    margin: 1em;
+    height: 30px;
+}
+.create-button{
+    align-self: flex-end;
+    
+}
