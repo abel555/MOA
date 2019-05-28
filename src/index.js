@@ -84,36 +84,36 @@ ipcMain.on('product:form',()=> {
 });
 
 ipcMain.on('product:new', (e, newProduct) => {
-    saveInJson(newProduct);
-    mainWindow.reload();
-    newProductWindow.close();
+    // saveInJson(newProduct);
+    // mainWindow.reload();
+    // newProductWindow.close();
 });
 
 const templateMainMenu = [
-    isMac() ? {
-        label: app.getName(),
-        submenu: [
-            {
-                label: 'Copiar',
-                role: 'Copy'
-            }   
-        ]
-    } :[{
-        label: 'Archivo',
-        submenu: [
-            {
-                label: 'Nueva madera',
-                accelerator: 'Ctrl+N',
-                click(){
-                    createNewProductWindow();
-                }
-            },
-            {
-                label: "Salir",
-                role: 'Quit'
-            },
-        ]
-    },],
+    // isMac() ? {
+    //     label: app.getName(),
+    //     submenu: [
+    //         {
+    //             label: 'Copiar',
+    //             role: 'Copy'
+    //         }   
+    //     ]
+    // } :[{
+    //     label: 'Archivo',
+    //     submenu: [
+    //         {
+    //             label: 'Nueva madera',
+    //             accelerator: 'Ctrl+N',
+    //             click(){
+    //                 createNewProductWindow();
+    //             }
+    //         },
+    //         {
+    //             label: "Salir",
+    //             role: 'Quit'
+    //         },
+    //     ]
+    // },],
 
     
     {

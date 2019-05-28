@@ -4,6 +4,14 @@ const path = require('path');
 const fs = require('fs');
 const jsonFilename = path.resolve(__dirname, '..', 'data', 'WOODS_DETAILS.json');
 
+function chargeCss() {
+    let link = document.createElement('link');
+    const pathCss = path.resolve(__dirname, '..', 'CSS', 'woodForm.css');
+    link.setAttribute('rel', 'stylesheet');
+    link.setAttribute('href', pathCss);
+    document.head.appendChild(link);
+}
+
 function getWoodListFromJsonFile() {
     let woodsJSON = fs.readFileSync(jsonFilename);
     let woodList = JSON.parse(woodsJSON);
@@ -51,6 +59,8 @@ form.addEventListener('submit', event => {
         total_sold: totalSold,
         reaminingAmount: reaminingAmount
     };
-    // saveInJson(newProduct);
+    saveInJson(newProduct);
     ipcRenderer.send('product:new', newProduct);
 });
+
+chargeCss();

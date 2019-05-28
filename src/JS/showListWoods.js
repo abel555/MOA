@@ -8,6 +8,14 @@ function getWoodListFromJsonFile() {
   return woodList;
 }
 
+function chargeCss() {
+  let link = document.createElement('link');
+  const pathCss = path.resolve(__dirname, '..', 'CSS', 'index.css');
+  link.setAttribute('rel', 'stylesheet');
+  link.setAttribute('href', pathCss);
+  document.head.appendChild(link);
+}
+
 function chargeListInTable(){
   const woodsList = getWoodListFromJsonFile();
   let idProduct;
@@ -79,4 +87,5 @@ function chargeListInTable(){
       document.querySelector("#woodList").appendChild(woodProductDetails);
   });
 }
+chargeCss();
 chargeListInTable();
