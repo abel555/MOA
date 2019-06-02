@@ -128,5 +128,18 @@
     "sale_price": "",
     "total_sold": "",
     "reaminingAmount": 0
+  },
+  {
+    "idProduct": "1234",
+    "descriptionProduct": "jajaja",
+    "quantity": "10",
+    "purchase_price": "10",
+    "purchased_total": "",
+    "name_product": "oplan",
+    "provider": "asdasdad",
+    "quantity_sold": "10",
+    "sale_price": "",
+    "total_sold": "",
+    "reaminingAmount": 0
   }
 ]
