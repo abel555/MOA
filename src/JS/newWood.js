@@ -16,7 +16,7 @@ async function chargeCss() {
 
 
     let currentCounter = await get_id();
-    
+    // console.log(currentCounter[0].counter);
 }
 
 function get_id() {
@@ -38,12 +38,12 @@ function saveInJson(newProduct) {
     db.insert(newProduct);
 }
 
-form.addEventListener('submit', event => {
+form.addEventListener('submit', async event => {
     
     event.preventDefault();
     
     
-    let currentCounter;
+    let currentCounter = await get_id();
     
     
     const idProduct = document.querySelector('#idProduct').value;
@@ -77,10 +77,11 @@ form.addEventListener('submit', event => {
 
     // saveInJson(newProduct);
     
-    currentCounter = Number(currentCounter);
+    // currentCounter = parseInt(currentCounter, 10);
+    console.log(currentCounter[0].counter);
     currentCounter++;
-    updateCounter(currentCounter);
-    ipcRenderer.send('product:new', newProduct);
+    // updateCounter(currentCounter);
+    // ipcRenderer.send('product:new', newProduct);
 });
 
 

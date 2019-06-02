@@ -49,7 +49,10 @@ async function chargeListInTable(){
   let totalSold;
   
   woodsList.forEach(function(woodProduct) {
-    woodProductDetails = document.createElement("tr");
+
+      if(woodProduct.counter)
+        break;
+      woodProductDetails = document.createElement("tr");
     
       idProduct = document.createElement("td");
       nameProduct = document.createElement("td");
