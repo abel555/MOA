@@ -1,6 +1,31 @@
 const path = require('path');
 const fs = require('fs');
 const jsonFilename = path.resolve(__dirname, '..', 'data', 'WOODS_DETAILS.json');
+let courrentProduct = "woods";
+
+var Datastore = require('nedb');
+const db = new Datastore({ filename: 'data/WOODS_DETAILS', autoload: true });
+const dbCalimnas = new Datastore({ filename: 'data/CALAMINAS_DETAILS', autoload: true });
+const dbIronmongery = new Datastore({ filename: 'data/IRONMONGERY_DETAILS', autoload: true });
+
+const woodButton = document.querySelector('#wood');
+const calaminaButton = document.querySelector('#calamina');
+const ironmongeryButton = document.querySelector('#ironmongery');
+
+woodButton.addEventListener('click', event => {
+  courrentProduct = "woods";
+  chargeListByProduct();
+})
+
+calaminaButton.addEventListener('click', event => {
+  courrentProduct = "calaminas";
+  chargeListByProduct();
+})
+
+ironmongeryButton.addEventListener('click', event => {
+  courrentProduct = "ironmongery";
+  chargeListByProduct();
+})
 
 function search() {
   var input, filter, table, tr, td, i;
@@ -20,16 +45,6 @@ function search() {
   }
 }
 
-var Datastore = require('nedb')
-  , db = new Datastore({ filename: 'data/WOODS_DETAILS', autoload: true });
-
-async function getWoodListFromJsonFile() {
-  db.find({}, async function (err, docs) {
-    return await docs;
-  });
-
-}
-
 function chargeCss() {
   let link = document.createElement('link');
   const pathCss = path.resolve(__dirname, '..', 'CSS', 'index.css');
@@ -46,10 +61,66 @@ function getWoodListFromJsonFile() {
   })
 }
 
+function getCalaminaListFromJsonFile() {
+  return new Promise((resolve, reject) =>{
+    dbCalimnas.find({}, function (err, docs) {
+        resolve(docs);
+    });
+  })
+}
 
-async function chargeListInTable(){
+function getIronmongeryListFromJsonFile() {
+  return new Promise((resolve, reject) =>{
+    dbIronmongery.find({}, function (err, docs) {
+        resolve(docs);
+    });
+  })
+}
 
-  const woodsList = await getWoodListFromJsonFile();
+function chargeHeader() {
+
+  table = document.createElement("tr");
+  table.classList.add("table-title");
+  let codigo = document.createElement("th");
+  let nombre = document.createElement("th");
+  let proveedor = document.createElement("th");
+  let descripcion = document.createElement("th");
+  let cantidad = document.createElement("th");
+  let cantidadVendida = document.createElement("th");
+  let precioCompra = document.createElement("th");
+  let precioVenta = document.createElement("th");
+  let totalCompra = document.createElement("th");
+  let totalVenta = document.createElement("th");
+  let cantidadRestante = document.createElement("th");
+  
+  codigo.appendChild(document.createTextNode("Código"));
+  nombre.appendChild(document.createTextNode("Nombre"));
+  proveedor.appendChild(document.createTextNode("Proveedor"));
+  descripcion.appendChild(document.createTextNode("Descripción"));
+  cantidad.appendChild(document.createTextNode("Cantidad"));
+  cantidadVendida.appendChild(document.createTextNode("Cant. vendida"));
+  precioCompra.appendChild(document.createTextNode("P. compra"));
+  precioVenta.appendChild(document.createTextNode("P. venta"));
+  totalCompra.appendChild(document.createTextNode("T. compra"));
+  totalVenta.appendChild(document.createTextNode("T. venta"));
+  cantidadRestante.appendChild(document.createTextNode("Cant. restante"));
+  
+  table.appendChild(codigo);
+  table.appendChild(nombre);
+  table.appendChild(proveedor);
+  table.appendChild(descripcion);
+  table.appendChild(cantidad);
+  table.appendChild(cantidadVendida);
+  table.appendChild(precioCompra);
+  table.appendChild(precioVenta);
+  table.appendChild(totalCompra);
+  table.appendChild(totalVenta);
+  table.appendChild(cantidadRestante);
+
+  document.querySelector("#productsList").appendChild(table);
+}
+
+async function chargeListInTable(woodsList){
 
   let idProduct;
   let descriptionProduct;
@@ -63,7 +134,7 @@ async function chargeListInTable(){
   let salePrice;
   let totalSold;
   let reaminingAmount;
-  
+  chargeHeader();
   for(i = 0; i < woodsList.length; i++) {
     
     if(woodsList[i].counter)
@@ -125,8 +196,36 @@ async function chargeListInTable(){
 
       woodProductDetails.appendChild(reaminingAmount);
 
-      document.querySelector("#woodList").appendChild(woodProductDetails);
+      document.querySelector("#productsList").appendChild(woodProductDetails);
   }
 }
+
+function cleanTable() {
+  let table = document.querySelector("#productsList");
+  while(table.hasChildNodes()) {
+    table.removeChild(table.firstChild);
+  }
+}
+
+async function chargeListByProduct() {
+  switch(courrentProduct) {
+    case 'woods':
+      cleanTable();
+      const woodsList = await getWoodListFromJsonFile();
+      chargeListInTable(woodsList);
+      break;
+    case 'calaminas':
+      cleanTable();
+      const calaminasList = await getCalaminaListFromJsonFile();
+      chargeListInTable(calaminasList);
+      break;
+    case 'ironmongery':
+      cleanTable();
+      const ironmongeryList = await getIronmongeryListFromJsonFile();
+      chargeListInTable(ironmongeryList);
+      break;
+  }
+}
+
 chargeCss();
-chargeListInTable();
+chargeListByProduct();
