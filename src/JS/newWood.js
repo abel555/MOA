@@ -2,36 +2,57 @@ const { ipcRenderer } = require('electron');
 const form = document.querySelector('form');
 const path = require('path');
 const fs = require('fs');
-const jsonFilename = path.resolve(__dirname, '..', 'data', 'WOODS_DETAILS.json');
+const jsonFilename = path.resolve(__dirname, '..', 'data', 'WOODS_DETAILS');
 
-function chargeCss() {
+var Datastore = require('nedb')
+  , db = new Datastore({ filename: 'data/WOODS_DETAILS', autoload: true });
+
+async function chargeCss() {
     let link = document.createElement('link');
     const pathCss = path.resolve(__dirname, '..', 'CSS', 'woodForm.css');
     link.setAttribute('rel', 'stylesheet');
     link.setAttribute('href', pathCss);
     document.head.appendChild(link);
+
+
+    let currentCounter = await get_id();
+    // console.log(currentCounter[0].counter);
 }
 
-function getWoodListFromJsonFile() {
-    let woodsJSON = fs.readFileSync(jsonFilename);
-    let woodList = JSON.parse(woodsJSON);
-    return woodList;
+function get_id() {
+    return new Promise((resolve, reject) =>{
+      db.find({ flag: 'counter' }, function (err, docs) {
+          resolve(docs);
+      });
+    })
+}
+
+function updateCounter(array) {
+    
+    // db.update({n: 1}, {$set: {counter: countera[0].counter}}, {}, function(err, num) {
+    //     if (err) {
+    //         console.error(err);
+    //         return;
+    //     }
+    // });
+    let numReplaced = 1;
+    numReplaced = Number(numReplaced);
+    db.update({ flag: 'counter', counter: (array[0].counter-1).toString() }, {flag: 'counter', counter: (array[0].counter).toString()}, {}, function (err, numReplaced) {
+        
+    });      
 }
 
 function saveInJson(newProduct) {
-    let woodList = getWoodListFromJsonFile();
-    woodList.push(newProduct);
-    let newProductToJson = JSON.stringify(woodList, null, 2);
-    
-    fs.writeFile(jsonFilename, newProductToJson, finished);
-    
-    function finished(err) {
-        console.log(err);
-    }
+    db.insert(newProduct);
 }
-form.addEventListener('submit', event => {
+
+form.addEventListener('submit', async event => {
     
     event.preventDefault();
+    
+    
+    let currentCounter = await get_id();
+    
     
     const idProduct = document.querySelector('#idProduct').value;
     const descriptionProduct = document.querySelector('#description').value;
@@ -57,9 +78,15 @@ form.addEventListener('submit', event => {
         quantity_sold: quantitySold,
         sale_price: salePrice,
         total_sold: totalSold,
-        reaminingAmount: reaminingAmount
+        reaminingAmount: reaminingAmount,
+
+        _id: currentCounter[0].counter.toString()
     };
+
     saveInJson(newProduct);
+    
+    currentCounter[0].counter++;
+    updateCounter(currentCounter);
     ipcRenderer.send('product:new', newProduct);
 });
 

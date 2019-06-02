@@ -19,10 +19,18 @@ function search() {
     }       
   }
 }
-function getWoodListFromJsonFile() {
-  let woodsJSON = fs.readFileSync(jsonFilename);
-  let woodList = JSON.parse(woodsJSON);
-  return woodList;
+
+var Datastore = require('nedb')
+  , db = new Datastore({ filename: 'data/WOODS_DETAILS', autoload: true });
+
+async function getWoodListFromJsonFile() {
+  // let woodsJSON = fs.readFileSync(jsonFilename);
+  // let woodList = JSON.parse(woodsJSON);
+
+  db.find({}, async function (err, docs) {
+    return await docs;
+  });
+
 }
 
 function chargeCss() {
@@ -33,8 +41,20 @@ function chargeCss() {
   document.head.appendChild(link);
 }
 
-function chargeListInTable(){
-  const woodsList = getWoodListFromJsonFile();
+function getWoodListFromJsonFile() {
+  return new Promise((resolve, reject) =>{
+    db.find({}, function (err, docs) {
+        resolve(docs);
+    });
+  })
+}
+
+
+async function chargeListInTable(){
+
+  const woodsList = await getWoodListFromJsonFile();
+
+  console.log(woodsList);
   let idProduct;
   let descriptionProduct;
   let quantity;
@@ -47,7 +67,11 @@ function chargeListInTable(){
   let salePrice;
   let totalSold;
   
-  woodsList.forEach(function(woodProduct) {
+  for(i = 0; i < woodsList.length; i++) {
+    
+    if(woodsList[i].counter)
+         continue;
+
     woodProductDetails = document.createElement("tr");
     
       idProduct = document.createElement("td");
@@ -62,17 +86,17 @@ function chargeListInTable(){
       purchaseTotal = document.createElement("td");
       totalSold = document.createElement("td");
       
-      idProductText = document.createTextNode(woodProduct.idProduct);
-      nameProductText = document.createTextNode(woodProduct.name_product);
-      providerText = document.createTextNode(woodProduct.provider);
-      descriptionText = document.createTextNode(woodProduct.descriptionProduct);
-      quantityText = document.createTextNode(woodProduct.quantity);
+      idProductText = document.createTextNode(woodsList[i].idProduct);
+      nameProductText = document.createTextNode(woodsList[i].name_product);
+      providerText = document.createTextNode(woodsList[i].provider);
+      descriptionText = document.createTextNode(woodsList[i].descriptionProduct);
+      quantityText = document.createTextNode(woodsList[i].quantity);
         
-      quantitySoldText = document.createTextNode(woodProduct.quantity_sold);
-      purcharsePriceText = document.createTextNode(woodProduct.purchase_price);
-      salePriceText = document.createTextNode(woodProduct.sale_price);
-      purchaseTotalText = document.createTextNode(woodProduct.purchased_total);
-      totalSoldText = document.createTextNode(woodProduct.total_sold);
+      quantitySoldText = document.createTextNode(woodsList[i].quantity_sold);
+      purcharsePriceText = document.createTextNode(woodsList[i].purchase_price);
+      salePriceText = document.createTextNode(woodsList[i].sale_price);
+      purchaseTotalText = document.createTextNode(woodsList[i].purchased_total);
+      totalSoldText = document.createTextNode(woodsList[i].total_sold);
 
       idProduct.appendChild(idProductText);
       nameProduct.appendChild(nameProductText);
@@ -102,7 +126,67 @@ function chargeListInTable(){
       woodProductDetails.appendChild(totalSold);
 
       document.querySelector("#woodList").appendChild(woodProductDetails);
-  });
+  }
+  // woodsList.forEach(function(woodProduct) {
+
+  //     if(woodProduct.counter)
+  //       continue;
+
+  //     woodProductDetails = document.createElement("tr");
+    
+  //     idProduct = document.createElement("td");
+  //     nameProduct = document.createElement("td");
+  //     provider = document.createElement("td");
+  //     descriptionProduct = document.createElement("td");
+  //     quantity = document.createElement("td");
+
+  //     quantitySold = document.createElement("td");
+  //     purcharsePrice = document.createElement("td");
+  //     salePrice = document.createElement("td");
+  //     purchaseTotal = document.createElement("td");
+  //     totalSold = document.createElement("td");
+      
+  //     idProductText = document.createTextNode(woodProduct.idProduct);
+  //     nameProductText = document.createTextNode(woodProduct.name_product);
+  //     providerText = document.createTextNode(woodProduct.provider);
+  //     descriptionText = document.createTextNode(woodProduct.descriptionProduct);
+  //     quantityText = document.createTextNode(woodProduct.quantity);
+        
+  //     quantitySoldText = document.createTextNode(woodProduct.quantity_sold);
+  //     purcharsePriceText = document.createTextNode(woodProduct.purchase_price);
+  //     salePriceText = document.createTextNode(woodProduct.sale_price);
+  //     purchaseTotalText = document.createTextNode(woodProduct.purchased_total);
+  //     totalSoldText = document.createTextNode(woodProduct.total_sold);
+
+  //     idProduct.appendChild(idProductText);
+  //     nameProduct.appendChild(nameProductText);
+  //     provider.appendChild(providerText);
+  //     descriptionProduct.appendChild(descriptionText);
+  //     quantity.appendChild(quantityText);
+
+  //     quantitySold.appendChild(quantitySoldText);
+  //     purcharsePrice.appendChild(purcharsePriceText);
+  //     salePrice.appendChild(salePriceText);
+  //     purchaseTotal.appendChild(purchaseTotalText);
+  //     totalSold.appendChild(totalSoldText);
+
+
+      
+  //     woodProductDetails.appendChild(idProduct);
+  //     woodProductDetails.appendChild(nameProduct);
+  //     woodProductDetails.appendChild(provider);
+  //     woodProductDetails.appendChild(descriptionProduct);
+  //     woodProductDetails.appendChild(quantity);
+
+  //     woodProductDetails.appendChild(quantitySold);
+  //     woodProductDetails.appendChild(purcharsePrice);
+  //     woodProductDetails.appendChild(salePrice);
+  //     woodProductDetails.appendChild(purcharsePrice);
+  //     woodProductDetails.appendChild(purchaseTotal);
+  //     woodProductDetails.appendChild(totalSold);
+
+  //     document.querySelector("#woodList").appendChild(woodProductDetails);
+  // });
 }
 chargeCss();
 chargeListInTable();
