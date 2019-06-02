@@ -128,5 +128,31 @@
     "sale_price": "",
     "total_sold": "",
     "reaminingAmount": 0
+  },
+  {
+    "idProduct": "Prúeba",
+    "descriptionProduct": "",
+    "quantity": "",
+    "purchase_price": "",
+    "purchased_total": "",
+    "name_product": "",
+    "provider": "",
+    "quantity_sold": "",
+    "sale_price": "",
+    "total_sold": "",
+    "reaminingAmount": 0
+  },
+  {
+    "idProduct": "qwe",
+    "descriptionProduct": "",
+    "quantity": "",
+    "purchase_price": "",
+    "purchased_total": "",
+    "name_product": "",
+    "provider": "",
+    "quantity_sold": "",
+    "sale_price": "",
+    "total_sold": "",
+    "reaminingAmount": 0
   }
 ]

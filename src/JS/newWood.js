@@ -23,12 +23,13 @@ function saveInJson(newProduct) {
     woodList.push(newProduct);
     let newProductToJson = JSON.stringify(woodList, null, 2);
     
-    fs.writeFile(jsonFilename, newProductToJson, finished);
+    fs.writeFile(jsonFilename, newProductToJson, 'utf8',finished);
     
     function finished(err) {
         console.log(err);
     }
 }
+
 form.addEventListener('submit', event => {
     
     event.preventDefault();
