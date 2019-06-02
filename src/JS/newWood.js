@@ -2,7 +2,31 @@ const { ipcRenderer } = require('electron');
 const form = document.querySelector('form');
 const path = require('path');
 const fs = require('fs');
-const jsonFilename = path.resolve(__dirname, '..', 'data', 'WOODS_DETAILS.json');
+const jsonFilename = path.resolve(__dirname, '..', 'data', 'WOODS_DETAILS');
+
+
+
+console.log(jsonFilename);
+var Datastore = require('nedb')
+  , db = new Datastore({ filename: 'data/WOODS_DETAILS', autoload: true });
+// You can issue commands right away
+
+  var doc = { hello: 'world'
+               , n: 5
+               , today: new Date()
+               , nedbIsAwesome: true
+               , notthere: null
+               , notToBeSaved: undefined  // Will not be saved
+               , fruits: [ 'apple', 'orange', 'pear' ]
+               , infos: { name: 'nedb' }
+               };
+
+db.insert(doc);
+
+db.find({}, function (err, docs) {
+    console.log(docs);
+});
+
 
 function chargeCss() {
     let link = document.createElement('link');
