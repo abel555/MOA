@@ -1,1 +1,7 @@
-{"flag":"counter","counter":"2","_id":"1"}
+{"flag":"counter","counter":"8","_id":"1"}
+{"idProduct":"asd","descriptionProduct":"","quantity":"","purchase_price":"","purchased_total":"","name_product":"","provider":"","quantity_sold":"","sale_price":"","total_sold":"","reaminingAmount":0,"_id":"2"}
+{"idProduct":"34d","descriptionProduct":"","quantity":"","purchase_price":"","purchased_total":"","name_product":"","provider":"","quantity_sold":"","sale_price":"","total_sold":"","reaminingAmount":0,"_id":"3"}
+{"idProduct":"asdsad","descriptionProduct":"","quantity":"","purchase_price":"","purchased_total":"","name_product":"","provider":"","quantity_sold":"","sale_price":"","total_sold":"","reaminingAmount":0,"_id":"4"}
+{"idProduct":"asd","descriptionProduct":"","quantity":"","purchase_price":"","purchased_total":"","name_product":"","provider":"","quantity_sold":"","sale_price":"","total_sold":"","reaminingAmount":0,"_id":"5"}
+{"idProduct":"23wesd","descriptionProduct":"","quantity":"","purchase_price":"","purchased_total":"","name_product":"","provider":"","quantity_sold":"","sale_price":"","total_sold":"","reaminingAmount":0,"_id":"6"}
+{"idProduct":"","descriptionProduct":"","quantity":"100","purchase_price":"","purchased_total":"","name_product":"","provider":"","quantity_sold":"50","sale_price":"","total_sold":"","reaminingAmount":0,"_id":"7"}
