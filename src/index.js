@@ -5,12 +5,16 @@ const path = require ('path');
 
 let fs = require('fs');
 
-const Datastore = require('nedb')
-  , db = new Datastore({ filename: 'data/WOODS_DETAILS', autoload: true });
+const Datastore = require('nedb');
 
+const dbWoods = new Datastore({ filename: 'data/WOODS_DETAILS', autoload: true });
+const dbCalimnas = new Datastore({ filename: 'data/CALAMINAS_DETAILS', autoload: true });
+const dbIronmongery = new Datastore({ filename: 'data/IRONMONGERY_DETAILS', autoload: true });
 
 function chargeCounterInDataBase() {
-    db.insert({"flag":"counter","counter":"2","_id":"1"});
+    dbWoods.insert({"flag":"counter","counter":"2","_id":"1"});
+    dbCalimnas.insert({"flag":"counter","counter":"2","_id":"1"});
+    dbIronmongery.insert({"flag":"counter","counter":"2","_id":"1"});
 }
 
 if(process.env.NODE_ENV !== 'production') {

@@ -28,17 +28,12 @@ function get_id() {
 }
 
 function updateCounter(array) {
-    
-    // db.update({n: 1}, {$set: {counter: countera[0].counter}}, {}, function(err, num) {
-    //     if (err) {
-    //         console.error(err);
-    //         return;
-    //     }
-    // });
     let numReplaced = 1;
     numReplaced = Number(numReplaced);
-    db.update({ flag: 'counter', counter: (array[0].counter-1).toString() }, {flag: 'counter', counter: (array[0].counter).toString()}, {}, function (err, numReplaced) {
-        
+    db.update({ flag: 'counter', counter: (array[0].counter-1).toString() }, 
+        {flag: 'counter', counter: (array[0].counter).toString()}, 
+        {}, 
+        function (err, numReplaced) {
     });      
 }
 
