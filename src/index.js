@@ -79,10 +79,35 @@ function createNewProductWindow() {
 
 }
 
+function renderSaleWindow() {
+    saleWindow = new BrowserWindow({
+        width: 700,
+        height: 600,
+        title: "Ventas",
+        webPreferences: {
+            nodeIntegration: true,
+            
+        }
+    });
+
+    saleWindow.loadURL(url.format({
+        pathname: path.join(__dirname, 'views/sale.html'),
+        protocol: 'file',
+        slashes: true
+    }))
+
+    saleWindow.on('closed', ()=> {
+        newProductWindow = null;
+    })
+
+}
+
 ipcMain.on('product:form',()=> {
     createNewProductWindow();
 });
-
+ipcMain.on('sale:window',()=> {
+    renderSaleWindow();
+});
 ipcMain.on('product:new', (e, newProduct) => {
     // saveInJson(newProduct);
     // mainWindow.reload();
@@ -219,3 +244,4 @@ if (!isInProduction()) {
 }
 
 module.exports = createNewProductWindow;
+module.exports = renderSaleWindow;

@@ -8,7 +8,6 @@
     <title>Inventario</title>
     <script src="../JS/showListWoods.js" defer></script>
     <script src="../JS/woodForm.js" defer></script>
-    <script src="../JS/sales.js" defer></script>
 </head>
 
 <body>
@@ -20,13 +19,14 @@
       </div>
       <nav>
         <ul class="main-menu">
-          <li><a href="#" id="wood">Madera</a></li>
+          <li><a>Madera</a></li>
           <li><a>Calamina</a></li>
           <li><a>Ferreteria</a></li>
-          <li><a href="#" id="sale">Ventas</a></li> 
+          <li><a>Ventas</a></li> 
         </ul>
       </nav>
     </div>
+    <h1>Ventas</h1>
     <main class="main">
       <div class="options">
         <form class="search-form" action="">
@@ -37,7 +37,8 @@
         </form>
       </div>
       <div class="items">
-        <table class ="list" id="woodList">
+        <table id="woodList">
+            
             <tr class="table-title">
               <th>Codigo</th>
               <th>Nombre</th>
@@ -51,20 +52,7 @@
               <th>T. venta</th>
               <th>Cant. restante</th>
             </tr>                
-        </table>
-        <table class ="list" id="salesList" style="display: none;">
-          <tr class="table-title">
-            <th>Codigo</th>
-            <th>Nombre</th>
-            <th>Proveedor</th>
-            <th>Cliente</th>
-            <th>Medida</th>
-            <th>Descripcion</th>
-            <th>Cantidad</th>
-            <th>P. compra</th>
-            <th>P. venta</th>
-            <th>T. venta</th>
-          </tr>                
+           
         </table>
       </div>
     </main>
