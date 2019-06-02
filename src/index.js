@@ -84,9 +84,8 @@ ipcMain.on('product:form',()=> {
 });
 
 ipcMain.on('product:new', (e, newProduct) => {
-    // saveInJson(newProduct);
-    // mainWindow.reload();
-    // newProductWindow.close();
+    mainWindow.reload();
+    newProductWindow.close();
 });
 
 const templateMainMenu = [

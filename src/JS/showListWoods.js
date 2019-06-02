@@ -2,10 +2,17 @@ const path = require('path');
 const fs = require('fs');
 const jsonFilename = path.resolve(__dirname, '..', 'data', 'WOODS_DETAILS.json');
 
-function getWoodListFromJsonFile() {
-  let woodsJSON = fs.readFileSync(jsonFilename);
-  let woodList = JSON.parse(woodsJSON);
-  return woodList;
+var Datastore = require('nedb')
+  , db = new Datastore({ filename: 'data/WOODS_DETAILS', autoload: true });
+
+async function getWoodListFromJsonFile() {
+  // let woodsJSON = fs.readFileSync(jsonFilename);
+  // let woodList = JSON.parse(woodsJSON);
+
+  db.find({}, async function (err, docs) {
+    return await docs;
+  });
+
 }
 
 function chargeCss() {
@@ -16,8 +23,19 @@ function chargeCss() {
   document.head.appendChild(link);
 }
 
-function chargeListInTable(){
-  const woodsList = getWoodListFromJsonFile();
+function getWoodListFromJsonFile() {
+  return new Promise((resolve, reject) =>{
+    db.find({}, function (err, docs) {
+        resolve(docs);
+    });
+  })
+}
+
+
+async function chargeListInTable(){
+
+  const woodsList = await getWoodListFromJsonFile();
+
   let idProduct;
   let descriptionProduct;
   let quantity;
@@ -87,5 +105,6 @@ function chargeListInTable(){
       document.querySelector("#woodList").appendChild(woodProductDetails);
   });
 }
+
 chargeCss();
 chargeListInTable();
