@@ -31,7 +31,7 @@ function search() {
   var input, filter, table, tr, td, i;
   input = document.getElementById("searchInput");
   filter = input.value.toUpperCase();
-  table = document.getElementById("woodList");
+  table = document.getElementById("productsList");
   tr = table.getElementsByTagName("tr");
   for (i = 0; i < tr.length; i++) {
     td = tr[i].getElementsByTagName("td")[1];
