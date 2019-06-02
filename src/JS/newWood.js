@@ -27,9 +27,17 @@ function get_id() {
     })
 }
 
-function updateCounter(counter) {
-    counter = counter.toString();
-    db.update({ flag: 'counter' }, { flag: 'counter', counter}, {}, function (err, ) {
+function updateCounter(array) {
+    
+    // db.update({n: 1}, {$set: {counter: countera[0].counter}}, {}, function(err, num) {
+    //     if (err) {
+    //         console.error(err);
+    //         return;
+    //     }
+    // });
+    let numReplaced = 1;
+    numReplaced = Number(numReplaced);
+    db.update({ flag: 'counter', counter: (array[0].counter-1).toString() }, {flag: 'counter', counter: (array[0].counter).toString()}, {}, function (err, numReplaced) {
         
     });      
 }
@@ -72,17 +80,14 @@ form.addEventListener('submit', async event => {
         total_sold: totalSold,
         reaminingAmount: reaminingAmount,
 
-        _id: "1"
+        _id: currentCounter[0].counter.toString()
     };
 
-    // saveInJson(newProduct);
+    saveInJson(newProduct);
     
-    // currentCounter = parseInt(currentCounter, 10);
-    console.log(currentCounter[0].counter);
-    currentCounter++;
-    // updateCounter(currentCounter);
-    // ipcRenderer.send('product:new', newProduct);
+    currentCounter[0].counter++;
+    updateCounter(currentCounter);
+    ipcRenderer.send('product:new', newProduct);
 });
-
 
 chargeCss();

@@ -5,6 +5,13 @@ const path = require ('path');
 
 let fs = require('fs');
 
+const Datastore = require('nedb')
+  , db = new Datastore({ filename: 'data/WOODS_DETAILS', autoload: true });
+
+
+function chargeCounterInDataBase() {
+    db.insert({"flag":"counter","counter":"2","_id":"1"});
+}
 if(process.env.NODE_ENV !== 'production') {
     require('electron-reload')(__dirname, {
         electron: path.join(__dirname, "../node_modules/", '.bin', 'electron'),
@@ -14,23 +21,6 @@ if(process.env.NODE_ENV !== 'production') {
 let mainWindow;
 let newProductWindow;
 const jsonFilename = path.resolve(__dirname, '.', 'data', 'WOODS_DETAILS.json');
-
-function getWoodListFromJsonFile() {
-    let woodsJSON = fs.readFileSync(jsonFilename);
-    let woodList = JSON.parse(woodsJSON);
-    return woodList;
-}
-
-function saveInJson(newProduct) {
-    let woodList = getWoodListFromJsonFile();
-    woodList.push(newProduct);
-    let newProductToJson = JSON.stringify(woodList, null, 2);
-    
-    fs.writeFile(jsonFilename, newProductToJson, finished);
-    
-    function finished(err) {
-    }
-}
 
 app.on('ready', () => {
     mainWindow = new BrowserWindow({
@@ -204,17 +194,18 @@ if (!isInProduction()) {
         submenu: [
             {
                 label: 'Show/hide Dev Tools like a inspector of chrome',
-                accelerator: 'command+D',
+                accelerator: 'ctrl+D',
                 click(item, focusedWindow) {
                     focusedWindow.toggleDevTools();
                 }
             },
             {
                 role: 'reload',
-                accelerator: 'command+R'
+                accelerator: 'ctrl+R'
             }
         ]
     })
 }
 
+chargeCounterInDataBase();
 module.exports = createNewProductWindow;
