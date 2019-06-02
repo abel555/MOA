@@ -73,11 +73,9 @@ function createNewProductWindow() {
     })
 
 }
-
 ipcMain.on('product:form',()=> {
     createNewProductWindow();
 });
-
 ipcMain.on('product:new', (e, newProduct) => {
     mainWindow.reload();
     newProductWindow.close();
