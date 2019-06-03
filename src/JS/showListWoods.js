@@ -12,17 +12,30 @@ const woodButton = document.querySelector('#wood');
 const calaminaButton = document.querySelector('#calamina');
 const ironmongeryButton = document.querySelector('#ironmongery');
 
+const addNewWood = document.querySelector('#addWoodForm');
+const addNewCalamina = document.querySelector('#addCalaminaForm');
+const addNewIronmongery = document.querySelector('#addIronmongeryForm');
+
 woodButton.addEventListener('click', event => {
+  addNewWood.style.display = 'block';
+  addNewCalamina.style.display = 'none';
+  addNewIronmongery.style.display = 'none';
   courrentProduct = "woods";
   chargeListByProduct();
 })
 
 calaminaButton.addEventListener('click', event => {
+  addNewWood.style.display = 'none';
+  addNewCalamina.style.display = 'block';
+  addNewIronmongery.style.display = 'none';
   courrentProduct = "calaminas";
   chargeListByProduct();
 })
 
 ironmongeryButton.addEventListener('click', event => {
+  addNewWood.style.display = 'none';
+  addNewCalamina.style.display = 'none';
+  addNewIronmongery.style.display = 'block';
   courrentProduct = "ironmongery";
   chargeListByProduct();
 })
