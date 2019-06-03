@@ -37,5 +37,5 @@ printPDFButton.addEventListener('click', event => {
 
 ipc.on('wrote-pdf', (event, path) => {
     const message = `Wrote pdf to : ${path}`;
-    document.getElementById('salesList').innerHTML = message;
+    //document.getElementById('salesList').innerHTML = message;
 })
