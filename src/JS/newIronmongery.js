@@ -5,7 +5,7 @@ const fs = require('fs');
 const jsonFilename = path.resolve(__dirname, '..', 'data', 'WOODS_DETAILS');
 
 var Datastore = require('nedb')
-  , db = new Datastore({ filename: 'data/WOODS_DETAILS', autoload: true });
+  , db = new Datastore({ filename: 'data/IRONMONGERY_DETAILS', autoload: true });
 
 async function chargeCss() {
     let link = document.createElement('link');
@@ -13,7 +13,7 @@ async function chargeCss() {
     link.setAttribute('rel', 'stylesheet');
     link.setAttribute('href', pathCss);
     document.head.appendChild(link);
-    document.querySelector(".title").innerHTML = "Formulario de madera";
+    document.querySelector(".title").innerHTML = "Formulario de ferreteria";
 }
 
 function get_id() {

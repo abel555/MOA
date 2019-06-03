@@ -4,6 +4,9 @@ const url = require ('url');
 const path = require ('path');
 
 let fs = require('fs');
+
+let courrentProduct = "woods";
+
 const os = require('os');
 const electron = require('electron')
 const shell = electron.shell;
@@ -16,9 +19,9 @@ const dbCalimnas = new Datastore({ filename: 'data/CALAMINAS_DETAILS', autoload:
 const dbIronmongery = new Datastore({ filename: 'data/IRONMONGERY_DETAILS', autoload: true });
 
 function chargeCounterInDataBase() {
-    dbWoods.insert({"flag":"counter","counter":"2","_id":"1"});
-    dbCalimnas.insert({"flag":"counter","counter":"2","_id":"1"});
-    dbIronmongery.insert({"flag":"counter","counter":"2","_id":"1"});
+    dbWoods.insert({"flag":"counter","counter":"20","_id":"1"});
+    dbCalimnas.insert({"flag":"counter","counter":"20","_id":"1"});
+    dbIronmongery.insert({"flag":"counter","counter":"20","_id":"1"});
 }
 
 if(process.env.NODE_ENV !== 'production') {
@@ -75,11 +78,64 @@ function createNewProductWindow() {
     newProductWindow.on('closed', ()=> {
         newProductWindow = null;
     })
-
 }
+
+function createNewCalaminaWindow() {
+    newProductWindow = new BrowserWindow({
+        width: 700,
+        height: 600,
+        title: "Add A New Product",
+        webPreferences: {
+            nodeIntegration: true,
+            
+        }
+    });
+
+    newProductWindow.loadURL(url.format({
+        pathname: path.join(__dirname, 'views/new-calamina.html'),
+        protocol: 'file',
+        slashes: true
+    }))
+
+    newProductWindow.on('closed', ()=> {
+        newProductWindow = null;
+    })
+}
+
+function createNewIronmongeryWindow() {
+    newProductWindow = new BrowserWindow({
+        width: 700,
+        height: 600,
+        title: "Add A New Product",
+        webPreferences: {
+            nodeIntegration: true,
+            
+        }
+    });
+
+    newProductWindow.loadURL(url.format({
+        pathname: path.join(__dirname, 'views/new-ironmongery.html'),
+        protocol: 'file',
+        slashes: true
+    }))
+
+    newProductWindow.on('closed', ()=> {
+        newProductWindow = null;
+    })
+}
+
 ipcMain.on('product:form',()=> {
     createNewProductWindow();
 });
+
+ipcMain.on('calamina:form',()=> {
+    createNewCalaminaWindow();
+});
+
+ipcMain.on('ironmongery:form',()=> {
+    createNewIronmongeryWindow();
+});
+
 ipcMain.on('product:new', (e, newProduct) => {
     mainWindow.reload();
     newProductWindow.close();
@@ -100,32 +156,6 @@ ipcMain.on('print-to-pdf', event => {
     })
   });
 const templateMainMenu = [
-    // isMac() ? {
-    //     label: app.getName(),
-    //     submenu: [
-    //         {
-    //             label: 'Copiar',
-    //             role: 'Copy'
-    //         }   
-    //     ]
-    // } :[{
-    //     label: 'Archivo',
-    //     submenu: [
-    //         {
-    //             label: 'Nueva madera',
-    //             accelerator: 'Ctrl+N',
-    //             click(){
-    //                 createNewProductWindow();
-    //             }
-    //         },
-    //         {
-    //             label: "Salir",
-    //             role: 'Quit'
-    //         },
-    //     ]
-    // },],
-
-    
     {
         label: 'Archivo',
         submenu: [
@@ -229,4 +259,3 @@ if (!isInProduction()) {
 }
 
 chargeCounterInDataBase();
-module.exports = createNewProductWindow;

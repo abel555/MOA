@@ -34,8 +34,16 @@
         <form class="search-form" action="">
           <input class="search-input" type="search" id="searchInput" onkeyup="search()" placeholder="Ingrese para buscar...">
         </form>
-        <form class="add-item-form" action="">
+        <form class="add-item-form" action="" style="display: block;" id= "addWoodForm">
           <button class ="add-input" type="button" id="addNewWood">Agregar Madera</button>
+        </form>
+
+        <form class="add-item-form" action="" style="display: none;" id= "addCalaminaForm">
+          <button class ="add-input" type="button" id="addNewCalamina" >Agregar Calamina</button>
+        </form>
+
+        <form class="add-item-form" action="" style="display: none;" id= "addIronmongeryForm">
+          <button class ="add-input" type="button" id="addNewIronmongery" >Agregar a la ferreteria</button>
         </form>
       </div>
       <div class="items">
