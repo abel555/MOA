@@ -39,6 +39,15 @@ ironmongeryButton.addEventListener('click', event => {
   courrentProduct = "ironmongery";
   chargeListByProduct();
 })
+const product_click = document.getElementById("productsList");
+product_click.addEventListener('contextmenu', event => {
+  if (event.target.matches('.product-name')) {
+    const row = event.target.parentElement.cloneNode(true);
+    const saleTable = document.getElementById("salesList")
+    saleTable.appendChild(row);
+  }
+
+}, false);
 
 function search() {
   var input, filter, table, tr, td, i;
@@ -154,9 +163,10 @@ async function chargeListInTable(woodsList){
          continue;
 
     woodProductDetails = document.createElement("tr");
-    
+    woodProductDetails.classList.add("dbl-click");
       idProduct = document.createElement("td");
       nameProduct = document.createElement("td");
+      nameProduct.classList.add("product-name");
       provider = document.createElement("td");
       descriptionProduct = document.createElement("td");
       quantity = document.createElement("td");
@@ -242,3 +252,4 @@ async function chargeListByProduct() {
 
 chargeCss();
 chargeListByProduct();
+
