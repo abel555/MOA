@@ -4,8 +4,12 @@ const url = require ('url');
 const path = require ('path');
 
 let fs = require('fs');
+const os = require('os');
+const electron = require('electron')
+const shell = electron.shell;
 
 const Datastore = require('nedb');
+
 
 const dbWoods = new Datastore({ filename: 'data/WOODS_DETAILS', autoload: true });
 const dbCalimnas = new Datastore({ filename: 'data/CALAMINAS_DETAILS', autoload: true });
@@ -80,7 +84,21 @@ ipcMain.on('product:new', (e, newProduct) => {
     mainWindow.reload();
     newProductWindow.close();
 });
-
+ipcMain.on('print-to-pdf', event => {
+    const pdfPath = path.join(os.tmpdir(), 'some-ducking-pdf.pdf');
+    const win = BrowserWindow.fromWebContents(event.sender);
+  
+    win.webContents.printToPDF({}, (error, data) => {
+      if (error) return console.log(error.message);
+  
+      fs.writeFile(pdfPath, data, err => {
+        if (err) return console.log(err.message);
+        shell.openExternal('file://' + pdfPath);
+        event.sender.send('wrote-pdf', pdfPath);
+      })
+      
+    })
+  });
 const templateMainMenu = [
     // isMac() ? {
     //     label: app.getName(),
