@@ -14,6 +14,13 @@ class DatabaseManager{
         return products;
     }
 
+    updateProduct(oldProduct, newProduct) {
+        let numReplaced = 1;
+        numReplaced = Number(numReplaced);
+        this.database.update(oldProduct, newProduct, {}, function (err, numReplaced) {
+        });
+    }
+
     async dataBaseQueryFindAll() {
         return await new Promise((resolve, reject) =>{
             this.database.find({}, function (err, docs) {

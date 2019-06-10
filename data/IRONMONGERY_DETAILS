@@ -1,4 +1,5 @@
-{"flag":"counter","counter":"27","_id":"1"}
-{"descriptionProduct":"prueba","quantity":"234","_id":"24"}
-{"descriptionProduct":"prueba","quantity":"234","_id":"25"}
-{"descriptionProduct":"zxcas asd","quantity":"22","sale_price":"4532","_id":"26"}
+{"flag":"counter","counter":"30","_id":"1"}
+{"idProduct":"25","quantity":"34f","sale_price":"123f","_id":"26"}
+{"idProduct":"2","quantity":"30","sale_price":"97","_id":"27"}
+{"idProduct":"3","quantity":"22","sale_price":"4532","_id":"28"}
+{"idProduct":"25","quantity":"34f","sale_price":"123f","_id":"29"}

@@ -14,22 +14,6 @@ const shell = electron.shell;
 const Datastore = require('nedb');
 
 
-// const ProductsController = require('./JS/ProductsController');
-
-// const productsController = new ProductsController();
-
-// const product = {
-//     descriptionProduct: "zxcas asd",
-//     quantity: "22",
-//     sale_price: "4532"
-// };
-
-// async function obtenerCalaminas() {
-//     console.log(await productsController.getAllProducts("calamina"));
-// }
-
-// obtenerCalaminas();
-
 const dbWoods = new Datastore({ filename: 'data/WOODS_DETAILS', autoload: true });
 const dbCalimnas = new Datastore({ filename: 'data/CALAMINAS_DETAILS', autoload: true });
 const dbIronmongery = new Datastore({ filename: 'data/IRONMONGERY_DETAILS', autoload: true });
