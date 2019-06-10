@@ -73,6 +73,7 @@ form.addEventListener('submit', async event => {
         _id: currentCounter[0].counter.toString()
     };
 
+    console.log(typeof newProduct)
     saveInJson(newProduct);
     
     currentCounter[0].counter++;
