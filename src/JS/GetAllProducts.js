@@ -1,15 +1,13 @@
-const DatabaseController = require("./DatabaseController");
-
+const DatabaseManager = require("./DatabaseManager");
 class GetAllProducts{
+    
     constructor() {
-        this.dataBaseController = new DatabaseController();
     }
 
-    async getAllProducts(type) { 
-        return await this.dataBaseController.getAllProducts(type);
+    async getAllProducts(database) {
+        let databaseManager = new DatabaseManager(database);
+        return await databaseManager.getAllProducts(); 
     }
 }
-
-module.exports = GetAllProducts;
 
 module.exports = GetAllProducts;

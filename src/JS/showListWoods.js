@@ -83,6 +83,7 @@ function getWoodListFromJsonFile() {
   })
 }
 
+
 function getCalaminaListFromJsonFile() {
   return new Promise((resolve, reject) =>{
     dbCalimnas.find({}, function (err, docs) {
@@ -253,3 +254,18 @@ async function chargeListByProduct() {
 chargeCss();
 chargeListByProduct();
 
+
+
+
+
+const ProductsController = require('../JS/ProductsController');
+
+const productsController = new ProductsController();
+
+const product = {
+    descriptionProduct: "zxcas asd",
+    quantity: "22",
+    sale_price: "4532"
+};
+
+productsController.saveProduct(product, "calamina");
