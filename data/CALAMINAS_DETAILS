@@ -1,6 +1,2 @@
-{"flag":"counter","counter":"24","_id":"1"}
-{"idProduct":"","descriptionProduct":"","quantity":"","purchase_price":"","purchased_total":"","name_product":"Calamina2","provider":"","quantity_sold":"","sale_price":"","total_sold":"","reaminingAmount":0,"_id":"20"}
-{"idProduct":"","descriptionProduct":"","quantity":"","purchase_price":"","purchased_total":"","name_product":"Calamina3","provider":"","quantity_sold":"","sale_price":"","total_sold":"","reaminingAmount":0,"_id":"21"}
-{"idProduct":"","descriptionProduct":"","quantity":"","purchase_price":"","purchased_total":"","name_product":"Calamina 50","provider":"","quantity_sold":"","sale_price":"","total_sold":"","reaminingAmount":0,"_id":"22"}
-{"idProduct":"","descriptionProduct":"","quantity":"","purchase_price":"","purchased_total":"","name_product":"Americana","provider":"","quantity_sold":"","sale_price":"","total_sold":"","reaminingAmount":0,"_id":"23"}
-{"idProduct":"","descriptionProduct":"","quantity":"","purchase_price":"","purchased_total":"","name_product":"Calamina","provider":"","quantity_sold":"","sale_price":"","total_sold":"","reaminingAmount":0,"_id":"3"}
+{"flag":"counter","counter":"31","_id":"1"}
+{"descriptionProduct":"prueba","quantity":"234","_id":"30"}
