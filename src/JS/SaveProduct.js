@@ -1,13 +1,13 @@
-const DatabaseController = require("./DatabaseController");
+const DatabaseManager = require("./DatabaseManager");
 
-class AddProduct{
-    constructor(){
-        this.databaseController = new DatabaseController();        
+class SaveProduct{
+    constructor(){        
     }
 
-    saveProduct(product, type) {
-        this.databaseController.saveProduct(product, type);
+    saveProduct(product, database) {
+        let databaseManager = new DatabaseManager(database);
+        databaseManager.saveProduct(product);
     }
 }
 
-module.exports = AddProduct;
+module.exports = SaveProduct;

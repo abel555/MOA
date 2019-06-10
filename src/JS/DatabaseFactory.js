@@ -1,7 +1,4 @@
-const WoodsDatabase = require("./WoodsDatabase");
-const CalaminasDataBase = require("./CalaminasDatabase");
-const IronmongeryDatababase = require("./IronmongeryDatabase");
-
+const Datastore = require('nedb')
 
 class DatabaseFactory {
     constructor() {
@@ -10,13 +7,13 @@ class DatabaseFactory {
     getDataBase(type) {
         switch (type) {
             case "wood":
-                return new WoodsDatabase();
+                return new Datastore({ filename: 'data/WOODS_DETAILS', autoload: true });
                 break;
             case "calamina":
-                return new CalaminasDataBase();
+                return new Datastore({ filename: 'data/CALAMINAS_DETAILS', autoload: true });
                 break;
             case "ironmongery":
-                return new IronmongeryDatababase();
+                return new Datastore({ filename: 'data/IRONMONGERY_DETAILS', autoload: true });
                 break;
             default:
                 return "that database doesnt exist!";
