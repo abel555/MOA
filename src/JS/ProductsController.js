@@ -1,12 +1,14 @@
 const DatabaseFactory = require("./DatabaseFactory");
 const SaveProduct = require("./SaveProduct");
 const GetAllProducts = require("./GetAllProducts");
+const UpdateProduct = require("./UpdateProduct");
 class DatabaseController{
 
     constructor(){
         this.dataBasesFactory = new DatabaseFactory();
         this.save = new SaveProduct();
         this.getAll = new GetAllProducts();
+        this.update = new UpdateProduct();
     }
 
     saveProduct(product, type) {
@@ -19,6 +21,13 @@ class DatabaseController{
         let database = dataBasesFactory.getDataBase(type);
         return await this.getAll.getAllProducts(database);
     }
+
+    updateProduct(oldProduct, newProduct, type) {
+        let dataBasesFactory = new DatabaseFactory();
+        let database = dataBasesFactory.getDataBase(type);
+        this.update.updateProduct(oldProduct, newProduct, database);
+    }
+    
 }
 
 module.exports = DatabaseController;
