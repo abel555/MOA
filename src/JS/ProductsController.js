@@ -4,7 +4,7 @@ const GetAllProducts = require("./GetAllProducts");
 const UpdateProduct = require("./UpdateProduct");
 const DeleteProduct = require("./DeleteProduct");
 
-class DatabaseController{
+class ProductsController{
 
     constructor(){
         this.dataBasesFactory = new DatabaseFactory();
@@ -38,4 +38,4 @@ class DatabaseController{
     }
 }
 
-module.exports = DatabaseController;
+module.exports = ProductsController;
