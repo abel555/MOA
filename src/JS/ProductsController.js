@@ -2,6 +2,8 @@ const DatabaseFactory = require("./DatabaseFactory");
 const SaveProduct = require("./SaveProduct");
 const GetAllProducts = require("./GetAllProducts");
 const UpdateProduct = require("./UpdateProduct");
+const DeleteProduct = require("./DeleteProduct");
+
 class DatabaseController{
 
     constructor(){
@@ -9,6 +11,7 @@ class DatabaseController{
         this.save = new SaveProduct();
         this.getAll = new GetAllProducts();
         this.update = new UpdateProduct();
+        this.delete = new DeleteProduct();
     }
 
     saveProduct(product, type) {
@@ -28,6 +31,11 @@ class DatabaseController{
         this.update.updateProduct(oldProduct, newProduct, database);
     }
     
+    deleteProduct(product, type) {
+        let dataBasesFactory = new DatabaseFactory();
+        let database = dataBasesFactory.getDataBase(type);
+        this.delete.deleteProduct(product, database);
+    }
 }
 
 module.exports = DatabaseController;

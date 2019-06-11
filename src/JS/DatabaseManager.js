@@ -21,6 +21,11 @@ class DatabaseManager{
         });
     }
 
+    deleteProduct(product) {
+        this.database.remove(product, {}, function (err, numRemoved) {
+        });
+    }
+
     async dataBaseQueryFindAll() {
         return await new Promise((resolve, reject) =>{
             this.database.find({}, function (err, docs) {
