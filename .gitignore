@@ -8,3 +8,4 @@ jspm_packages/
 #Builds directories
 release-builds/
 .vscode
+.data/
