@@ -268,4 +268,8 @@ const product = {
     sale_price: "4532"
 };
 
-productsController.saveProduct(product, "calamina");
+async function obtenerCalaminas() {
+  console.log(await productsController.getAllProducts("calamina"));
+}
+
+obtenerCalaminas();
