@@ -100,132 +100,33 @@ function getIronmongeryListFromJsonFile() {
   })
 }
 
-function chargeHeader() {
-
-  table = document.createElement("tr");
-  table.classList.add("table-title");
-  let codigo = document.createElement("th");
-  let nombre = document.createElement("th");
-  let proveedor = document.createElement("th");
-  let descripcion = document.createElement("th");
-  let cantidad = document.createElement("th");
-  let cantidadVendida = document.createElement("th");
-  let precioCompra = document.createElement("th");
-  let precioVenta = document.createElement("th");
-  let totalCompra = document.createElement("th");
-  let totalVenta = document.createElement("th");
-  let cantidadRestante = document.createElement("th");
-  
-  codigo.appendChild(document.createTextNode("Código"));
-  nombre.appendChild(document.createTextNode("Nombre"));
-  proveedor.appendChild(document.createTextNode("Proveedor"));
-  descripcion.appendChild(document.createTextNode("Descripción"));
-  cantidad.appendChild(document.createTextNode("Cantidad"));
-  cantidadVendida.appendChild(document.createTextNode("Cant. vendida"));
-  precioCompra.appendChild(document.createTextNode("P. compra"));
-  precioVenta.appendChild(document.createTextNode("P. venta"));
-  totalCompra.appendChild(document.createTextNode("T. compra"));
-  totalVenta.appendChild(document.createTextNode("T. venta"));
-  cantidadRestante.appendChild(document.createTextNode("Cant. restante"));
-  
-  table.appendChild(codigo);
-  table.appendChild(nombre);
-  table.appendChild(proveedor);
-  table.appendChild(descripcion);
-  table.appendChild(cantidad);
-  table.appendChild(cantidadVendida);
-  table.appendChild(precioCompra);
-  table.appendChild(precioVenta);
-  table.appendChild(totalCompra);
-  table.appendChild(totalVenta);
-  table.appendChild(cantidadRestante);
-
-  document.querySelector("#productsList").appendChild(table);
-}
-
 async function chargeListInTable(woodsList){
-
-  let idProduct;
-  let descriptionProduct;
-  let quantity;
-  let purcharsePrice;
-  let purchaseTotal;
-
-  let nameProduct;
-  let provider;
-  let quantitySold;
-  let salePrice;
-  let totalSold;
-  let reaminingAmount;
-  chargeHeader();
-  for(i = 0; i < woodsList.length; i++) {
-    
-    if(woodsList[i].counter)
-         continue;
-
-    woodProductDetails = document.createElement("tr");
-    woodProductDetails.classList.add("dbl-click");
-      idProduct = document.createElement("td");
-      nameProduct = document.createElement("td");
-      nameProduct.classList.add("product-name");
-      provider = document.createElement("td");
-      descriptionProduct = document.createElement("td");
-      quantity = document.createElement("td");
-
-      quantitySold = document.createElement("td");
-      purcharsePrice = document.createElement("td");
-      salePrice = document.createElement("td");
-      purchaseTotal = document.createElement("td");
-      totalSold = document.createElement("td");
-      reaminingAmount = document.createElement("td");
-
-      idProductText = document.createTextNode(woodsList[i].idProduct);
-      nameProductText = document.createTextNode(woodsList[i].name_product);
-      providerText = document.createTextNode(woodsList[i].provider);
-      descriptionText = document.createTextNode(woodsList[i].descriptionProduct);
-      quantityText = document.createTextNode(woodsList[i].quantity);
-        
-      quantitySoldText = document.createTextNode(woodsList[i].quantity_sold);
-      purcharsePriceText = document.createTextNode(woodsList[i].purchase_price);
-      salePriceText = document.createTextNode(woodsList[i].sale_price);
-      purchaseTotalText = document.createTextNode(woodsList[i].purchased_total);
-      totalSoldText = document.createTextNode(woodsList[i].total_sold);
-      reaminingAmountText = document.createTextNode(woodsList[i].quantity - woodsList[i].quantity_sold);
-
-      idProduct.appendChild(idProductText);
-      nameProduct.appendChild(nameProductText);
-      provider.appendChild(providerText);
-      descriptionProduct.appendChild(descriptionText);
-      quantity.appendChild(quantityText);
-
-      quantitySold.appendChild(quantitySoldText);
-      purcharsePrice.appendChild(purcharsePriceText);
-      salePrice.appendChild(salePriceText);
-      purchaseTotal.appendChild(purchaseTotalText);
-      totalSold.appendChild(totalSoldText);
-      reaminingAmount.appendChild(reaminingAmountText);
+    const tableBody = document.getElementById("table-body");
+    for(i = 0; i < woodsList.length; i++) {
       
-      woodProductDetails.appendChild(idProduct);
-      woodProductDetails.appendChild(nameProduct);
-      woodProductDetails.appendChild(provider);
-      woodProductDetails.appendChild(descriptionProduct);
-      woodProductDetails.appendChild(quantity);
-
-      woodProductDetails.appendChild(quantitySold);
-      woodProductDetails.appendChild(purcharsePrice);
-      woodProductDetails.appendChild(salePrice);
-      woodProductDetails.appendChild(purcharsePrice);
-      woodProductDetails.appendChild(purchaseTotal);
-      woodProductDetails.appendChild(totalSold);
-
-      woodProductDetails.appendChild(reaminingAmount);
-
-      document.querySelector("#productsList").appendChild(woodProductDetails);
-  }
+        if(woodsList[i].counter)
+            continue;
+        let content = `
+        <tr class="dbl-click">
+        <td>${woodsList[i].idProduct}</td>
+        <td class="dbl-click">${woodsList[i].name_product}</td>
+        <td>${woodsList[i].provider}</td>
+        <td>${woodsList[i].descriptionProduct}</td>
+        <td>${woodsList[i].quantity}</td>
+        <td>${woodsList[i].quantity_sold}</td>
+        <td>${woodsList[i].purchase_price}</td>
+        <td>${woodsList[i].sale_price}</td>
+        <td>${woodsList[i].purchased_total}</td>
+        <td>${woodsList[i].total_sold}</td>
+        <td>${woodsList[i].quantity - woodsList[i].quantity_sold}</td>
+        </tr>
+        `;
+        tableBody.insertAdjacentHTML('beforeEnd',content);
+    }
 }
 
 function cleanTable() {
-  let table = document.querySelector("#productsList");
+  let table = document.querySelector("#table-body");
   while(table.hasChildNodes()) {
     table.removeChild(table.firstChild);
   }
