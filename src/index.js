@@ -14,9 +14,9 @@ const shell = electron.shell;
 const Datastore = require('nedb');
 
 
-const dbWoods = new Datastore({ filename: 'data/WOODS_DETAILS', autoload: true });
-const dbCalimnas = new Datastore({ filename: 'data/CALAMINAS_DETAILS', autoload: true });
-const dbIronmongery = new Datastore({ filename: 'data/IRONMONGERY_DETAILS', autoload: true });
+// const dbWoods = new Datastore({ filename: 'data/WOODS_DETAILS', autoload: true });
+// const dbCalimnas = new Datastore({ filename: 'data/CALAMINAS_DETAILS', autoload: true });
+// const dbIronmongery = new Datastore({ filename: 'data/IRONMONGERY_DETAILS', autoload: true });
 
 function chargeCounterInDataBase() {
     dbWoods.insert({"flag":"counter","counter":"20","_id":"1"});
@@ -258,4 +258,4 @@ if (!isInProduction()) {
     })
 }
 
-chargeCounterInDataBase();
+// chargeCounterInDataBase();

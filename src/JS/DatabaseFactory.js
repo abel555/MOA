@@ -1,19 +1,26 @@
 const Datastore = require('nedb')
+const WoodsDB = require('./WoodsDB')
+const CalaminasDB = require('./CalaminasDB')
+const IronmongeryDB = require('./IronmongeryDB');
 
 class DatabaseFactory {
     constructor() {
+        if(! DatabaseFactory.instance){
+            DatabaseFactory.instance = this;
+          }
+          return DatabaseFactory.instance;
     }
 
     getDataBase(type) {
         switch (type) {
             case "wood":
-                return new Datastore({ filename: 'data/WOODS_DETAILS', autoload: true });
+                return WoodsDB;
                 break;
             case "calamina":
-                return new Datastore({ filename: 'data/CALAMINAS_DETAILS', autoload: true });
+                return CalaminasDB;
                 break;
             case "ironmongery":
-                return new Datastore({ filename: 'data/IRONMONGERY_DETAILS', autoload: true });
+                return IronmongeryDB;
                 break;
             default:
                 return "that database doesnt exist!";
