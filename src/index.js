@@ -14,9 +14,9 @@ const shell = electron.shell;
 const Datastore = require('nedb');
 
 
-const dbWoods = new Datastore({ filename: 'data/WOODS_DETAILS', autoload: true });
-const dbCalimnas = new Datastore({ filename: 'data/CALAMINAS_DETAILS', autoload: true });
-const dbIronmongery = new Datastore({ filename: 'data/IRONMONGERY_DETAILS', autoload: true });
+// const dbWoods = new Datastore({ filename: 'data/WOODS_DETAILS', autoload: true });
+// const dbCalimnas = new Datastore({ filename: 'data/CALAMINAS_DETAILS', autoload: true });
+// const dbIronmongery = new Datastore({ filename: 'data/IRONMONGERY_DETAILS', autoload: true });
 
 function chargeCounterInDataBase() {
     dbWoods.insert({"flag":"counter","counter":"20","_id":"1"});
@@ -258,4 +258,39 @@ if (!isInProduction()) {
     })
 }
 
-chargeCounterInDataBase();
+// chargeCounterInDataBase();
+
+
+const ProductsController = require('./JS/ProductsController');
+
+const productsController = new ProductsController();
+const productsController2 = new ProductsController();
+const productsController3 = new ProductsController();
+const productsController4 = new ProductsController();
+
+const product = {
+    descriptionProduct: "zxcas asd",
+    quantity: "22",
+    sale_price: "4532"
+};
+
+async function obtenerCalaminas() {
+  console.log(await productsController.getAllProducts("wood"));
+}
+
+async function obtenerCalaminas2() {
+    console.log(await productsController2.getAllProducts("wood"));
+}
+ 
+async function obtenerCalaminas3() {
+    console.log(await productsController3.getAllProducts("wood"));
+}
+
+async function obtenerCalaminas4() {
+    console.log(await productsController4.getAllProducts("wood"));
+}
+
+obtenerCalaminas();
+obtenerCalaminas2();
+obtenerCalaminas3();
+obtenerCalaminas4();
