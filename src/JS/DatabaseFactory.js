@@ -1,7 +1,7 @@
 const Datastore = require('nedb')
-const WoodsDB = require('./WoodsDB')
-const CalaminasDB = require('./CalaminasDB')
-const IronmongeryDB = require('./IronmongeryDB');
+const WoodsDB = require('./DatabasesSingletons/WoodsDB')
+const CalaminasDB = require('./DatabasesSingletons/CalaminasDB')
+const IronmongeryDB = require('./DatabasesSingletons/IronmongeryDB');
 
 class DatabaseFactory {
     constructor() {
