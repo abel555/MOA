@@ -259,38 +259,3 @@ if (!isInProduction()) {
 }
 
 // chargeCounterInDataBase();
-
-
-const ProductsController = require('./JS/ProductsController');
-
-const productsController = new ProductsController();
-const productsController2 = new ProductsController();
-const productsController3 = new ProductsController();
-const productsController4 = new ProductsController();
-
-const product = {
-    descriptionProduct: "zxcas asd",
-    quantity: "22",
-    sale_price: "4532"
-};
-
-async function obtenerCalaminas() {
-  console.log(await productsController.getAllProducts("wood"));
-}
-
-async function obtenerCalaminas2() {
-    console.log(await productsController2.getAllProducts("wood"));
-}
- 
-async function obtenerCalaminas3() {
-    console.log(await productsController3.getAllProducts("wood"));
-}
-
-async function obtenerCalaminas4() {
-    console.log(await productsController4.getAllProducts("wood"));
-}
-
-obtenerCalaminas();
-obtenerCalaminas2();
-obtenerCalaminas3();
-obtenerCalaminas4();
