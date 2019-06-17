@@ -1,3 +1,5 @@
-{"flag":"counter","counter":"38","_id":"1"}
+{"flag":"counter","counter":"40","_id":"1"}
 {"idProduct":"25","quantity":"34f","sale_price":"123f","_id":"27"}
 {"descriptionProduct":"zxcas asd","quantity":"22","sale_price":"4532","_id":"37"}
+{"idProduct":"","descriptionProduct":"","quantity":"","purchase_price":"","purchased_total":"","name_product":"","provider":"","quantity_sold":"","sale_price":"","total_sold":"","reaminingAmount":0,"_id":"38"}
+{"idProduct":"ojo","descriptionProduct":"","quantity":"","purchase_price":"","purchased_total":"","name_product":"ABelardo","provider":"","quantity_sold":"","sale_price":"","total_sold":"","reaminingAmount":0,"_id":"39"}
