@@ -82,3 +82,6 @@ form.addEventListener('submit', async event => {
 });
 
 chargeCss();
+
+const currentProduct = require ('./CurrentProduct');
+console.log(currentProduct.getCurrentProduct());
