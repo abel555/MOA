@@ -1,0 +1,47 @@
+* {
+    box-sizing: border-box;
+}
+body{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+.header{
+    width: 100%;
+    display: flex;
+    
+    
+}
+.content{
+    flex: auto;
+    text-align: center;
+    align-content: center;
+}
+.footer{
+    
+    width: 100%;
+    padding: 2em;
+}
+aside{
+    flex: 0 0 50%;
+}
+
+.title{
+    width: 100%;
+    text-align: center;
+}
+.blo {
+    display: block;
+    padding: 0.5em;
+}
+th,td {
+    padding: 0.5em;
+}
+
+table{
+    border-collapse: collapse;
+}
+table thead{
+    border: 1px solid #000000;
+}
