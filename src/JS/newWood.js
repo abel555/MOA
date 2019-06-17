@@ -2,83 +2,53 @@ const { ipcRenderer } = require('electron');
 const form = document.querySelector('form');
 const path = require('path');
 const fs = require('fs');
-const jsonFilename = path.resolve(__dirname, '..', 'data', 'WOODS_DETAILS');
+const ProductsController = require('../JS/ProductsController');
+const productsController = new ProductsController();
+const CurrentProductController = require("../JS/CurrentProductController")
+const currentProductController = new CurrentProductController();
+var serializeArray = function (form) {
+        var serialized = [];
+        for (var i = 0; i < form.elements.length; i++) {
+            var field = form.elements[i];
+            // Don't serialize fields without a name, submits, buttons, file and reset inputs, and disabled fields
+            if (!field.name || field.disabled || field.type === 'file' || field.type === 'reset' || field.type === 'submit' || field.type === 'button') continue;
+    
+            // Convert field data to a query string
+            else if ((field.type !== 'checkbox' && field.type !== 'radio') || field.checked) {
+                serialized.push(field.value);
+            }
+        }
+        return serialized;
+};
 
-var Datastore = require('nedb')
-  , db = new Datastore({ filename: 'data/WOODS_DETAILS', autoload: true });
+form.addEventListener('submit', async event => {
+    event.preventDefault();
+    formValues = serializeArray(form);
+    console.log(formValues);
+    const newProduct = {
+        idProduct: formValues[0],
+        descriptionProduct: formValues[1],
+        quantity: formValues[2],
+        purchase_price: formValues[3],
+        purchased_total: formValues[4],
 
+        name_product: formValues[5],
+        provider: formValues[6],
+        quantity_sold: formValues[7],
+        sale_price: formValues[8],
+        total_sold: formValues[9],
+        reaminingAmount: formValues[4] - formValues[9]
+    };
+    let currentProduct = await currentProductController.getCurrentProduct();
+    productsController.saveProduct(newProduct, currentProduct);
+    ipcRenderer.send('product:new', newProduct);
+});
 async function chargeCss() {
     let link = document.createElement('link');
     const pathCss = path.resolve(__dirname, '..', 'CSS', 'woodForm.css');
     link.setAttribute('rel', 'stylesheet');
     link.setAttribute('href', pathCss);
     document.head.appendChild(link);
-    document.querySelector(".title").innerHTML = "Formulario de madera";
+    //document.querySelector(".title").innerHTML = "Formulario de madera";
 }
-
-function get_id() {
-    return new Promise((resolve, reject) =>{
-      db.find({ flag: 'counter' }, function (err, docs) {
-          resolve(docs);
-      });
-    })
-}
-
-function updateCounter(array) {
-    let numReplaced = 1;
-    numReplaced = Number(numReplaced);
-    db.update({ flag: 'counter', counter: (array[0].counter-1).toString() }, 
-        {flag: 'counter', counter: (array[0].counter).toString()}, 
-        {}, 
-        function (err, numReplaced) {
-    });      
-}
-
-function saveInJson(newProduct) {
-    db.insert(newProduct);
-}
-
-form.addEventListener('submit', async event => {
-    event.preventDefault();
-    
-    let currentCounter = await get_id();
-    
-    
-    const idProduct = document.querySelector('#idProduct').value;
-    const descriptionProduct = document.querySelector('#description').value;
-    const quantity = document.querySelector('#quantity').value;
-    const purchasePrice = document.querySelector('#purchasePrice').value;
-    const purchasedTotal = document.querySelector('#purchasedTotal').value;
-    
-    const nameProduct = document.querySelector('#name').value;
-    const provider = document.querySelector('#provider').value;
-    const quantitySold = document.querySelector('#quantitySold').value;
-    const salePrice = document.querySelector('#salePrice').value;
-    const totalSold = document.querySelector('#totalSold').value;
-    const reaminingAmount = purchasedTotal - totalSold;
-    const newProduct = {
-        idProduct: idProduct,
-        descriptionProduct: descriptionProduct,
-        quantity: quantity,
-        purchase_price: purchasePrice,
-        purchased_total: purchasedTotal,
-
-        name_product: nameProduct,
-        provider: provider,
-        quantity_sold: quantitySold,
-        sale_price: salePrice,
-        total_sold: totalSold,
-        reaminingAmount: reaminingAmount,
-
-        _id: currentCounter[0].counter.toString()
-    };
-
-    console.log(typeof newProduct)
-    saveInJson(newProduct);
-    
-    currentCounter[0].counter++;
-    updateCounter(currentCounter);
-    ipcRenderer.send('product:new', newProduct);
-});
-
 chargeCss();

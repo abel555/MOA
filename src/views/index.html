@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Inventario</title>
-    <script src="../JS/showListWoods.js" defer></script>
+    <script src="../JS/ProductsViews.js" defer></script>
     <script src="../JS/woodForm.js" defer></script>
     <script src="../JS/sales.js" defer></script>
-
+    <script src="../JS/buttonsListener.js" defer></script>
 </head>
 
 <body>
@@ -47,7 +47,25 @@
         </form>
       </div>
       <div class="items">
-        <table class ="list" id="productsList">         
+        <table class ="list" id="productsList">
+            <thead>
+            <tr class="table-title">
+                <th>Codigo</th>
+                <th>Nombre</th>
+                <th>Proveedor</th>
+                <th>Descripción</th>
+                <th>Cantidad</th>
+                <th>Cant. vendida</th>
+                <th>P. compra</th>
+                <th>P. venta</th>
+                <th>T. compra</th>
+                <th>T. venta</th>
+                <th>Cant. restante</th>
+            </tr> 
+            </thead>
+            <tbody id="table-body">
+                
+            </tbody>  
         </table>
         <table class ="list" id="salesList" style="display: none;">
           <tr class="table-title">

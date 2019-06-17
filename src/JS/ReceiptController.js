@@ -1,15 +1,18 @@
 const SaveProduct = require("./SaveProduct");
 const GetAllProducts = require("./GetAllProducts");
 const UpdateProduct = require("./UpdateProduct");
-const Datastore = require('nedb')
+const DeleteProduct = require("./DeleteProduct");
+
+const ReceiptDB = require('./DatabasesSingletons/ReceiptsDB');
 
 class ReceiptController{
 
     constructor(){
-        this.dbInstance = new Datastore({ filename: 'data/RECEIPTS_DETAILS', autoload: true });  
+        this.dbInstance = ReceiptDB;  
         this.save = new SaveProduct();
         this.getAll = new GetAllProducts();
         this.update = new UpdateProduct();
+        this.delete = new DeleteProduct();
     }
 
     saveReceipt(receipt) {
@@ -23,7 +26,10 @@ class ReceiptController{
     updateReceipt(oldReceipt, newReceipt) {
         this.update.updateProduct(oldReceipt, newReceipt, this.dbInstance);
     }
-    
+
+    deleteReceipt(receipt) {
+        this.delete.deleteProduct(receipt, this.dbInstance);
+    }
 }
 
 module.exports = ReceiptController;
