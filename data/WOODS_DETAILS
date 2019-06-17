@@ -1,3 +1,7 @@
-{"flag":"counter","counter":"38","_id":"1"}
+{"flag":"counter","counter":"42","_id":"1"}
 {"idProduct":"25","quantity":"34f","sale_price":"123f","_id":"27"}
 {"descriptionProduct":"zxcas asd","quantity":"22","sale_price":"4532","_id":"37"}
+{"idProduct":"","descriptionProduct":"","quantity":"","purchase_price":"","purchased_total":"","name_product":"","provider":"","quantity_sold":"","sale_price":"","total_sold":"","reaminingAmount":0,"_id":"38"}
+{"idProduct":"ojo","descriptionProduct":"","quantity":"","purchase_price":"","purchased_total":"","name_product":"ABelardo","provider":"","quantity_sold":"","sale_price":"","total_sold":"","reaminingAmount":0,"_id":"39"}
+{"idProduct":"00","descriptionProduct":"","quantity":"","purchase_price":"","purchased_total":"","name_product":"nuevo","provider":"","quantity_sold":"","sale_price":"","total_sold":"","reaminingAmount":0,"_id":"40"}
+{"idProduct":"111","descriptionProduct":"mucho","quantity":"1","purchase_price":"2","purchased_total":"3","name_product":"harold","provider":"carlos","quantity_sold":"10","sale_price":"10","total_sold":"0","reaminingAmount":3,"_id":"41"}
