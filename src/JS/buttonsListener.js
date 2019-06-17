@@ -8,29 +8,32 @@ const addNewWood = document.querySelector('#addWoodForm');
 const addNewCalamina = document.querySelector('#addCalaminaForm');
 const addNewIronmongery = document.querySelector('#addIronmongeryForm');
 
-woodButton.addEventListener('click', event => {
+
+chargeListByProduct();
+woodButton.addEventListener('click', async event => {
+  await currentProductController.UpdateCurrentProduct("wood");
   addNewWood.style.display = 'block';
   addNewCalamina.style.display = 'none';
   addNewIronmongery.style.display = 'none';
-  courrentProduct = "woods";
-  products
-})
+  await chargeListByProduct();
+});
 
-calaminaButton.addEventListener('click', event => {
+calaminaButton.addEventListener('click', async event => {
+  await currentProductController.UpdateCurrentProduct("calamina");
   addNewWood.style.display = 'none';
   addNewCalamina.style.display = 'block';
   addNewIronmongery.style.display = 'none';
-  courrentProduct = "calaminas";
-  chargeListByProduct();
-})
+  await chargeListByProduct();
+});
 
-ironmongeryButton.addEventListener('click', event => {
+ironmongeryButton.addEventListener('click',async event => {
+  await currentProductController.UpdateCurrentProduct("ironmongery");
   addNewWood.style.display = 'none';
   addNewCalamina.style.display = 'none';
   addNewIronmongery.style.display = 'block';
-  courrentProduct = "ironmongery";
-  chargeListByProduct();
-})
+  await chargeListByProduct();
+});
+
 const product_click = document.getElementById("productsList");
 product_click.addEventListener('contextmenu', event => {
   if (event.target.matches('.product-name')) {

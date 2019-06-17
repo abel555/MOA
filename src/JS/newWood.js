@@ -4,12 +4,12 @@ const path = require('path');
 const fs = require('fs');
 const ProductsController = require('../JS/ProductsController');
 const productsController = new ProductsController();
+const CurrentProductController = require("../JS/CurrentProductController")
+const currentProductController = new CurrentProductController();
 var serializeArray = function (form) {
         var serialized = [];
         for (var i = 0; i < form.elements.length; i++) {
-    
             var field = form.elements[i];
-    
             // Don't serialize fields without a name, submits, buttons, file and reset inputs, and disabled fields
             if (!field.name || field.disabled || field.type === 'file' || field.type === 'reset' || field.type === 'submit' || field.type === 'button') continue;
     
@@ -18,9 +18,7 @@ var serializeArray = function (form) {
                 serialized.push(field.value);
             }
         }
-    
         return serialized;
-    
 };
 
 form.addEventListener('submit', async event => {
@@ -41,7 +39,8 @@ form.addEventListener('submit', async event => {
         total_sold: formValues[9],
         reaminingAmount: formValues[4] - formValues[9]
     };
-    productsController.saveProduct(newProduct, "wood");
+    let currentProduct = await currentProductController.getCurrentProduct();
+    productsController.saveProduct(newProduct, currentProduct);
     ipcRenderer.send('product:new', newProduct);
 });
 async function chargeCss() {
@@ -50,6 +49,6 @@ async function chargeCss() {
     link.setAttribute('rel', 'stylesheet');
     link.setAttribute('href', pathCss);
     document.head.appendChild(link);
-    document.querySelector(".title").innerHTML = "Formulario de madera";
+    //document.querySelector(".title").innerHTML = "Formulario de madera";
 }
 chargeCss();

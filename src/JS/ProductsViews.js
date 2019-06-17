@@ -1,8 +1,9 @@
-const path = require('path');
-const fs = require('fs');
 const ProductsController = require('../JS/ProductsController');
 const productsController = new ProductsController();
-let courrentProduct = "woods";
+const path = require('path');
+const CurrentProductController = require("../JS/CurrentProductController")
+const currentProductController = new CurrentProductController();
+
 function chargeCss() {
     let link = document.createElement('link');
     const pathCss = path.resolve(__dirname, '..', 'CSS', 'index.css');
@@ -10,9 +11,11 @@ function chargeCss() {
     link.setAttribute('href', pathCss);
     document.head.appendChild(link);
 }
+
 async function getProducList(tipe) {
     return await productsController.getAllProducts(tipe);
 }
+
 async function chargeListInTable(woodsList){
     const tableBody = document.getElementById("table-body");
     for(i = 0; i < woodsList.length; i++) {
@@ -44,13 +47,14 @@ function cleanTable() {
     }
 }
 async function chargeListByProduct() {
+    let courrentProduct = await currentProductController.getCurrentProduct();
     switch(courrentProduct) {
-      case 'woods':
+      case 'wood':
         cleanTable();
         const woodsList = await getProducList("wood")
         chargeListInTable(woodsList);
         break;
-      case 'calaminas':
+      case 'calamina':
         cleanTable();
         const calaminasList = await getProducList("calamina")
         chargeListInTable(calaminasList);
@@ -63,5 +67,4 @@ async function chargeListByProduct() {
     }
 }
 chargeCss();
-chargeListByProduct();
 module.exports = {chargeListByProduct};
