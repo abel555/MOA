@@ -34,15 +34,7 @@ ironmongeryButton.addEventListener('click',async event => {
   await chargeListByProduct();
 });
 
-const product_click = document.getElementById("productsList");
-product_click.addEventListener('contextmenu', event => {
-  if (event.target.matches('.product-name')) {
-    const row = event.target.parentElement.cloneNode(true);
-    const saleTable = document.getElementById("salesList")
-    saleTable.appendChild(row);
-  }
 
-}, false);
 
 function search() {
   var input, filter, table, tr, td, i;
@@ -69,3 +61,4 @@ function chargeCss() {
   link.setAttribute('href', pathCss);
   document.head.appendChild(link);
 }
+

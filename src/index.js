@@ -118,6 +118,29 @@ function createNewCalaminaWindow() {
         newProductWindow = null;
     })
 }
+function createNewSaleWindow(product) {
+    newProductWindow = new BrowserWindow({
+        width: 700,
+        height: 600,
+        title: "Confirmar Cantidad",
+        webPreferences: {
+            nodeIntegration: true,
+        }
+    });
+    newProductWindow.webContents.on('did-finish-load', () => {
+        newProductWindow.webContents.send('message', product);
+    });
+
+    newProductWindow.loadURL(url.format({
+        pathname: path.join(__dirname, 'views/newSale.html'),
+        protocol: 'file',
+        slashes: true
+    }))
+
+    newProductWindow.on('closed', ()=> {
+        newProductWindow = null;
+    })
+}
 
 function createNewIronmongeryWindow() {
     newProductWindow = new BrowserWindow({
@@ -129,9 +152,33 @@ function createNewIronmongeryWindow() {
             
         }
     });
-
+   
     newProductWindow.loadURL(url.format({
         pathname: path.join(__dirname, 'views/new-ironmongery.html'),
+        protocol: 'file',
+        slashes: true
+    }));
+   
+    newProductWindow.on('closed', ()=> {
+        newProductWindow = null;
+    })
+    
+}
+function createNewNoWoodWindow(product){
+    newProductWindow = new BrowserWindow({
+        width: 700,
+        height: 600,
+        title: "Confirmar Cantidad",
+        webPreferences: {
+            nodeIntegration: true,
+        }
+    });
+    newProductWindow.webContents.on('did-finish-load', () => {
+        newProductWindow.webContents.send('message', product);
+    });
+
+    newProductWindow.loadURL(url.format({
+        pathname: path.join(__dirname, 'views/newOtherSale.html'),
         protocol: 'file',
         slashes: true
     }))
@@ -143,6 +190,13 @@ function createNewIronmongeryWindow() {
 
 ipcMain.on('product:form',()=> {
     createNewProductWindow();
+});
+ipcMain.on('salesN:form',(e, newProduct)=> {
+    createNewNoWoodWindow(newProduct);
+});
+
+ipcMain.on('sales:form',(e, newProduct)=> {
+    createNewSaleWindow(newProduct);
 });
 
 ipcMain.on('calamina:form',()=> {
