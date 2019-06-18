@@ -3,11 +3,12 @@ const products = require('../JS/ProductsViews');
 const woodButton = document.querySelector('#wood');
 const calaminaButton = document.querySelector('#calamina');
 const ironmongeryButton = document.querySelector('#ironmongery');
+const receiptButton = document.querySelector('#receipt');
+const shoppingCartButton = document.querySelector('#shoppingCart');
 
 const addNewWood = document.querySelector('#addWoodForm');
 const addNewCalamina = document.querySelector('#addCalaminaForm');
 const addNewIronmongery = document.querySelector('#addIronmongeryForm');
-
 
 chargeListByProduct();
 woodButton.addEventListener('click', async event => {
@@ -59,4 +60,31 @@ function chargeCss() {
   link.setAttribute('href', pathCss);
   document.head.appendChild(link);
 }
+
+receiptButton.addEventListener('click',async event => {
+  await currentProductController.UpdateCurrentProduct("receipt");
+  addNewWood.style.display = 'none';
+  addNewCalamina.style.display = 'none';
+  addNewIronmongery.style.display = 'none';
+  await chargeListByProduct();
+});
+
+shoppingCartButton.addEventListener('click',async event => {
+  await currentProductController.UpdateCurrentProduct("shoppingCart");
+  addNewWood.style.display = 'none';
+  addNewCalamina.style.display = 'none';
+  addNewIronmongery.style.display = 'none';
+  await chargeListByProduct();
+});
+
+const product_click = document.getElementById("productsList");
+product_click.addEventListener('contextmenu', event => {
+  console.log(event.target);
+  if (event.target.matches('.dbl-click')) {
+    const row = event.target.parentElement.cloneNode(true);
+    const saleTable = document.getElementById("salesList")
+    saleTable.appendChild(row);
+  }
+
+}, false);
 
