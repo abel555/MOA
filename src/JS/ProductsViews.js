@@ -55,10 +55,26 @@ async function renderSaleW(target) {
 
 async function chargeListInTable(woodsList){
     const tableBody = document.getElementById("table-body");
+    let courrentProduct = await currentProductController.getCurrentProduct();
+    let unity;
+    if(courrentProduct == "wood") {
+        unity = "ft";
+    }
+
+    if(courrentProduct == "calamina") {
+        unity = "mts";
+    }
+
     for(i = 0; i < woodsList.length; i++) {
-      
+
         if(woodsList[i].counter)
             continue;
+        if(woodsList[i].unitType) {
+            if(woodsList[i].unitType == "unity")
+                unity = "Unid";
+            if(woodsList[i].unitType == "kg")
+                unity = "Kg";
+        }
         let content = `
         <tr class="dbl-click">
             <td class="clickable" onclick="showModal(${i})">${woodsList[i].idProduct}</td>
@@ -69,7 +85,7 @@ async function chargeListInTable(woodsList){
             </div>
             <td>${woodsList[i].provider}</td>
             <td>${woodsList[i].descriptionProduct}</td>
-            <td>${woodsList[i].quantity}</td>
+            <td>${woodsList[i].quantity} <strong>${unity}.</strong></td>
             <td>${woodsList[i].quantity_sold}</td>
             <td>${woodsList[i].purchase_price}</td>
             <td>${woodsList[i].sale_price}</td>

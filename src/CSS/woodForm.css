@@ -35,12 +35,18 @@ body{
     display: flex;
     flex-direction: column;
 }
+
 .inputs-container>div>input{
     margin: 1em;
     height: 30px;
 }
+
 .create-button{
     align-self: flex-end;
     
 }
 
+.select-box{
+    display: block;
+    width: 25%;
+}
