@@ -14,6 +14,11 @@ class DatabaseManager{
         return products;
     }
 
+    async getProduct(product) {
+        let productSearched = await this.dataBaseQueryFindOne(product);
+        return productSearched;
+    }
+
     updateProduct(oldProduct, newProduct) {
         let numReplaced = 1;
         numReplaced = Number(numReplaced);
@@ -29,6 +34,14 @@ class DatabaseManager{
     async dataBaseQueryFindAll() {
         return await new Promise((resolve, reject) =>{
             this.database.find({}, function (err, docs) {
+                resolve(docs);
+            });
+        })
+    }
+
+    async dataBaseQueryFindOne(product) {
+        return await new Promise((resolve, reject) =>{
+            this.database.find(product, function (err, docs) {
                 resolve(docs);
             });
         })

@@ -34,8 +34,6 @@ ironmongeryButton.addEventListener('click',async event => {
   await chargeListByProduct();
 });
 
-
-
 function search() {
   var input, filter, table, tr, td, i;
   input = document.getElementById("searchInput");
