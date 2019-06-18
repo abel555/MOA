@@ -1,30 +1,4 @@
 {"flag":"counter","counter":"59","_id":"1"}
-{"descriptionProduct":"prueba","quantity":"234","_id":"30"}
-{"descriptionProduct":"zxcas asd","quantity":"22","sale_price":"4532","_id":"31"}
-{"descriptionProduct":"zxcas asd","quantity":"22","sale_price":"4532","_id":"32"}
-{"descriptionProduct":"zxcas asd","quantity":"22","sale_price":"4532","_id":"33"}
-{"descriptionProduct":"zxcas asd","quantity":"22","sale_price":"4532","_id":"34"}
-{"descriptionProduct":"zxcas asd","quantity":"22","sale_price":"4532","_id":"35"}
-{"descriptionProduct":"zxcas asd","quantity":"22","sale_price":"4532","_id":"36"}
-{"descriptionProduct":"zxcas asd","quantity":"22","sale_price":"4532","_id":"37"}
-{"descriptionProduct":"zxcas asd","quantity":"22","sale_price":"4532","_id":"38"}
-{"descriptionProduct":"zxcas asd","quantity":"22","sale_price":"4532","_id":"39"}
-{"descriptionProduct":"zxcas asd","quantity":"22","sale_price":"4532","_id":"40"}
-{"descriptionProduct":"zxcas asd","quantity":"22","sale_price":"4532","_id":"41"}
-{"descriptionProduct":"zxcas asd","quantity":"22","sale_price":"4532","_id":"42"}
-{"descriptionProduct":"zxcas asd","quantity":"22","sale_price":"4532","_id":"43"}
-{"descriptionProduct":"zxcas asd","quantity":"22","sale_price":"4532","_id":"44"}
-{"descriptionProduct":"zxcas asd","quantity":"22","sale_price":"4532","_id":"45"}
-{"descriptionProduct":"zxcas asd","quantity":"22","sale_price":"4532","_id":"46"}
-{"descriptionProduct":"zxcas asd","quantity":"22","sale_price":"4532","_id":"47"}
-{"descriptionProduct":"zxcas asd","quantity":"22","sale_price":"4532","_id":"48"}
-{"descriptionProduct":"zxcas asd","quantity":"22","sale_price":"4532","_id":"49"}
-{"descriptionProduct":"zxcas asd","quantity":"22","sale_price":"4532","_id":"50"}
-{"descriptionProduct":"zxcas asd","quantity":"22","sale_price":"4532","_id":"51"}
-{"descriptionProduct":"zxcas asd","quantity":"22","sale_price":"4532","_id":"52"}
-{"descriptionProduct":"zxcas asd","quantity":"22","sale_price":"4532","_id":"53"}
-{"descriptionProduct":"zxcas asd","quantity":"22","sale_price":"4532","_id":"54"}
-{"idProduct":"000","descriptionProduct":"","quantity":"","purchase_price":"","purchased_total":"","name_product":"calamina","provider":"","quantity_sold":"","sale_price":"","total_sold":"","reaminingAmount":0,"_id":"55"}
-{"idProduct":"","descriptionProduct":"","quantity":"","purchase_price":"","purchased_total":"","name_product":"","provider":"","quantity_sold":"","sale_price":"","total_sold":"","reaminingAmount":0,"_id":"56"}
-{"idProduct":"","descriptionProduct":"","quantity":"","purchase_price":"","purchased_total":"","name_product":"","provider":"","quantity_sold":"","sale_price":"","total_sold":"","reaminingAmount":0,"_id":"57"}
-{"idProduct":"9999","descriptionProduct":"","quantity":"","purchase_price":"","purchased_total":"","name_product":"mono","provider":"","quantity_sold":"","sale_price":"","total_sold":"","reaminingAmount":0,"_id":"58"}
+{"idProduct":"000","descriptionProduct":"a","quantity":"1","purchase_price":"1","purchased_total":"4","name_product":"calamina","provider":"a","quantity_sold":"1","sale_price":"1","total_sold":"5","reaminingAmount":0,"_id":"55"}
+{"idProduct":"111","descriptionProduct":"b","quantity":"2","purchase_price":"2","purchased_total":"5","name_product":"calamina2","provider":"b","quantity_sold":"2","sale_price":"2","total_sold":"6","reaminingAmount":0,"_id":"56"}
+{"idProduct":"222","descriptionProduct":"c","quantity":"3","purchase_price":"3","purchased_total":"6","name_product":"calamina3","provider":"c","quantity_sold":"3","sale_price":"3","total_sold":"7","reaminingAmount":0,"_id":"57"}
