@@ -2,15 +2,24 @@ const ipc = require('electron').ipcRenderer;
 const { ipcRenderer } = require('electron');
 const CurrentProductController = require("../JS/CurrentProductController")
 const currentProductController = new CurrentProductController();
+const ShoppingCartController = require('../JS/ShoppingCartController');
+const shoppingCartController = new ShoppingCartController();
+
 const currentProduct = getCurrent();
 const punit = document.getElementById("punit");
 let product;
 async function getCurrent(){
     return await currentProductController.getCurrentProduct();
 }
+async function sendProduct(product) {
+    await shoppingCartController.addNewProductToShoppingCart(product);
+}
+async function getAllCart() {
+    return await shoppingCartController.getAllProducts();
+}
 const form = document.querySelector('form');
 ipc.on('message', function(event, message){
-    console.log(message); // logs out "Hello second window!"
+    //console.log(message); // logs out "Hello second window!"
     product = message;
     
     punit.value = product.sale_price;
@@ -28,10 +37,12 @@ form.addEventListener('submit', async event => {
     ancho = parseFloat(ancho)
     largo = parseFloat(largo)
     product.quantity = cant;
-    product.total_sold = ((espesor * ancho * largo) / 2 ) * parseFloat(punit.value);
-    product.type = currentProduct;
-    console.log(product);
-    //ipcRenderer.send('product:new', product);
+    product.total_cost= ((espesor * ancho * largo) / 2 ) * parseFloat(punit.value);
+    product.typeProduct = await getCurrent();
+    
+    await shoppingCartController.addNewProductToShoppingCart(product);
+   // console.log(await shoppingCartController.getAllProducts());
+    ipcRenderer.send('product:new', product);
    
 
 });

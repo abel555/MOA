@@ -1,4 +1,4 @@
 {"flag":"counter","counter":"59","_id":"1"}
 {"idProduct":"000","descriptionProduct":"a","quantity":"1","purchase_price":"1","purchased_total":"4","name_product":"calamina","provider":"a","quantity_sold":"1","sale_price":"1","total_sold":"5","reaminingAmount":0,"_id":"55"}
 {"idProduct":"111","descriptionProduct":"b","quantity":"2","purchase_price":"2","purchased_total":"5","name_product":"calamina2","provider":"b","quantity_sold":"2","sale_price":"2","total_sold":"6","reaminingAmount":0,"_id":"56"}
-{"idProduct":"222","descriptionProduct":"c","quantity":"3","purchase_price":"3","purchased_total":"6","name_product":"calamina3","provider":"c","quantity_sold":"3","sale_price":"3","total_sold":"7","reaminingAmount":0,"_id":"57"}
+{"idProduct":"222","descriptionProduct":"c","quantity":"-2","purchase_price":"3","purchased_total":"6","name_product":"calamina3","provider":"c","quantity_sold":"8","sale_price":"3","total_sold":"12","reaminingAmount":"-5","_id":"57"}

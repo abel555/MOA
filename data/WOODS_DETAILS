@@ -1,4 +1,4 @@
 {"flag":"counter","counter":"42","_id":"1"}
-{"idProduct":"1","descriptionProduct":"a","quantity":"40","quantity_sold":"70","total_sold":"71","reaminingAmount":"930","sale_price":"2","_id":"20"}
+{"idProduct":"1","descriptionProduct":"a","quantity":"16","quantity_sold":"94","total_sold":"95","reaminingAmount":"906","sale_price":"2","_id":"20"}
 {"idProduct":"2","descriptionProduct":"b","quantity":"160","quantity_sold":"60","total_sold":"52","reaminingAmount":"1950","sale_price":"5","_id":"21"}
-{"idProduct":"3","descriptionProduct":"c","quantity":"280","quantity_sold":"50","total_sold":"33","reaminingAmount":"2970","sale_price":"10","_id":"22"}
+{"idProduct":"3","descriptionProduct":"c","quantity":"270","quantity_sold":"60","total_sold":"43","reaminingAmount":"2960","sale_price":"10","_id":"22"}
