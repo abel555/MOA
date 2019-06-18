@@ -8,6 +8,7 @@
     <title>Inventario</title>
     <script src="../JS/ProductsViews.js" defer></script>
     <script src="../JS/woodForm.js" defer></script>
+    <script src="../JS/currentProductTableLoader.js" defer></script>
     <script src="../JS/sales.js" defer></script>
     <script src="../JS/buttonLoader.js" defer></script>
     <script src="../JS/buttonsListener.js" defer></script>
@@ -48,6 +49,11 @@
         <form class="add-item-form" action="" style="display: none;" id= "addIronmongeryForm">
           <button class ="add-input" type="button" id="addNewIronmongery" >Agregar a la ferreteria</button>
         </form>
+        
+        <form class="add-item-form" action="" style="display: none;" id= "saleConfirmationForm">
+          <button class ="add-input" type="button" id="saleConfirmation">Confirmar Compra</button>
+        </form>
+
       </div>
       <div class="items">
         <table class ="list" id="productsList">
