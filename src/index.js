@@ -1,4 +1,4 @@
-const { app , BrowserWindow, Menu, ipcMain} = require('electron');
+const { app , BrowserWindow, Menu, ipcMain, dialog} = require('electron');
 
 const url = require ('url'); 
 const path = require ('path');
@@ -42,6 +42,23 @@ app.on('ready', () => {
             nodeIntegration: true,
         }
     });
+    let defaultFileName = "Descarga"
+
+    mainWindow.webContents.session.on('will-download', (event, downloadItem, webContents) => {
+
+        var fileName = dialog.showSaveDialog({
+          defaultPath: defaultFileName,
+          filters: [
+            { name: 'Excel', extensions: ['csv'] }]
+        });
+    
+        if (typeof fileName == "undefined") {
+          downloadItem.cancel()
+        }
+        else {
+          downloadItem.setSavePath(fileName);
+        }
+      });
 
     mainWindow.loadURL(url.format({
         pathname: path.join(__dirname, 'views/index.html'),
