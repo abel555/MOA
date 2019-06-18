@@ -4,7 +4,7 @@ const renderWood = document.querySelector('#wood');
 const renderCalaminas = document.querySelector('#calamina');
 const renderIronMengery = document.querySelector('#ironmongery');
 const woodTable = document.querySelector('#productsList');
-const saleTable = document.querySelector('#salesList');
+const saleTable = document.querySelector('#shoppingCartList');
 const receiptTable = document.querySelector('#receiptList');
 
 renderReceipt.addEventListener('click', event => {
