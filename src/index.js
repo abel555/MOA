@@ -5,24 +5,24 @@ const path = require ('path');
 
 let fs = require('fs');
 
-let courrentProduct = "woods";
-
 const os = require('os');
 const electron = require('electron')
 const shell = electron.shell;
 
-const Datastore = require('nedb');
+const dbWoods = require ('./JS/DatabasesSingletons/WoodsDB');
+const dbCalimnas = require ('./JS/DatabasesSingletons/CalaminasDB');
+const dbIronmongery = require ('./JS/DatabasesSingletons/IronmongeryDB');
+const dbReceipts = require ('./JS/DatabasesSingletons/ReceiptsDB');
+const dbShoppingCart = require ('./JS/DatabasesSingletons/ShoppingCartDB');
+const dbCurrentProduct = require ('./JS/DatabasesSingletons/CurrentProductDB');
 
-
-// const dbWoods = new Datastore({ filename: 'data/WOODS_DETAILS', autoload: true });
-// const dbCalimnas = new Datastore({ filename: 'data/CALAMINAS_DETAILS', autoload: true });
-// const dbIronmongery = new Datastore({ filename: 'data/IRONMONGERY_DETAILS', autoload: true });
-
-// function chargeCounterInDataBase() {
-//     dbWoods.insert({"flag":"counter","counter":"20","_id":"1"});
-//     dbCalimnas.insert({"flag":"counter","counter":"20","_id":"1"});
-//     dbIronmongery.insert({"flag":"counter","counter":"20","_id":"1"});
-// }
+function chargeCounterInDataBase() {
+    dbWoods.insert({"flag":"counter","counter":"20","_id":"1"});
+    dbCalimnas.insert({"flag":"counter","counter":"20","_id":"1"});
+    dbIronmongery.insert({"flag":"counter","counter":"20","_id":"1"});
+    dbReceipts.insert({"flag":"counter","counter":"20","_id":"1"});
+    dbCurrentProduct.insert({"current":"wood","_id":"1"});
+}
 
 if(process.env.NODE_ENV !== 'production') {
     require('electron-reload')(__dirname, {
@@ -406,5 +406,5 @@ if (!isInProduction()) {
     })
 }
 
-// chargeCounterInDataBase();
+chargeCounterInDataBase();
 
