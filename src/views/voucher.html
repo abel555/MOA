@@ -5,11 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../CSS/voucher.css">
+    <script src="../JS/voucher.js" defer></script>
+    
     <title>Recibo</title>
 </head>
 <body>
         <div class="title">
-            <h1>Recibo</h1>
+            <h1 id="to-print">Recibo</h1>
         </div>
         <div class="header">
             <aside class="first">
@@ -50,157 +52,26 @@
                 <thead class="the">
                     <tr class="table-title">
                       <th>Codigo</th>
-                      <th>Nombre</th>
-                      <th>Proveedor</th>
-                      <th>Cliente</th>
-                      <th>Medida</th>
-                      <th>Descripcion</th>
                       <th>Cantidad</th>
-                      <th>P. compra</th>
+                      <th>Descripcion</th>
                       <th>P. venta</th>
-                      <th>T. venta</th>
+                      <th>Importe</th>
                     </tr>  
                 </thead>    
                     <tr>
                         <td>0000</td>
-                        <td>Madera negra</td>
-                        <td>Jungla</td>
-                        <td>Pepe</td>
-                        <td>10x10</td>
-                        <td>Mdera de primera</td>
+                        
                         <td>10</td>
+                        <td>Mdera de primera</td>
                         <td>100</td>
                         <td>120</td>
-                        <td>120</td>
-                    </tr>              
-                    <tr>
-                        <td>0000</td>
-                        <td>Madera negra</td>
-                        <td>Jungla</td>
-                        <td>Pepe</td>
-                        <td>10x10</td>
-                        <td>Mdera de primera</td>
-                        <td>10</td>
-                        <td>100</td>
-                        <td>120</td>
-                        <td>120</td>
-                    </tr>              
-                    <tr>
-                        <td>0000</td>
-                        <td>Madera negra</td>
-                        <td>Jungla</td>
-                        <td>Pepe</td>
-                        <td>10x10</td>
-                        <td>Mdera de primera</td>
-                        <td>10</td>
-                        <td>100</td>
-                        <td>120</td>
-                        <td>120</td>
-                    </tr>              
-                    <tr>
-                        <td>0000</td>
-                        <td>Madera negra</td>
-                        <td>Jungla</td>
-                        <td>Pepe</td>
-                        <td>10x10</td>
-                        <td>Mdera de primera</td>
-                        <td>10</td>
-                        <td>100</td>
-                        <td>120</td>
-                        <td>120</td>
-                    </tr>              
-                    <tr>
-                        <td>0000</td>
-                        <td>Madera negra</td>
-                        <td>Jungla</td>
-                        <td>Pepe</td>
-                        <td>10x10</td>
-                        <td>Mdera de primera</td>
-                        <td>10</td>
-                        <td>100</td>
-                        <td>120</td>
-                        <td>120</td>
-                    </tr>              
-                    <tr>
-                        <td>0000</td>
-                        <td>Madera negra</td>
-                        <td>Jungla</td>
-                        <td>Pepe</td>
-                        <td>10x10</td>
-                        <td>Mdera de primera</td>
-                        <td>10</td>
-                        <td>100</td>
-                        <td>120</td>
-                        <td>120</td>
-                    </tr>              
-                    <tr>
-                        <td>0000</td>
-                        <td>Madera negra</td>
-                        <td>Jungla</td>
-                        <td>Pepe</td>
-                        <td>10x10</td>
-                        <td>Mdera de primera</td>
-                        <td>10</td>
-                        <td>100</td>
-                        <td>120</td>
-                        <td>120</td>
-                    </tr>              
-                    <tr>
-                        <td>0000</td>
-                        <td>Madera negra</td>
-                        <td>Jungla</td>
-                        <td>Pepe</td>
-                        <td>10x10</td>
-                        <td>Mdera de primera</td>
-                        <td>10</td>
-                        <td>100</td>
-                        <td>120</td>
-                        <td>120</td>
-                    </tr>              
-                    <tr>
-                        <td>0000</td>
-                        <td>Madera negra</td>
-                        <td>Jungla</td>
-                        <td>Pepe</td>
-                        <td>10x10</td>
-                        <td>Mdera de primera</td>
-                        <td>10</td>
-                        <td>100</td>
-                        <td>120</td>
-                        <td>120</td>
-                    </tr>              
-                    <tr>
-                        <td>0000</td>
-                        <td>Madera negra</td>
-                        <td>Jungla</td>
-                        <td>Pepe</td>
-                        <td>10x10</td>
-                        <td>Mdera de primera</td>
-                        <td>10</td>
-                        <td>100</td>
-                        <td>120</td>
-                        <td>120</td>
-                    </tr>              
-                    <tr>
-                        <td>0000</td>
-                        <td>Madera negra</td>
-                        <td>Jungla</td>
-                        <td>Pepe</td>
-                        <td>10x10</td>
-                        <td>Mdera de primera</td>
-                        <td>10</td>
-                        <td>100</td>
-                        <td>120</td>
-                        <td>120</td>
-                    </tr>              
-                                
+                        
+                    </tr>                        
+                               
             </table>
         </div>
         <footer class="footer">
             
-            <label style="padding-left: 5em;">Elaborado Por</label>
-            <label style="padding-left: 5em;">Despachado Por</label>
-            <label style="padding-left: 5em;">Recibi conforme</label>
         </footer>
 </body>
 </html>

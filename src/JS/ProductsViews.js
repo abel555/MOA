@@ -168,3 +168,9 @@ window.onclick = function(event) {
       }
     }
 }
+
+const headButton = document.getElementById("saleConfirmation");
+headButton.addEventListener('click', event => {
+    ipcRenderer.send('head:form');
+    
+});
