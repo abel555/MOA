@@ -35,24 +35,6 @@ ironmongeryButton.addEventListener('click',async event => {
   await chargeListByProduct();
 });
 
-receiptButton.addEventListener('click',async event => {
-  addNewWood.style.display = 'none';
-  addNewCalamina.style.display = 'none';
-  addNewIronmongery.style.display = 'none';
-  await chargeListByProduct();
-});
-
-const product_click = document.getElementById("productsList");
-product_click.addEventListener('contextmenu', event => {
-  console.log(event.target);
-  if (event.target.matches('.dbl-click')) {
-    const row = event.target.parentElement.cloneNode(true);
-    const saleTable = document.getElementById("salesList")
-    saleTable.appendChild(row);
-  }
-
-}, false);
-
 function search() {
   var input, filter, table, tr, td, i;
   input = document.getElementById("searchInput");
@@ -78,3 +60,22 @@ function chargeCss() {
   link.setAttribute('href', pathCss);
   document.head.appendChild(link);
 }
+
+receiptButton.addEventListener('click',async event => {
+  addNewWood.style.display = 'none';
+  addNewCalamina.style.display = 'none';
+  addNewIronmongery.style.display = 'none';
+  await chargeListByProduct();
+});
+
+const product_click = document.getElementById("productsList");
+product_click.addEventListener('contextmenu', event => {
+  console.log(event.target);
+  if (event.target.matches('.dbl-click')) {
+    const row = event.target.parentElement.cloneNode(true);
+    const saleTable = document.getElementById("salesList")
+    saleTable.appendChild(row);
+  }
+
+}, false);
+

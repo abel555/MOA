@@ -18,11 +18,11 @@ const Datastore = require('nedb');
 // const dbCalimnas = new Datastore({ filename: 'data/CALAMINAS_DETAILS', autoload: true });
 // const dbIronmongery = new Datastore({ filename: 'data/IRONMONGERY_DETAILS', autoload: true });
 
-function chargeCounterInDataBase() {
-    dbWoods.insert({"flag":"counter","counter":"20","_id":"1"});
-    dbCalimnas.insert({"flag":"counter","counter":"20","_id":"1"});
-    dbIronmongery.insert({"flag":"counter","counter":"20","_id":"1"});
-}
+// function chargeCounterInDataBase() {
+//     dbWoods.insert({"flag":"counter","counter":"20","_id":"1"});
+//     dbCalimnas.insert({"flag":"counter","counter":"20","_id":"1"});
+//     dbIronmongery.insert({"flag":"counter","counter":"20","_id":"1"});
+// }
 
 if(process.env.NODE_ENV !== 'production') {
     require('electron-reload')(__dirname, {
@@ -138,7 +138,6 @@ function createNewProductWindow() {
         title: "Add A New Product",
         webPreferences: {
             nodeIntegration: true,
-            
         }
     });
 
@@ -169,6 +168,29 @@ function createNewCalaminaWindow() {
         protocol: 'file',
         slashes: true
     }))
+    
+    newProductWindow.on('closed', ()=> {
+        newProductWindow = null;
+    })
+}
+function createNewSaleWindow(product) {
+    newProductWindow = new BrowserWindow({
+        width: 700,
+        height: 600,
+        title: "Confirmar Cantidad",
+        webPreferences: {
+            nodeIntegration: true,
+        }
+    });
+    newProductWindow.webContents.on('did-finish-load', () => {
+        newProductWindow.webContents.send('message', product);
+    });
+
+    newProductWindow.loadURL(url.format({
+        pathname: path.join(__dirname, 'views/newSale.html'),
+        protocol: 'file',
+        slashes: true
+    }))
 
     newProductWindow.on('closed', ()=> {
         newProductWindow = null;
@@ -185,9 +207,33 @@ function createNewIronmongeryWindow() {
             
         }
     });
-
+   
     newProductWindow.loadURL(url.format({
         pathname: path.join(__dirname, 'views/new-ironmongery.html'),
+        protocol: 'file',
+        slashes: true
+    }));
+   
+    newProductWindow.on('closed', ()=> {
+        newProductWindow = null;
+    })
+    
+}
+function createNewNoWoodWindow(product){
+    newProductWindow = new BrowserWindow({
+        width: 700,
+        height: 600,
+        title: "Confirmar Cantidad",
+        webPreferences: {
+            nodeIntegration: true,
+        }
+    });
+    newProductWindow.webContents.on('did-finish-load', () => {
+        newProductWindow.webContents.send('message', product);
+    });
+
+    newProductWindow.loadURL(url.format({
+        pathname: path.join(__dirname, 'views/newOtherSale.html'),
         protocol: 'file',
         slashes: true
     }))
@@ -203,6 +249,13 @@ ipcMain.on('product:download',()=> {
 
 ipcMain.on('product:form',()=> {
     createNewProductWindow();
+});
+ipcMain.on('salesN:form',(e, newProduct)=> {
+    createNewNoWoodWindow(newProduct);
+});
+
+ipcMain.on('sales:form',(e, newProduct)=> {
+    createNewSaleWindow(newProduct);
 });
 
 ipcMain.on('calamina:form',()=> {
@@ -354,3 +407,4 @@ if (!isInProduction()) {
 }
 
 // chargeCounterInDataBase();
+
