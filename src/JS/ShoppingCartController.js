@@ -5,6 +5,7 @@ const GetProduct = require("./GetProduct");
 const UpdateProduct = require("./UpdateProduct");
 const DeleteProduct = require("./DeleteProduct");
 const DatabaseFactory = require("./DatabaseFactory");
+const DeleteAllProducts = require("./DeleteAllProducts");
 
 class ShoppingCartController {
     
@@ -15,7 +16,7 @@ class ShoppingCartController {
         this.update = new UpdateProduct();
         this.delete = new DeleteProduct();
         this.getOneProduct = new GetProduct();
-        // this.deleteAll = new DeleteAllProducts();
+        this.deleteAll = new DeleteAllProducts();
     }
 
     async addNewProductToShoppingCart(newProduct) {
@@ -44,10 +45,11 @@ class ShoppingCartController {
     }
 
     deleteProduct(product) {
+        
         this.delete.deleteProduct(product, this.databaseShoppingCartDB);
     }
 
-    async clearAllShoppingCartController() {
+    async clearAllShoppingCartGiveBack() {
         let dataBasesFactory = new DatabaseFactory();
         let databaseProduct;
         
@@ -72,8 +74,12 @@ class ShoppingCartController {
             updatedProduct[0].total_sold = (parseFloat(updatedProduct[0].total_sold) - parseFloat(allShoppingCartProducts[i].quantity)).toString();
             updatedProduct[0].reaminingAmount = (parseFloat(updatedProduct[0].reaminingAmount) + parseFloat(allShoppingCartProducts[i].quantity)).toString();
             this.update.updateProduct(oldProductInDatabase[0], updatedProduct[0], databaseProduct);
-            //delete all shoppingcartcontroller
+            this.deleteAll.deleteAllProducts(this.databaseShoppingCartDB);
         }
+    }
+
+    async clearAllShoppingCart() {
+        this.deleteAll.deleteAllProducts(this.databaseShoppingCartDB);
     }
 }
 
