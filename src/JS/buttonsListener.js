@@ -62,6 +62,15 @@ function chargeCss() {
 }
 
 receiptButton.addEventListener('click',async event => {
+  await currentProductController.UpdateCurrentProduct("receipt");
+  addNewWood.style.display = 'none';
+  addNewCalamina.style.display = 'none';
+  addNewIronmongery.style.display = 'none';
+  await chargeListByProduct();
+});
+
+shoppingCartButton.addEventListener('click',async event => {
+  await currentProductController.UpdateCurrentProduct("shoppingCart");
   addNewWood.style.display = 'none';
   addNewCalamina.style.display = 'none';
   addNewIronmongery.style.display = 'none';

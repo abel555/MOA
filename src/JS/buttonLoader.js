@@ -17,6 +17,12 @@ function showCalaminaButton(){
     addNewIronmongery.style.display = 'none';
 }
 
+function showReceiptOrShoppingCart(){
+    addNewIronmongery.style.display = 'none';
+    addNewCalamina.style.display = 'none';
+    addNewIronmongery.style.display = 'none';
+}
+
 async function loadButtonFromCurrentProduct() {
     let currentProduct = await currentProductCon.getCurrentProduct();
     switch (currentProduct) {
@@ -28,6 +34,9 @@ async function loadButtonFromCurrentProduct() {
             break;
         case 'ironmongery':
             showIronmongeryButton();
+            break;
+        default:
+            showReceiptOrShoppingCart();
             break;
     }
 }
