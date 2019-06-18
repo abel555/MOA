@@ -30,14 +30,14 @@ form.addEventListener('submit', async event => {
         descriptionProduct: formValues[1],
         quantity: formValues[2],
         purchase_price: formValues[3],
-        purchased_total: formValues[4],
+        purchased_total: formValues[2] * formValues[3],
 
-        name_product: formValues[5],
-        provider: formValues[6],
-        quantity_sold: formValues[7],
-        sale_price: formValues[8],
-        total_sold: formValues[9],
-        reaminingAmount: formValues[4] - formValues[9]
+        name_product: formValues[4],
+        provider: formValues[5],
+        quantity_sold: formValues[6],
+        sale_price: formValues[7],
+        total_sold: formValues[6] * formValues[7],
+        reaminingAmount: formValues[2] - formValues[6]
     };
     let currentProduct = await currentProductController.getCurrentProduct();
     productsController.saveProduct(newProduct, currentProduct);
@@ -49,7 +49,6 @@ async function chargeCss() {
     link.setAttribute('rel', 'stylesheet');
     link.setAttribute('href', pathCss);
     document.head.appendChild(link);
-    //document.querySelector(".title").innerHTML = "Formulario de madera";
 }
 chargeCss();
 
