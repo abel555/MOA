@@ -5,15 +5,28 @@ const productsController = new ProductsController();
 const path = require('path');
 const CurrentProductController = require("../JS/CurrentProductController")
 const currentProductController = new CurrentProductController();
+const ShoppingCartController = require("../JS/ShoppingCartController");
+const ReceiptController = require("../JS/ReceiptController");
 let woodsList;
 let calaminasList;
 let ironmongeryList;
+
 function chargeCss() {
     let link = document.createElement('link');
     const pathCss = path.resolve(__dirname, '..', 'CSS', 'index.css');
     link.setAttribute('rel', 'stylesheet');
     link.setAttribute('href', pathCss);
     document.head.appendChild(link);
+}
+
+async function getShoppingCart(){
+    const shoppingCart = new ShoppingCartController();
+    return await shoppingCart.getAllProducts();
+}
+
+async function getReceipt(){
+  const receipt = new ReceiptController();
+  return await receipt.getAllReceipts();
 }
 
 async function getProducList(tipe) {
@@ -68,6 +81,41 @@ async function chargeListInTable(woodsList){
         tableBody.insertAdjacentHTML('beforeEnd',content);
     }
 }
+function chargeShoppingCartListInTable(shoppingCartList) {
+  const tableBody = document.getElementById("table-body");
+  for(i = 0; i < shoppingCartList.length; i++) {
+      
+    if(shoppingCartList[i].counter)
+        continue;
+    let content = `
+    <tr class="dbl-click">
+        <td class="clickable" onclick="showModal(${i})">${shoppingCartList[i].idProduct}</td>
+        <td id="dbl-menu" class="dbl-click">${shoppingCartList[i].name_product}</td>    
+        <td>${shoppingCartList[i].descriptionProduct}</td>        
+        <td>${shoppingCartList[i].sale_price}</td> 
+        <td>${shoppingCartList[i].total_cost}</td> 
+    </tr>
+    `;
+    tableBody.insertAdjacentHTML('beforeEnd',content);
+ }
+}
+
+function chargeReceiptListInTable(receiptsList) {
+  const tableBody = document.getElementById("table-body");
+  for(i = 0; i < receiptsList.length; i++) {      
+    if(receiptsList[i].counter)
+        continue;
+    let content = `
+    <tr class="dbl-click">
+        <td class="clickable" onclick="showModal(${i})">${receiptsList[i].code}</td>
+        <td id="dbl-menu" class="dbl-click">${receiptsList[i].customer_name}</td>
+        
+    </tr>
+    `;
+    tableBody.insertAdjacentHTML('beforeEnd',content);
+ }
+}
+
 function cleanTable() {
     let table = document.querySelector("#table-body");
     while(table.hasChildNodes()) {
@@ -93,6 +141,17 @@ async function chargeListByProduct() {
         ironmongeryList = await getProducList("ironmongery");
         chargeListInTable(ironmongeryList);
         break;
+      case 'shoppingCart':
+        cleanTable();
+        const shoppingCartList = await getShoppingCart();
+        chargeShoppingCartListInTable(shoppingCartList);
+        break;
+      case 'receipt':
+        cleanTable();
+        const receiptList = await getReceipt("receipt");
+        chargeReceiptListInTable(receiptList);
+        break;
+      
     }
 }
 chargeCss();
