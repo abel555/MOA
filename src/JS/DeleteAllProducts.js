@@ -1,12 +1,12 @@
 const DatabaseManager = require("./DatabaseManager");
-class DeleteProduct{
+class DeleteAllProducts{
     constructor(){
     }
 
-    deleteProduct(product, database) {
+    deleteAllProducts(database) {
         let databaseManager = new DatabaseManager(database);
-        databaseManager.deleteProduct(product);
+        databaseManager.deleteAllProducts();
     }
 }
 
-module.exports = DeleteProduct;
+module.exports = DeleteAllProducts;

@@ -26,6 +26,11 @@ class DatabaseManager{
         });
     }
 
+    deleteAllProducts() {
+        this.database.remove({}, { multi: true }, function (err, numRemoved) {
+        });
+        this.database.insert({"flag":"counter","counter":"20","_id":"1"});
+    }
     deleteProduct(product) {
         this.database.remove(product, {}, function (err, numRemoved) {
         });
