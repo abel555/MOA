@@ -3,11 +3,12 @@ const products = require('../JS/ProductsViews');
 const woodButton = document.querySelector('#wood');
 const calaminaButton = document.querySelector('#calamina');
 const ironmongeryButton = document.querySelector('#ironmongery');
+const receiptButton = document.querySelector('#receipt');
+const shoppingCartButton = document.querySelector('#shoppingCart');
 
 const addNewWood = document.querySelector('#addWoodForm');
 const addNewCalamina = document.querySelector('#addCalaminaForm');
 const addNewIronmongery = document.querySelector('#addIronmongeryForm');
-
 
 chargeListByProduct();
 woodButton.addEventListener('click', async event => {
@@ -31,6 +32,13 @@ ironmongeryButton.addEventListener('click',async event => {
   addNewWood.style.display = 'none';
   addNewCalamina.style.display = 'none';
   addNewIronmongery.style.display = 'block';
+  await chargeListByProduct();
+});
+
+receiptButton.addEventListener('click',async event => {
+  addNewWood.style.display = 'none';
+  addNewCalamina.style.display = 'none';
+  addNewIronmongery.style.display = 'none';
   await chargeListByProduct();
 });
 

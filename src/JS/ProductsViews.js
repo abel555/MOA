@@ -40,6 +40,30 @@ async function chargeListInTable(woodsList){
         tableBody.insertAdjacentHTML('beforeEnd',content);
     }
 }
+function chargeReceiptListInTable(receiptsList) {
+  const tableBody = document.getElementById("table-body");
+  for(i = 0; i < receiptsList.length; i++) {
+    
+      if(receiptsList[i].counter)
+          continue;
+      let content = `
+      <tr class="dbl-click">
+      <td>${receiptsList[i].idProduct}</td>
+      <td class="dbl-click">${receiptsList[i].name_product}</td>
+      <td>${receiptsList[i].provider}</td>
+      <td>${receiptsList[i].descriptionProduct}</td>
+      <td>${receiptsList[i].quantity}</td>
+      <td>${receiptsList[i].quantity_sold}</td>
+      <td>${receiptsList[i].purchase_price}</td>
+      <td>${receiptsList[i].sale_price}</td>
+      <td>${receiptsList[i].purchased_total}</td>
+      <td>${receiptsList[i].total_sold}</td>
+      <td>${receiptsList[i].quantity - receiptsList[i].quantity_sold}</td>
+      </tr>
+      `;
+      tableBody.insertAdjacentHTML('beforeEnd',content);
+  }
+}
 function cleanTable() {
     let table = document.querySelector("#table-body");
     while(table.hasChildNodes()) {
@@ -64,6 +88,17 @@ async function chargeListByProduct() {
         const ironmongeryList = await getProducList("ironmongery");
         chargeListInTable(ironmongeryList);
         break;
+      case 'receipt':
+        cleanTable();
+        const receiptsList = await getProducList("receipt");
+        chargeReceiptListInTable(receiptsList);
+        break;
+      default:
+        cleanTable();
+        const shoppingCartList = await getProducList("shoppingCart");
+        chargeListInTable(shoppingCartList);
+        break;
+      
     }
 }
 chargeCss();

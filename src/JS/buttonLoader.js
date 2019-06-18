@@ -19,7 +19,6 @@ function showCalaminaButton(){
 
 async function loadButtonFromCurrentProduct() {
     let currentProduct = await currentProductCon.getCurrentProduct();
-    console.log(currentProduct);
     switch (currentProduct) {
         case 'wood':
             showWoodButton();
