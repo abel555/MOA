@@ -52,3 +52,8 @@ async function chargeCss() {
     //document.querySelector(".title").innerHTML = "Formulario de madera";
 }
 chargeCss();
+
+
+ipcRenderer.on('store-data', function (event,store) {
+    console.log(store);
+});

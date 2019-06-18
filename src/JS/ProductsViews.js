@@ -34,7 +34,7 @@ async function chargeListInTable(woodsList){
         <td>${woodsList[i].sale_price}</td>
         <td>${woodsList[i].purchased_total}</td>
         <td>${woodsList[i].total_sold}</td>
-        <td>${woodsList[i].quantity - woodsList[i].quantity_sold}</td>
+        <td>${woodsList[i].reaminingAmount}</td>
         </tr>
         `;
         tableBody.insertAdjacentHTML('beforeEnd',content);
