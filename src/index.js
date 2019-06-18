@@ -75,6 +75,62 @@ app.on('ready', () => {
 
 });
 
+
+// function downloadBrowserWindow(item){
+// let win = new BrowserWindow()
+// win.webContents.session.on('will-download', (event, item, webContents) => {
+//     // Set the save path, making Electron not to prompt a save dialog.
+//     item.setSavePath('/tmp/save.csv')
+
+//     item.on('updated', (event, state) => {
+//         if (state === 'interrupted') {
+//             console.log('Download is interrupted but can be resumed')
+//         } else if (state === 'progressing') {
+//             if (item.isPaused()) {
+//                 console.log('Download is paused')
+//             } else {
+//                 console.log(`Received bytes: ${item.getReceivedBytes()}`)
+//             }
+//         }
+//     })
+//     item.once('done', (event, state) => {
+//         if (state === 'completed') {
+//             console.log('Download successfully')
+//         } else {
+//             console.log(`Download failed: ${state}`)
+//         }
+//     })
+// })
+// }
+
+function createProductDownloadWindow(productType) {
+    newProductDownloadWindow = new BrowserWindow({
+        width: 400,
+        height: 300,
+        title: "Download wood in csv",
+        webPreferences: {
+            nodeIntegration: true,            
+        }
+    });
+
+    newProductDownloadWindow.loadURL(url.format({
+        pathname: path.join(__dirname, 'views/product-csv-download.html'),
+        protocol: 'file',
+        slashes: true
+    }))
+
+    newProductDownloadWindow.webContents.on('did-finish-load', () => {
+        newProductDownloadWindow.webContents.send('message', productType);
+    });
+    
+    newProductDownloadWindow.on('closed', ()=> {
+        newProductWindow = null;
+    })
+    
+    
+}
+
+
 function createNewProductWindow() {
     newProductWindow = new BrowserWindow({
         width: 700,
@@ -141,6 +197,10 @@ function createNewIronmongeryWindow() {
     })
 }
 
+ipcMain.on('product:download',()=> {
+    newProductDownloadWindow.close();
+});
+
 ipcMain.on('product:form',()=> {
     createNewProductWindow();
 });
@@ -183,6 +243,24 @@ const templateMainMenu = [
                     createNewProductWindow();
                 }
             },
+            {
+                label: 'Descargar Maderas',        
+                async click(){                   
+                   createProductDownloadWindow('wood');            
+                }
+            },
+            {
+                label: 'Descargar Ferreteria',        
+                async click(){                   
+                   createProductDownloadWindow('ironmongery');            
+                }
+            }, 
+            {
+                label: 'Descargar Calaminas',        
+                async click(){                   
+                   createProductDownloadWindow('calamina');            
+                }
+            },                       
             {
                 label: "Salir",
                 role: 'Quit'
