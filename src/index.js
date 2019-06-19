@@ -197,6 +197,31 @@ function createNewSaleWindow(product) {
     })
 }
 
+function editWoodWindow(product) {
+    newProductWindow = new BrowserWindow({
+        width: 700,
+        height: 600,
+        title: "Editar producto",
+        webPreferences: {
+            nodeIntegration: true,
+        }
+    });
+
+    newProductWindow.webContents.on('did-finish-load', () => {
+        newProductWindow.webContents.send('message', product);
+    });
+
+    newProductWindow.loadURL(url.format({
+        pathname: path.join(__dirname, 'views/new-product.html'),
+        protocol: 'file',
+        slashes: true
+    }))
+
+    newProductWindow.on('closed', ()=> {
+        newProductWindow = null;
+    })
+}
+
 function createNewIronmongeryWindow() {
     newProductWindow = new BrowserWindow({
         width: 700,
@@ -270,6 +295,11 @@ ipcMain.on('product:new', (e, newProduct) => {
     mainWindow.reload();
     newProductWindow.close();
 });
+
+ipcMain.on('wood:edit',(e, woodEdit)=> {
+    editWoodWindow(woodEdit);
+});
+
 ipcMain.on('print-to-pdf', event => {
     const pdfPath = path.join(os.tmpdir(), 'some-ducking-pdf.pdf');
     const win = BrowserWindow.fromWebContents(event.sender);

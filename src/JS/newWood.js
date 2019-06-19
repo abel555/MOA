@@ -6,6 +6,19 @@ const ProductsController = require('../JS/ProductsController');
 const productsController = new ProductsController();
 const CurrentProductController = require("../JS/CurrentProductController")
 const currentProductController = new CurrentProductController();
+const ipc = require('electron').ipcRenderer;
+
+let idProduct = document.getElementById("idProduct");
+let descriptionProduct = document.getElementById("descriptionProduct");
+let quantity = document.getElementById("quantity");
+let purchasePrice = document.getElementById("purchasePrice");
+
+let nameProduct = document.getElementById("nameProduct");
+let provider = document.getElementById("provider");
+let quantitySold = document.getElementById("quantitySold");
+let salePrice = document.getElementById("salePrice");
+
+let editingProduct;
 var serializeArray = function (form) {
         var serialized = [];
         for (var i = 0; i < form.elements.length; i++) {
@@ -24,8 +37,12 @@ var serializeArray = function (form) {
 form.addEventListener('submit', async event => {
     event.preventDefault();
     formValues = serializeArray(form);
-    const unitTypeFromHtml = document.getElementById("unity");
-    
+    let unitTypeFromHtml;
+    if(currentProductController.getCurrentProduct() == "ironmongery")
+        unitTypeFromHtml = document.getElementById("unity");
+    else {
+        unitTypeFromHtml = currentProductController.getCurrentProduct();
+    }
     const newProduct = {
         idProduct: formValues[0],
         descriptionProduct: formValues[1],
@@ -42,9 +59,17 @@ form.addEventListener('submit', async event => {
         unitType: unitTypeFromHtml.value
     };
     let currentProduct = await currentProductController.getCurrentProduct();
-    productsController.saveProduct(newProduct, currentProduct);
+    
+    if(editingProduct) {
+        productsController.updateProduct(editingProduct, newProduct, currentProduct);    
+    }
+    else {
+        productsController.saveProduct(newProduct, currentProduct);
+    }
+    
     ipcRenderer.send('product:new', newProduct);
 });
+
 async function chargeCss() {
     let link = document.createElement('link');
     const pathCss = path.resolve(__dirname, '..', 'CSS', 'woodForm.css');
@@ -55,10 +80,15 @@ async function chargeCss() {
 chargeCss();
 
 
-ipcRenderer.on('store-data', function (event,store) {
-    console.log(store);
+ipc.on('message', function(event, message){
+    editingProduct = message;
+    idProduct.value = message.idProduct;
+    descriptionProduct.value = message.descriptionProduct;
+    quantity.value = message.quantity;
+    purchasePrice.value = message.purchase_price;
+    
+    nameProduct.value = message.name_product
+    provider.value = message.provider;
+    quantitySold.value = message.quantity_sold;
+    salePrice.value = message.sale_price;
 });
-
-
-const unitType = document.getElementById("unity");
-console.log(unitType.value);
