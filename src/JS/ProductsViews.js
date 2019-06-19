@@ -53,6 +53,21 @@ async function editProduct(target) {
     }
 }
 
+async function deleteProduct(target) {
+    let courrentProduct = await currentProductController.getCurrentProduct();
+    switch(courrentProduct) {
+        case 'wood':
+            ipcRenderer.send('wood:delete', woodsList[target], courrentProduct);
+            break;
+        case 'calamina':
+            ipcRenderer.send('wood:delete', calaminasList[target]);
+            break;
+        case 'ironmongery':
+            ipcRenderer.send('wood:delete', ironmongeryList[target]);
+            break;
+    }
+}
+
 async function renderSaleW(target) {
     let courrentProduct = await currentProductController.getCurrentProduct();
     switch(courrentProduct) {
@@ -96,6 +111,7 @@ async function chargeListInTable(woodsList){
             <td id="dbl-menu" class="dbl-click">${woodsList[i].name_product}</td>
             <div id="${i}" class="dropdown-content">
                 <a href="#" onclick="editProduct(${i})">Editar</a>
+                <a href="#" onclick="deleteProduct(${i})">Eliminar ítem</a>
                 <a href="#" onclick="renderSaleW(${i})">Agregar a venta</a>
             </div>
             <td>${woodsList[i].provider}</td>
