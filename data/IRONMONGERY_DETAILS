@@ -1,4 +1,4 @@
 {"flag":"counter","counter":"35","_id":"1"}
-{"idProduct":"123","descriptionProduct":"Ejemplo","quantity":"100","purchase_price":"10","purchased_total":1000,"name_product":"Tornillos","provider":"Juan","quantity_sold":"0","sale_price":"20","total_sold":0,"reaminingAmount":100,"unitType":"kg","_id":"32"}
-{"idProduct":"97","descriptionProduct":"Herramienta","quantity":"600","purchase_price":"10","purchased_total":6000,"name_product":"Alicate","provider":"Pedro","quantity_sold":"10","sale_price":"20","total_sold":200,"reaminingAmount":590,"_id":"33"}
+{"idProduct":"123","descriptionProduct":"Ejemplo","quantity":"200","purchase_price":"10","purchased_total":2000,"name_product":"Tornillos","provider":"Juan","quantity_sold":"0","sale_price":"20","total_sold":0,"reaminingAmount":200,"_id":"32"}
+{"idProduct":"97","descriptionProduct":"Herramienta","quantity":"600","purchase_price":"100","purchased_total":60000,"name_product":"Alicate","provider":"Pedro","quantity_sold":"10","sale_price":"20","total_sold":200,"reaminingAmount":590,"_id":"33"}
 {"idProduct":"","descriptionProduct":"","quantity":"","purchase_price":"","purchased_total":0,"name_product":"","provider":"","quantity_sold":"","sale_price":"","total_sold":0,"reaminingAmount":0,"unitType":"unity","_id":"34"}

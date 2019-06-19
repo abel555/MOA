@@ -15,6 +15,8 @@ const dbIronmongery = require ('./JS/DatabasesSingletons/IronmongeryDB');
 const dbReceipts = require ('./JS/DatabasesSingletons/ReceiptsDB');
 const dbShoppingCart = require ('./JS/DatabasesSingletons/ShoppingCartDB');
 const dbCurrentProduct = require ('./JS/DatabasesSingletons/CurrentProductDB');
+const ProductsController = require("./JS/ProductsController");
+
 
 function chargeCounterInDataBase() {
     dbWoods.insert({"flag":"counter","counter":"20","_id":"1"});
@@ -298,6 +300,12 @@ ipcMain.on('product:new', (e, newProduct) => {
 
 ipcMain.on('wood:edit',(e, woodEdit)=> {
     editWoodWindow(woodEdit);
+});
+
+ipcMain.on('wood:delete',(e, productToDelete, typeOfProduct)=> {
+    const productsController = new ProductsController();
+    productsController.deleteProduct(productToDelete, typeOfProduct);
+    mainWindow.reload();
 });
 
 ipcMain.on('print-to-pdf', event => {
