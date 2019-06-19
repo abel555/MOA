@@ -110,9 +110,9 @@ async function chargeListInTable(woodsList){
             <td class="clickable" onclick="showModal(${i})">${woodsList[i].idProduct}</td>
             <td id="dbl-menu" class="dbl-click">${woodsList[i].name_product}</td>
             <div id="${i}" class="dropdown-content">
-                <a href="#" onclick="editProduct(${i})">Editar</a>
+            <a href="#" onclick="renderSaleW(${i})">Agregar a venta</a>
+                <a href="#" onclick="editProduct(${i})">Editar ítem</a>
                 <a href="#" onclick="deleteProduct(${i})">Eliminar ítem</a>
-                <a href="#" onclick="renderSaleW(${i})">Agregar a venta</a>
             </div>
             <td>${woodsList[i].provider}</td>
             <td>${woodsList[i].descriptionProduct}</td>
