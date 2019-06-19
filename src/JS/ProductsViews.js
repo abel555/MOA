@@ -38,6 +38,21 @@ function showModal(id){
     clicked.classList.toggle("show");
 }
 
+async function editProduct(target) {
+    let courrentProduct = await currentProductController.getCurrentProduct();
+    switch(courrentProduct) {
+        case 'wood':
+            ipcRenderer.send('wood:edit', woodsList[target]);
+            break;
+        case 'calamina':
+            ipcRenderer.send('wood:edit', calaminasList[target]);
+            break;
+        case 'ironmongery':
+            ipcRenderer.send('wood:edit', ironmongeryList[target]);
+            break;
+    }
+}
+
 async function renderSaleW(target) {
     let courrentProduct = await currentProductController.getCurrentProduct();
     switch(courrentProduct) {
@@ -80,7 +95,7 @@ async function chargeListInTable(woodsList){
             <td class="clickable" onclick="showModal(${i})">${woodsList[i].idProduct}</td>
             <td id="dbl-menu" class="dbl-click">${woodsList[i].name_product}</td>
             <div id="${i}" class="dropdown-content">
-                <a href="#">Editar</a>
+                <a href="#" onclick="editProduct(${i})">Editar</a>
                 <a href="#" onclick="renderSaleW(${i})">Agregar a venta</a>
             </div>
             <td>${woodsList[i].provider}</td>
@@ -97,6 +112,7 @@ async function chargeListInTable(woodsList){
         tableBody.insertAdjacentHTML('beforeEnd',content);
     }
 }
+
 function chargeShoppingCartListInTable(shoppingCartList) {
   const tableBody = document.getElementById("shoppingCart-body");
   for(i = 0; i < shoppingCartList.length; i++) {
@@ -181,7 +197,6 @@ async function chargeListByProduct() {
         const receiptList = await getReceipt("receipts-body");
         chargeReceiptListInTable(receiptList);
         break;
-      
     }
 }
 chargeCss();
