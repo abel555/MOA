@@ -6,6 +6,7 @@ const ShoppingCartController = require('../JS/ShoppingCartController');
 const shoppingCartController = new ShoppingCartController();
 const currentProduct = getCurrent();
 const punit = document.getElementById("punit");
+const productDescriptionInHtml = document.getElementById("product-description");
 let product;
 async function getCurrent(){
     return await currentProductController.getCurrentProduct();
@@ -17,11 +18,11 @@ async function getAllCart() {
     return await shoppingCartController.getAllProducts();
 }
 const form = document.querySelector('form');
-ipc.on('message', function(event, message){
-    console.log(message); // logs out "Hello second window!"
-    product = message;
-    
+ipc.on('message', function(event, product){
     punit.value = product.sale_price;
+    const productDescription = product.idProduct + " - " + product.name_product + " - " + product.descriptionProduct
+    punit.value = product.sale_price;
+    productDescriptionInHtml.innerText = productDescriptionInHtml.innerText + " " + productDescription;
 });
 
 form.addEventListener('submit', async event => {
