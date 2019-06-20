@@ -7,6 +7,8 @@ const shoppingCartController = new ShoppingCartController();
 
 const currentProduct = getCurrent();
 const punit = document.getElementById("punit");
+const productDescriptionInHtml = document.getElementById("product-description");
+
 let product;
 async function getCurrent(){
     return await currentProductController.getCurrentProduct();
@@ -19,10 +21,10 @@ async function getAllCart() {
 }
 const form = document.querySelector('form');
 ipc.on('message', function(event, message){
-    //console.log(message); // logs out "Hello second window!"
     product = message;
-    
+    const productDescription = product.idProduct + " - " + product.name_product + " - " + product.descriptionProduct
     punit.value = product.sale_price;
+    productDescriptionInHtml.innerText = productDescriptionInHtml.innerText + " " + productDescription;
 });
 
 form.addEventListener('submit', async event => {
@@ -41,9 +43,7 @@ form.addEventListener('submit', async event => {
     product.typeProduct = await getCurrent();
     
     await shoppingCartController.addNewProductToShoppingCart(product);
-   // console.log(await shoppingCartController.getAllProducts());
-    ipcRenderer.send('product:new', product);
    
-
+    ipcRenderer.send('product:new', product);
 });
 
