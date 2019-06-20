@@ -11,11 +11,14 @@ form.addEventListener('submit', async event => {
     const cli = document.getElementById("cli").value;
     const dir = document.getElementById("dir").value;
     const tel = document.getElementById("tel").value;
+    let uni = new Date();
+    let unique = uni.valueOf();
 
     const head = {
     client: cli,
     direction: dir,
-    phone: tel
+    phone: tel,
+    unique: unique
     };
     const prods = await shoppingCartController.getAllProducts();
     const recibo = {
@@ -24,5 +27,6 @@ form.addEventListener('submit', async event => {
     }
     await receiptController.saveReceipt(recibo);
     ipcRenderer.send('preview:pdf', recibo);
+   
     
 });

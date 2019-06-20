@@ -302,6 +302,7 @@ function createPreview(data){
     newProductWindow.webContents.on('did-finish-load', () => {
         newProductWindow.webContents.send('message', data);
     });
+    
     newProductWindow.loadURL(url.format({
         pathname: path.join(__dirname, 'views/voucher.html'),
         protocol: 'file',
@@ -346,7 +347,7 @@ ipcMain.on('product:new', (e, newProduct) => {
 });
 ipcMain.on('preview:pdf', (e, data) => {
     createPreview(data);
-
+});
 ipcMain.on('wood:edit',(e, woodEdit)=> {
     editWoodWindow(woodEdit);
 });
