@@ -2,9 +2,9 @@ const ipc = require('electron').ipcRenderer;
 const remote = require('electron').remote;
 const { ipcRenderer } = require('electron');
 const total= document.getElementById("total");
-const totalLiteral= document.getElementById("literal");
-const ReceiptController = require('../JS/ReceiptController');
-const receiptController = new ReceiptController();
+const totalLiteral= document.getElementById("literal");     
+const ShoppingCartController = require('../JS/ShoppingCartController');
+const shoppingCartController = new ShoppingCartController();
 let product;
 ipc.on('message', function(event, message){
     console.log(message); // logs out "Hello second window!"
@@ -27,7 +27,7 @@ ipc.on('message', function(event, message){
         centSingular: 'CENTAVO'
     });
     totalLiteral.innerHTML = tLiteral;
-    //await receiptController.saveReceipt(product);
+    
 
 });
 
@@ -83,7 +83,6 @@ function chargeListInTable(woodsList){
 const tp = document.getElementById("to-print");
 tp.addEventListener('click', event => {
     ipcRenderer.send('print-to-pdf', product);
-    let window = remote.getCurrentWindow();
     
 });
 
