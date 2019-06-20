@@ -10,21 +10,25 @@ body{
 .header{
     width: 100%;
     display: flex;
-    
+    padding-top: 5%; 
     
 }
 .content{
     flex: auto;
     text-align: center;
     align-content: center;
+
 }
 .footer{
     
     width: 100%;
     padding: 2em;
 }
-aside{
-    flex: 0 0 50%;
+.first{
+    flex: 0 0 70%;
+}
+.second{
+    flex: 0 0 30%;
 }
 
 .title{
@@ -44,4 +48,29 @@ table{
 }
 table thead{
     border: 1px solid #000000;
+}
+.list{
+    width: 90%;
+    margin-left: 5%;
+}
+.total-footer {
+    text-align: left;
+}
+.title {
+    text-align: left;
+    width: 90%;
+    margin-left: 5%;
+    display: flex;
+    
+}
+.direc {
+    flex: 0 0 20%;
+    text-align: center;
+    line-height: 2px;
+   
+}
+.title2 {
+    flex: 0 0 70%;
+    text-align: center;
+    line-height: 2px;
 }

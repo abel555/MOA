@@ -36,7 +36,7 @@ form.addEventListener('submit', async event => {
     product.typeProduct = await getCurrent();
     await shoppingCartController.addNewProductToShoppingCart(product);
     // console.log(await shoppingCartController.getAllProducts());
-     ipcRenderer.send('product:new', product);
+    ipcRenderer.send('product:new', product);
    
 
 });

@@ -269,6 +269,50 @@ function createNewNoWoodWindow(product){
         newProductWindow = null;
     })
 }
+function createHeadWindow(){
+    newProductWindow = new BrowserWindow({
+        width: 700,
+        height: 600,
+        title: "datos cliente",
+        webPreferences: {
+            nodeIntegration: true,
+        }
+    });
+
+    newProductWindow.loadURL(url.format({
+        pathname: path.join(__dirname, 'views/head-form.html'),
+        protocol: 'file',
+        slashes: true
+    }))
+
+    newProductWindow.on('closed', ()=> {
+        newProductWindow = null;
+    })
+}
+
+function createPreview(data){
+    newProductWindow = new BrowserWindow({
+        width: 1300,
+        height: 720,
+        title: "recibo",
+        webPreferences: {
+            nodeIntegration: true,
+        }
+    });
+    newProductWindow.webContents.on('did-finish-load', () => {
+        newProductWindow.webContents.send('message', data);
+    });
+    
+    newProductWindow.loadURL(url.format({
+        pathname: path.join(__dirname, 'views/voucher.html'),
+        protocol: 'file',
+        slashes: true
+    }))
+
+    newProductWindow.on('closed', ()=> {
+        newProductWindow = null;
+    })
+}
 
 ipcMain.on('product:download',()=> {
     newProductDownloadWindow.close();
@@ -293,11 +337,17 @@ ipcMain.on('ironmongery:form',()=> {
     createNewIronmongeryWindow();
 });
 
+ipcMain.on('head:form', ()=>{
+    createHeadWindow();
+});
+
 ipcMain.on('product:new', (e, newProduct) => {
     mainWindow.reload();
     newProductWindow.close();
 });
-
+ipcMain.on('preview:pdf', (e, data) => {
+    createPreview(data);
+});
 ipcMain.on('wood:edit',(e, woodEdit)=> {
     editWoodWindow(woodEdit);
 });
@@ -322,7 +372,7 @@ ipcMain.on('print-to-pdf', event => {
       })
       
     })
-  });
+});
 const templateMainMenu = [
     {
         label: 'Archivo',
@@ -351,7 +401,13 @@ const templateMainMenu = [
                 async click(){                   
                    createProductDownloadWindow('calamina');            
                 }
-            },                       
+            }, 
+            {
+                label: 'Imprimir',        
+                async click(){                   
+                   ipc          
+                }
+            },                      
             {
                 label: "Salir",
                 role: 'Quit'
