@@ -1,11 +1,19 @@
 const ipc = require('electron').ipcRenderer;
 const remote = require('electron').remote;
+const path = require('path');
 const { ipcRenderer } = require('electron');
 const total= document.getElementById("total");
 const totalLiteral= document.getElementById("literal");     
 const ShoppingCartController = require('../JS/ShoppingCartController');
 const shoppingCartController = new ShoppingCartController();
 let product;
+function chargeCss() {
+    let link = document.createElement('link');
+    const pathCss = path.resolve(__dirname, '..', 'CSS', 'voucher.css');
+    link.setAttribute('rel', 'stylesheet');
+    link.setAttribute('href', pathCss);
+    document.head.appendChild(link);
+}
 ipc.on('message', function(event, message){
     console.log(message); // logs out "Hello second window!"
     product = message;
@@ -251,3 +259,4 @@ var numeroALetras = (function() {
 })();
     
     // Modo de uso: 500,34 USD
+chargeCss();
