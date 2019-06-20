@@ -1,3 +1,4 @@
-{"flag":"counter","counter":"49","_id":"1"}
+{"flag":"counter","counter":"51","_id":"1"}
 {"idProduct":"312","descriptionProduct":"algo","quantity":"2000","purchase_price":"10","purchased_total":20000,"name_product":"madera","provider":"luis","quantity_sold":"50","sale_price":"20","total_sold":1000,"reaminingAmount":1950,"_id":"44"}
-{"idProduct":"8765","descriptionProduct":"algo","quantity":"100","purchase_price":"10","purchased_total":1000,"name_product":"madera","provider":"luis","quantity_sold":"50","sale_price":"20","total_sold":1000,"reaminingAmount":50,"_id":"48"}
+{"idProduct":"12","descriptionProduct":"asd","quantity":"123","purchase_price":"123","purchased_total":15129,"name_product":"asd","provider":"asd","quantity_sold":"123","sale_price":"123","total_sold":15129,"reaminingAmount":0,"_id":"49"}
+{"idProduct":"8asd","descriptionProduct":"asdasd","quantity":"2312","purchase_price":"23","purchased_total":53176,"name_product":"22","provider":"123","quantity_sold":"123213","sale_price":"23","total_sold":2833899,"reaminingAmount":-120901,"_id":"50"}

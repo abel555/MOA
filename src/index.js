@@ -34,6 +34,8 @@ if(process.env.NODE_ENV !== 'production') {
 
 let mainWindow;
 let newProductWindow;
+let newClientInfoWindow;
+let pdfWindow;
 const jsonFilename = path.resolve(__dirname, '.', 'data', 'WOODS_DETAILS.json');
 
 app.on('ready', () => {
@@ -77,34 +79,6 @@ app.on('ready', () => {
 
 });
 
-
-// function downloadBrowserWindow(item){
-// let win = new BrowserWindow()
-// win.webContents.session.on('will-download', (event, item, webContents) => {
-//     // Set the save path, making Electron not to prompt a save dialog.
-//     item.setSavePath('/tmp/save.csv')
-
-//     item.on('updated', (event, state) => {
-//         if (state === 'interrupted') {
-//             console.log('Download is interrupted but can be resumed')
-//         } else if (state === 'progressing') {
-//             if (item.isPaused()) {
-//                 console.log('Download is paused')
-//             } else {
-//                 console.log(`Received bytes: ${item.getReceivedBytes()}`)
-//             }
-//         }
-//     })
-//     item.once('done', (event, state) => {
-//         if (state === 'completed') {
-//             console.log('Download successfully')
-//         } else {
-//             console.log(`Download failed: ${state}`)
-//         }
-//     })
-// })
-// }
-
 function createProductDownloadWindow(productType) {
     newProductDownloadWindow = new BrowserWindow({
         width: 400,
@@ -128,8 +102,6 @@ function createProductDownloadWindow(productType) {
     newProductDownloadWindow.on('closed', ()=> {
         newProductWindow = null;
     })
-    
-    
 }
 
 
@@ -246,6 +218,7 @@ function createNewIronmongeryWindow() {
     })
     
 }
+
 function createNewNoWoodWindow(product){
     newProductWindow = new BrowserWindow({
         width: 700,
@@ -269,29 +242,30 @@ function createNewNoWoodWindow(product){
         newProductWindow = null;
     })
 }
+
 function createHeadWindow(){
-    newProductWindow = new BrowserWindow({
-        width: 700,
-        height: 600,
-        title: "datos cliente",
+    newClientInfoWindow = new BrowserWindow({
+        width: 300,
+        height: 200,
+        title: "Datos cliente",
         webPreferences: {
             nodeIntegration: true,
         }
     });
 
-    newProductWindow.loadURL(url.format({
+    newClientInfoWindow.loadURL(url.format({
         pathname: path.join(__dirname, 'views/head-form.html'),
         protocol: 'file',
         slashes: true
     }))
 
-    newProductWindow.on('closed', ()=> {
-        newProductWindow = null;
+    newClientInfoWindow.on('closed', ()=> {
+        newClientInfoWindow = null;
     })
 }
 
 function createPreview(data){
-    newProductWindow = new BrowserWindow({
+    pdfWindow = new BrowserWindow({
         width: 1300,
         height: 720,
         title: "recibo",
@@ -299,18 +273,19 @@ function createPreview(data){
             nodeIntegration: true,
         }
     });
-    newProductWindow.webContents.on('did-finish-load', () => {
-        newProductWindow.webContents.send('message', data);
+
+    pdfWindow.webContents.on('did-finish-load', () => {
+        pdfWindow.webContents.send('message', data);
     });
     
-    newProductWindow.loadURL(url.format({
+    pdfWindow.loadURL(url.format({
         pathname: path.join(__dirname, 'views/voucher.html'),
         protocol: 'file',
         slashes: true
     }))
 
-    newProductWindow.on('closed', ()=> {
-        newProductWindow = null;
+    pdfWindow.on('closed', ()=> {
+        pdfWindow = null;
     })
 }
 
@@ -339,15 +314,19 @@ ipcMain.on('ironmongery:form',()=> {
 
 ipcMain.on('head:form', ()=>{
     createHeadWindow();
+    newClientInfoWindow.reload();
 });
 
 ipcMain.on('product:new', (e, newProduct) => {
     mainWindow.reload();
     newProductWindow.close();
 });
+
 ipcMain.on('preview:pdf', (e, data) => {
     createPreview(data);
+    newClientInfoWindow.close();
 });
+
 ipcMain.on('wood:edit',(e, woodEdit)=> {
     editWoodWindow(woodEdit);
 });
@@ -359,7 +338,7 @@ ipcMain.on('wood:delete',(e, productToDelete, typeOfProduct)=> {
 });
 
 ipcMain.on('print-to-pdf', event => {
-    const pdfPath = path.join(os.tmpdir(), 'some-ducking-pdf.pdf');
+    const pdfPath = path.join(os.tmpdir(), 'Recibo-MOA.pdf');
     const win = BrowserWindow.fromWebContents(event.sender);
   
     win.webContents.printToPDF({}, (error, data) => {

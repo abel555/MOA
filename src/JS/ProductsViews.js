@@ -7,9 +7,12 @@ const CurrentProductController = require("../JS/CurrentProductController")
 const currentProductController = new CurrentProductController();
 const ShoppingCartController = require("../JS/ShoppingCartController");
 const ReceiptController = require("../JS/ReceiptController");
+
 let woodsList;
 let calaminasList;
 let ironmongeryList;
+
+const headButton = document.getElementById("saleConfirmation");
 
 function chargeCss() {
     let link = document.createElement('link');
@@ -60,10 +63,10 @@ async function deleteProduct(target) {
             ipcRenderer.send('wood:delete', woodsList[target], courrentProduct);
             break;
         case 'calamina':
-            ipcRenderer.send('wood:delete', calaminasList[target]);
+            ipcRenderer.send('wood:delete', calaminasList[target], courrentProduct);
             break;
         case 'ironmongery':
-            ipcRenderer.send('wood:delete', ironmongeryList[target]);
+            ipcRenderer.send('wood:delete', ironmongeryList[target], courrentProduct);
             break;
     }
 }
@@ -231,8 +234,9 @@ window.onclick = function(event) {
     }
 }
 
-const headButton = document.getElementById("saleConfirmation");
+
 headButton.addEventListener('click', event => {
-    ipcRenderer.send('head:form');
+    event.preventDefault();
     
+    ipcRenderer.send('head:form');
 });
