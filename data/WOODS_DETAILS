@@ -1,7 +1,3 @@
 {"flag":"counter","counter":"49","_id":"1"}
-<<<<<<< HEAD
-{"idProduct":"123","descriptionProduct":"algo","quantity":"100","purchase_price":"10","purchased_total":1000,"name_product":"madera","provider":"luis","quantity_sold":"50","sale_price":"20","total_sold":1000,"reaminingAmount":50,"_id":"46"}
-=======
 {"idProduct":"312","descriptionProduct":"algo","quantity":"2000","purchase_price":"10","purchased_total":20000,"name_product":"madera","provider":"luis","quantity_sold":"50","sale_price":"20","total_sold":1000,"reaminingAmount":1950,"_id":"44"}
 {"idProduct":"8765","descriptionProduct":"algo","quantity":"100","purchase_price":"10","purchased_total":1000,"name_product":"madera","provider":"luis","quantity_sold":"50","sale_price":"20","total_sold":1000,"reaminingAmount":50,"_id":"48"}
->>>>>>> c8d1239f18aed03e39f14d0ce3fc46afb616b3b6
