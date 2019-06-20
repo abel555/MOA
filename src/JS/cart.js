@@ -20,13 +20,13 @@ form.addEventListener('submit', async event => {
     phone: tel,
     unique: unique
     };
+    
     const prods = await shoppingCartController.getAllProducts();
     const recibo = {
         head: head,
         prods: prods
     }
+
     await receiptController.saveReceipt(recibo);
     ipcRenderer.send('preview:pdf', recibo);
-   
-    
 });
