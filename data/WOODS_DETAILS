@@ -1,7 +1,4 @@
-{"flag":"counter","counter":"45","_id":"1"}
-{"idProduct":"1","descriptionProduct":"a","quantity":"16","quantity_sold":"94","total_sold":"95","reaminingAmount":"906","sale_price":"2","_id":"20"}
-{"idProduct":"2","descriptionProduct":"b","quantity":"160","quantity_sold":"60","total_sold":"52","reaminingAmount":"1950","sale_price":"5","_id":"21"}
-{"idProduct":"3","descriptionProduct":"c","quantity":"270","quantity_sold":"60","total_sold":"43","reaminingAmount":"2960","sale_price":"10","_id":"22"}
-{"idProduct":"123","descriptionProduct":"asdad","quantity":"10","purchase_price":"10","purchased_total":100,"name_product":"juan","provider":"0","quantity_sold":"100","total_sold":null,"reaminingAmount":null,"_id":"42"}
-{"idProduct":"43","descriptionProduct":"dfasd","quantity":"-30","purchase_price":"10","purchased_total":100,"name_product":"madera","provider":"pedro","quantity_sold":"40","sale_price":"100","total_sold":"40","reaminingAmount":"NaN","_id":"43"}
-{"idProduct":"987","descriptionProduct":"algo","quantity":"60","purchase_price":"10","purchased_total":1000,"name_product":"madera","provider":"luis","quantity_sold":"90","sale_price":"20","total_sold":"1040","reaminingAmount":"10","_id":"44"}
+{"flag":"counter","counter":"49","_id":"1"}
+{"idProduct":"312","descriptionProduct":"algo","quantity":"2000","purchase_price":"10","purchased_total":20000,"name_product":"madera","provider":"luis","quantity_sold":"50","sale_price":"20","total_sold":1000,"reaminingAmount":1950,"_id":"44"}
+{"idProduct":"123","descriptionProduct":"algo","quantity":"100","purchase_price":"10","purchased_total":1000,"name_product":"madera","provider":"luis","quantity_sold":"50","sale_price":"20","total_sold":1000,"reaminingAmount":50,"_id":"46"}
+{"idProduct":"8765","descriptionProduct":"algo","quantity":"100","purchase_price":"10","purchased_total":1000,"name_product":"madera","provider":"luis","quantity_sold":"50","sale_price":"20","total_sold":1000,"reaminingAmount":50,"_id":"48"}

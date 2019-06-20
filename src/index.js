@@ -15,6 +15,8 @@ const dbIronmongery = require ('./JS/DatabasesSingletons/IronmongeryDB');
 const dbReceipts = require ('./JS/DatabasesSingletons/ReceiptsDB');
 const dbShoppingCart = require ('./JS/DatabasesSingletons/ShoppingCartDB');
 const dbCurrentProduct = require ('./JS/DatabasesSingletons/CurrentProductDB');
+const ProductsController = require("./JS/ProductsController");
+
 
 function chargeCounterInDataBase() {
     dbWoods.insert({"flag":"counter","counter":"20","_id":"1"});
@@ -197,6 +199,31 @@ function createNewSaleWindow(product) {
     })
 }
 
+function editWoodWindow(product) {
+    newProductWindow = new BrowserWindow({
+        width: 700,
+        height: 600,
+        title: "Editar producto",
+        webPreferences: {
+            nodeIntegration: true,
+        }
+    });
+
+    newProductWindow.webContents.on('did-finish-load', () => {
+        newProductWindow.webContents.send('message', product);
+    });
+
+    newProductWindow.loadURL(url.format({
+        pathname: path.join(__dirname, 'views/new-product.html'),
+        protocol: 'file',
+        slashes: true
+    }))
+
+    newProductWindow.on('closed', ()=> {
+        newProductWindow = null;
+    })
+}
+
 function createNewIronmongeryWindow() {
     newProductWindow = new BrowserWindow({
         width: 700,
@@ -319,6 +346,15 @@ ipcMain.on('product:new', (e, newProduct) => {
 });
 ipcMain.on('preview:pdf', (e, data) => {
     createPreview(data);
+
+ipcMain.on('wood:edit',(e, woodEdit)=> {
+    editWoodWindow(woodEdit);
+});
+
+ipcMain.on('wood:delete',(e, productToDelete, typeOfProduct)=> {
+    const productsController = new ProductsController();
+    productsController.deleteProduct(productToDelete, typeOfProduct);
+    mainWindow.reload();
 });
 
 ipcMain.on('print-to-pdf', event => {

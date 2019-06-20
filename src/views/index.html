@@ -29,7 +29,7 @@
           <li id="ironmongery"><a>Ferreteria</a></li>          
           <li id="receipt"><a>Recibos</a></li> 
           <li id="shoppingCart"><a>Ventas</a></li> 
-          <li id="print-pdf"><a>recibo</a></li> 
+          <!-- <li id="print-pdf"><a>recibo</a></li>  -->
         </ul>
       </nav>
     </div>
@@ -73,23 +73,31 @@
             </tr> 
             </thead>
             <tbody id="table-body">
-                
             </tbody>  
         </table>
-        <table class ="list" id="salesList" style="display: none;">
+        <table class ="list" id="shoppingCartList" style="display: none;">
+          <thead>
           <tr class="table-title">
             <th>Codigo</th>
             <th>Tipo de Unidad</th>
             <th>Descripcion</th>
             <th>Precio Unitario</th>
             <th>Importe</th>        
-          </tr>                
+          </tr>
+          </thead>
+          <tbody id="shoppingCart-body">
+          </tbody>     
         </table>
+
         <table class ="list" id="receiptList" style="display: none;">
+          <thead>
           <tr class="table-title">
             <th>Num Recibo</th>
             <th>Nombre cliente</th>       
-          </tr>                
+          </tr>
+          </thead>
+          <tbody id="receipts-body">
+          </tbody>
         </table>
       </div>
     </main>

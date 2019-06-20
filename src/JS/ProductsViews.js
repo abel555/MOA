@@ -38,6 +38,36 @@ function showModal(id){
     clicked.classList.toggle("show");
 }
 
+async function editProduct(target) {
+    let courrentProduct = await currentProductController.getCurrentProduct();
+    switch(courrentProduct) {
+        case 'wood':
+            ipcRenderer.send('wood:edit', woodsList[target]);
+            break;
+        case 'calamina':
+            ipcRenderer.send('wood:edit', calaminasList[target]);
+            break;
+        case 'ironmongery':
+            ipcRenderer.send('wood:edit', ironmongeryList[target]);
+            break;
+    }
+}
+
+async function deleteProduct(target) {
+    let courrentProduct = await currentProductController.getCurrentProduct();
+    switch(courrentProduct) {
+        case 'wood':
+            ipcRenderer.send('wood:delete', woodsList[target], courrentProduct);
+            break;
+        case 'calamina':
+            ipcRenderer.send('wood:delete', calaminasList[target]);
+            break;
+        case 'ironmongery':
+            ipcRenderer.send('wood:delete', ironmongeryList[target]);
+            break;
+    }
+}
+
 async function renderSaleW(target) {
     let courrentProduct = await currentProductController.getCurrentProduct();
     switch(courrentProduct) {
@@ -55,21 +85,38 @@ async function renderSaleW(target) {
 
 async function chargeListInTable(woodsList){
     const tableBody = document.getElementById("table-body");
+    let courrentProduct = await currentProductController.getCurrentProduct();
+    let unity;
+    if(courrentProduct == "wood") {
+        unity = "ft";
+    }
+
+    if(courrentProduct == "calamina") {
+        unity = "mts";
+    }
+
     for(i = 0; i < woodsList.length; i++) {
-      
+
         if(woodsList[i].counter)
             continue;
+        if(woodsList[i].unitType) {
+            if(woodsList[i].unitType == "unity")
+                unity = "Unid";
+            if(woodsList[i].unitType == "kg")
+                unity = "Kg";
+        }
         let content = `
         <tr class="dbl-click">
             <td class="clickable" onclick="showModal(${i})">${woodsList[i].idProduct}</td>
             <td id="dbl-menu" class="dbl-click">${woodsList[i].name_product}</td>
             <div id="${i}" class="dropdown-content">
-                <a href="#">Editar</a>
-                <a href="#" onclick="renderSaleW(${i})">Agregar a venta</a>
+            <a href="#" onclick="renderSaleW(${i})">Agregar a venta</a>
+                <a href="#" onclick="editProduct(${i})">Editar ítem</a>
+                <a href="#" onclick="deleteProduct(${i})">Eliminar ítem</a>
             </div>
             <td>${woodsList[i].provider}</td>
             <td>${woodsList[i].descriptionProduct}</td>
-            <td>${woodsList[i].quantity}</td>
+            <td>${woodsList[i].quantity} <strong>${unity}.</strong></td>
             <td>${woodsList[i].quantity_sold}</td>
             <td>${woodsList[i].purchase_price}</td>
             <td>${woodsList[i].sale_price}</td>
@@ -81,8 +128,9 @@ async function chargeListInTable(woodsList){
         tableBody.insertAdjacentHTML('beforeEnd',content);
     }
 }
+
 function chargeShoppingCartListInTable(shoppingCartList) {
-  const tableBody = document.getElementById("table-body");
+  const tableBody = document.getElementById("shoppingCart-body");
   for(i = 0; i < shoppingCartList.length; i++) {
       
     if(shoppingCartList[i].counter)
@@ -123,6 +171,20 @@ function cleanTable() {
     }
 }
 
+function cleanShoppingCar() {
+    let table = document.querySelector("#shoppingCart-body");
+    while(table.hasChildNodes()) {
+      table.removeChild(table.firstChild);
+    }
+}
+
+function cleanReceiptsTable() {
+    let table = document.querySelector("#shoppingCart-body");
+    while(table.hasChildNodes()) {
+      table.removeChild(table.firstChild);
+    }
+}
+
 async function chargeListByProduct() {
     let courrentProduct = await currentProductController.getCurrentProduct();
     switch(courrentProduct) {
@@ -142,16 +204,15 @@ async function chargeListByProduct() {
         chargeListInTable(ironmongeryList);
         break;
       case 'shoppingCart':
-        cleanTable();
+        cleanShoppingCar();
         const shoppingCartList = await getShoppingCart();
         chargeShoppingCartListInTable(shoppingCartList);
         break;
       case 'receipt':
-        cleanTable();
-        const receiptList = await getReceipt("receipt");
+        cleanReceiptsTable();
+        const receiptList = await getReceipt("receipts-body");
         chargeReceiptListInTable(receiptList);
         break;
-      
     }
 }
 chargeCss();
