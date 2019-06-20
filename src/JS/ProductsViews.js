@@ -149,14 +149,14 @@ function chargeShoppingCartListInTable(shoppingCartList) {
 }
 
 function chargeReceiptListInTable(receiptsList) {
-  const tableBody = document.getElementById("table-body");
+  const tableBody = document.getElementById("receipts-body");
   for(i = 0; i < receiptsList.length; i++) {      
     if(receiptsList[i].counter)
         continue;
     let content = `
     <tr class="dbl-click">
-        <td class="clickable" onclick="showModal(${i})">${receiptsList[i].code}</td>
-        <td id="dbl-menu" class="dbl-click">${receiptsList[i].customer_name}</td>
+        <td class="clickable" onclick="showModal(${i})">${receiptsList[i].head.unique}</td>
+        <td id="dbl-menu" class="dbl-click">${receiptsList[i].head.client}</td>
         
     </tr>
     `;
@@ -179,7 +179,7 @@ function cleanShoppingCar() {
 }
 
 function cleanReceiptsTable() {
-    let table = document.querySelector("#shoppingCart-body");
+    let table = document.querySelector("#receipts-body");
     while(table.hasChildNodes()) {
       table.removeChild(table.firstChild);
     }
@@ -211,6 +211,7 @@ async function chargeListByProduct() {
       case 'receipt':
         cleanReceiptsTable();
         const receiptList = await getReceipt("receipts-body");
+        console.log(receiptList);
         chargeReceiptListInTable(receiptList);
         break;
     }
@@ -229,3 +230,9 @@ window.onclick = function(event) {
       }
     }
 }
+
+const headButton = document.getElementById("saleConfirmation");
+headButton.addEventListener('click', event => {
+    ipcRenderer.send('head:form');
+    
+});
