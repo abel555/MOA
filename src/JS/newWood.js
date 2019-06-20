@@ -37,6 +37,7 @@ var serializeArray = function (form) {
 form.addEventListener('submit', async event => {
     event.preventDefault();
     formValues = serializeArray(form);
+    console.log(form);
     let unitTypeFromHtml;
     if(currentProductController.getCurrentProduct() == "ironmongery")
         unitTypeFromHtml = document.getElementById("unity");
@@ -48,13 +49,13 @@ form.addEventListener('submit', async event => {
         descriptionProduct: formValues[1],
         quantity: formValues[2],
         purchase_price: formValues[3],
-        purchased_total: formValues[2] * formValues[3],
+        purchased_total: formValues[2] * formValues[2],
 
         name_product: formValues[4],
         provider: formValues[5],
         quantity_sold: formValues[6],
         sale_price: formValues[7],
-        total_sold: formValues[6] * formValues[7],
+        total_sold: formValues[7] * formValues[6],
         reaminingAmount: formValues[2] - formValues[6],
         unitType: unitTypeFromHtml.value
     };
