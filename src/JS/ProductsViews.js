@@ -11,6 +11,7 @@ const ReceiptController = require("../JS/ReceiptController");
 let woodsList;
 let calaminasList;
 let ironmongeryList;
+let receiptList;
 
 const headButton = document.getElementById("saleConfirmation");
 
@@ -39,6 +40,10 @@ async function getProducList(tipe) {
 function showModal(id){
     const clicked = document.getElementById(id);
     clicked.classList.toggle("show");
+}
+
+function showReceipt(id) {
+    ipcRenderer.send('preview:pdf', receiptList[id]);
 }
 
 async function editProduct(target) {
@@ -158,7 +163,7 @@ function chargeReceiptListInTable(receiptsList) {
         continue;
     let content = `
     <tr class="dbl-click">
-        <td class="clickable" onclick="showModal(${i})">${receiptsList[i].head.unique}</td>
+        <td class="clickable" onclick="showReceipt(${i})">${receiptsList[i].head.unique}</td>
         <td id="dbl-menu" class="dbl-click">${receiptsList[i].head.client}</td>
         
     </tr>
@@ -213,8 +218,7 @@ async function chargeListByProduct() {
         break;
       case 'receipt':
         cleanReceiptsTable();
-        const receiptList = await getReceipt("receipts-body");
-        console.log(receiptList);
+        receiptList = await getReceipt("receipts-body");
         chargeReceiptListInTable(receiptList);
         break;
     }

@@ -1,6 +1,7 @@
-{"flag":"counter","counter":"32","_id":"1"}
+{"flag":"counter","counter":"33","_id":"1"}
 {"idProduct":"25","quantity":"34f","sale_price":"123f","_id":"26"}
 {"idProduct":"3","quantity":"22","sale_price":"4532","_id":"28"}
 {"idProduct":"25","quantity":"34f","sale_price":"123f","_id":"29"}
 {"idProduct":"98989","descriptionProduct":"ferre","quantity":"1","purchase_price":"10","purchased_total":"10","name_product":"martillo","provider":"martilleria","quantity_sold":"9","sale_price":"20","total_sold":"99","reaminingAmount":"-89","_id":"30"}
 {"idProduct":"23123","descriptionProduct":"","quantity":"","purchase_price":"","purchased_total":"","name_product":"","provider":"","quantity_sold":"","sale_price":"","total_sold":"","reaminingAmount":0,"_id":"31"}
+{"idProduct":"000","descriptionProduct":"desc","quantity":"1","purchase_price":"2","purchased_total":1,"name_product":"name","provider":"proveedor","quantity_sold":"3","sale_price":"4","total_sold":12,"reaminingAmount":-2,"_id":"32"}
