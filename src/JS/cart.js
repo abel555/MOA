@@ -28,5 +28,6 @@ form.addEventListener('submit', async event => {
     }
 
     await receiptController.saveReceipt(recibo);
+    await shoppingCartController.clearAllShoppingCart();
     ipcRenderer.send('preview:pdf', recibo);
 });

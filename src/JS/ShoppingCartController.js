@@ -31,9 +31,9 @@ class ShoppingCartController {
         let oldProductInDatabase = await this.getOneProduct.getProduct(productInDB, databaseProduct);
         let updatedProduct = await this.getOneProduct.getProduct(productInDB, databaseProduct);
         
-        updatedProduct[0].total_sold = (parseFloat(updatedProduct[0].total_sold) + (parseFloat(newProduct.total_cost))).toString();
-        updatedProduct[0].quantity_sold = (parseFloat(updatedProduct[0].quantity_sold) + parseFloat(newProduct.quantity)).toString();
-        updatedProduct[0].reaminingAmount = (parseFloat(updatedProduct[0].reaminingAmount) - parseFloat(newProduct.quantity)).toString();
+        updatedProduct[0].total_sold = ((parseFloat(updatedProduct[0].total_sold) + (parseFloat(newProduct.total_cost)))).toFixed(2).toString();
+        updatedProduct[0].quantity_sold = ((parseFloat(updatedProduct[0].quantity_sold) + parseFloat(newProduct.quantity))).toFixed(2).toString();
+        updatedProduct[0].reaminingAmount = ((parseFloat(updatedProduct[0].reaminingAmount) - parseFloat(newProduct.quantity))).toFixed(2).toString();
                 
 
         this.update.updateProduct(oldProductInDatabase[0], updatedProduct[0], databaseProduct);
@@ -58,41 +58,12 @@ class ShoppingCartController {
         let oldProductInDatabase = await this.getOneProduct.getProduct(productInDB, databaseProduct);
         let updatedProduct = await this.getOneProduct.getProduct(productInDB, databaseProduct);
 
-        updatedProduct[0].total_sold = (parseFloat(updatedProduct[0].total_sold) - (parseFloat(newProduct.total_cost))).toString();
-        updatedProduct[0].quantity_sold = (parseFloat(updatedProduct[0].quantity_sold) - parseFloat(newProduct.quantity)).toString();
-        updatedProduct[0].reaminingAmount = (parseFloat(updatedProduct[0].reaminingAmount) + parseFloat(newProduct.quantity)).toString();
+        updatedProduct[0].total_sold = ((parseFloat(updatedProduct[0].total_sold) - (parseFloat(newProduct.total_cost)))).toFixed(2).toString();
+        updatedProduct[0].quantity_sold = ((parseFloat(updatedProduct[0].quantity_sold) - parseFloat(newProduct.quantity))).toFixed(2).toString();
+        updatedProduct[0].reaminingAmount = ((parseFloat(updatedProduct[0].reaminingAmount) + parseFloat(newProduct.quantity))).toFixed(2).toString();
 
         this.update.updateProduct(oldProductInDatabase[0], updatedProduct[0], databaseProduct);
         this.delete.deleteProduct(newProduct, this.databaseShoppingCartDB);
-    }
-
-    async clearAllShoppingCartGiveBack() {
-        let dataBasesFactory = new DatabaseFactory();
-        let databaseProduct;
-        
-        let productInDB;
-
-        let allShoppingCartProducts = await this.getAllProducts();
-        let oldProductInDatabase;
-        let updatedProduct;
-        for(let i = 0; i < allShoppingCartProducts.length; i++) {
-            if(allShoppingCartProducts[i].typeProduct == undefined)
-                continue;
-            databaseProduct = dataBasesFactory.getDataBase(allShoppingCartProducts[i].typeProduct);
-            productInDB = {
-                "idProduct": allShoppingCartProducts[i].idProduct,
-                "descriptionProduct": allShoppingCartProducts[i].descriptionProduct,
-            };
-            oldProductInDatabase = await this.getOneProduct.getProduct(productInDB, databaseProduct);
-            updatedProduct = await this.getOneProduct.getProduct(productInDB, databaseProduct);
-
-            updatedProduct[0].quantity = (parseFloat(updatedProduct[0].quantity) + parseFloat(allShoppingCartProducts[i].quantity)).toString();
-            updatedProduct[0].quantity_sold = (parseFloat(updatedProduct[0].quantity_sold) - parseFloat(allShoppingCartProducts[i].quantity)).toString();
-            updatedProduct[0].total_sold = (parseFloat(updatedProduct[0].total_sold) - parseFloat(allShoppingCartProducts[i].quantity)).toString();
-            updatedProduct[0].reaminingAmount = (parseFloat(updatedProduct[0].reaminingAmount) + parseFloat(allShoppingCartProducts[i].quantity)).toString();
-            this.update.updateProduct(oldProductInDatabase[0], updatedProduct[0], databaseProduct);
-            this.deleteAll.deleteAllProducts(this.databaseShoppingCartDB);
-        }
     }
 
     async clearAllShoppingCart() {

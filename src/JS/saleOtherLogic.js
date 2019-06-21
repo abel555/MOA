@@ -9,7 +9,7 @@ const punit = document.getElementById("punit");
 const productDescriptionInHtml = document.getElementById("product-description");
 const productQuantityInHtml = document.getElementById("product-quantity");
 let product;
-
+let reaminingAmount;
 async function getCurrent(){
     return await currentProductController.getCurrentProduct();
 }
@@ -28,6 +28,7 @@ ipc.on('message', function(event, message){
     punit.value = product.sale_price;
     productDescriptionInHtml.innerText = productDescriptionInHtml.innerText + " " + productDescription;
     productQuantityInHtml.innerHTML = productQuantityInHtml.innerText + " " + product.reaminingAmount;
+    reaminingAmount = product.reaminingAmount;
 });
 
 form.addEventListener('submit', async event => {
@@ -38,7 +39,15 @@ form.addEventListener('submit', async event => {
     product.quantity = cant;
     product.total_cost = cant * parseFloat(punit.value);
     product.typeProduct = await getCurrent();
-    await shoppingCartController.addNewProductToShoppingCart(product);
-    ipcRenderer.send('product:new', product);
+    
+    if((parseFloat(reaminingAmount).toFixed(2) - parseFloat(product.quantity).toFixed(2)) > 0 ) {
+        await shoppingCartController.addNewProductToShoppingCart(product);    
+        ipcRenderer.send('product:new', product);
+    }
+    else {
+        console.log("no se pudo agregar");
+    }
+    
+    
 });
 

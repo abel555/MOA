@@ -93,23 +93,21 @@ async function chargeListInTable(woodsList){
     let courrentProduct = await currentProductController.getCurrentProduct();
     let unity;
     if(courrentProduct == "wood") {
-        unity = "ft";
+        unity = " ft.";
     }
 
     if(courrentProduct == "calamina") {
-        unity = "mts";
+        unity = " mts.";
     }
 
+    if(courrentProduct == "ironmongery") {
+        unity = "";
+    }
+    
     for(i = 0; i < woodsList.length; i++) {
 
         if(woodsList[i].counter)
             continue;
-        if(woodsList[i].unitType) {
-            if(woodsList[i].unitType == "unity")
-                unity = "Unid";
-            if(woodsList[i].unitType == "kg")
-                unity = "Kg";
-        }
         let content = `
         <tr class="dbl-click">
             <td class="clickable" onclick="showModal(${i})">${woodsList[i].idProduct}</td>
@@ -123,13 +121,13 @@ async function chargeListInTable(woodsList){
             </div>
             <td>${woodsList[i].provider}</td>
             <td>${woodsList[i].descriptionProduct}</td>
-            <td>${woodsList[i].reaminingAmount}</td>
-            <td>${woodsList[i].quantity_sold}</td>
-            <td>${woodsList[i].purchase_price}</td>
-            <td>${woodsList[i].sale_price}</td>
-            <td>${woodsList[i].purchased_total}</td>
-            <td>${woodsList[i].total_sold}</td>
-            <td>${woodsList[i].quantity}</td>
+            <td>${woodsList[i].reaminingAmount}${unity}</td>
+            <td>${woodsList[i].quantity_sold}${unity}</td>
+            <td>${woodsList[i].purchase_price} Bs.</td>
+            <td>${woodsList[i].sale_price} Bs.</td>
+            <td>${woodsList[i].purchased_total} Bs.</td>
+            <td>${woodsList[i].total_sold} Bs.</td>
+            <td>${woodsList[i].quantity} ${unity}</td>
         </tr>
         `;
         tableBody.insertAdjacentHTML('beforeEnd',content);

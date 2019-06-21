@@ -54,33 +54,39 @@ form.addEventListener('submit', async event => {
     espesor = parseFloat(espesor)
     ancho = parseFloat(ancho)
     largo = parseFloat(largo)
-    cant = espesor * ancho * largo;
+    cant = (espesor * ancho * largo)/12;
     product.quantity = cant.toFixed(2);
-    product.total_cost = parseFloat(((espesor * ancho * largo) / 12 )) * parseFloat(punit.value);
+    product.total_cost = parseFloat(((espesor * ancho * largo) / 12 )).toFixed(2) * parseFloat(punit.value).toFixed(2);
     product.total_cost = (product.total_cost).toFixed(2);
     product.typeProduct = await getCurrent();
     
-    if(parseFloat(reaminingAmount).toFixed(2) > product.quantity) {
+    console.log(parseFloat(product.quantity).toFixed(2));
+    console.log(parseFloat(reaminingAmount).toFixed(2));
+
+    if((parseFloat(reaminingAmount).toFixed(2) - parseFloat(product.quantity).toFixed(2)) > 0 ) {
         await shoppingCartController.addNewProductToShoppingCart(product);    
         ipcRenderer.send('product:new', product);
+    }
+    else {
+        console.log("no se pudo agregar");
     }
 
 });
 
 espesorElement.addEventListener("keyup", async event => {
     event.preventDefault();
-    currentAmount = espesorElement.value * anchoElement.value * largoElement.value 
+    currentAmount = (espesorElement.value * anchoElement.value * largoElement.value)/12; 
     requestQuantity.innerHTML = "Cantidad solicitada: " + parseFloat(currentAmount).toFixed(2) + " ft.";
 });
 
 anchoElement.addEventListener("keyup", async event => {
     event.preventDefault();
-    currentAmount = espesorElement.value * anchoElement.value * largoElement.value
+    currentAmount = (espesorElement.value * anchoElement.value * largoElement.value)/12;
     requestQuantity.innerHTML = "Cantidad solicitada: " + parseFloat(currentAmount).toFixed(2) + " ft.";
 });
 
 largoElement.addEventListener("keyup", async event => {
     event.preventDefault();
-    currentAmount = espesorElement.value * anchoElement.value * largoElement.value
+    currentAmount = (espesorElement.value * anchoElement.value * largoElement.value)/12;
     requestQuantity.innerHTML = "Cantidad solicitada: " + parseFloat(currentAmount).toFixed(2) + " ft.";
 });

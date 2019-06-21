@@ -102,6 +102,7 @@ shoppingCartButton.addEventListener('click',async event => {
   addSaleConfirmation.style.display = 'block';
   returnShoppingCartButton.style.display = 'block';
   await chargeListByProduct();
+  location.reload();
 });
 
 const product_click = document.getElementById("productsList");

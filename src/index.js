@@ -25,6 +25,7 @@ function chargeCounterInDataBase() {
     dbIronmongery.insert({"flag":"counter","counter":"20","_id":"1"});
     dbReceipts.insert({"flag":"counter","counter":"20","_id":"1"});
     dbCurrentProduct.insert({"current":"wood","_id":"1"});
+    dbShoppingCart.insert({"flag":"counter","counter":"20","_id":"1"});
 }
 
 if(process.env.NODE_ENV !== 'production') {
@@ -246,8 +247,8 @@ function createNewNoWoodWindow(product){
 
 function createHeadWindow(){
     newClientInfoWindow = new BrowserWindow({
-        width: 300,
-        height: 200,
+        width: 400,
+        height: 300,
         title: "Datos cliente",
         webPreferences: {
             nodeIntegration: true,
@@ -323,11 +324,10 @@ ipcMain.on('product:new', (e, newProduct) => {
     newProductWindow.close();
 });
 
-ipcMain.on('preview:pdf', (e, data) => {
+ipcMain.on('preview:pdf', async (e, data) => {
     createPreview(data);
     if(newClientInfoWindow)
         newClientInfoWindow.close();
-    shoppingCartController.clearAllShoppingCart();
     mainWindow.reload();
 });
 
@@ -459,30 +459,30 @@ const templateMainMenu = [
     },
 ];
 
-function isMac() {
-    return process.platform === 'darwin';
-}
-function isInProduction() {
-    return process.env.NODE_ENV === 'production';
-}
+// function isMac() {
+//     return process.platform === 'darwin';
+// }
+// function isInProduction() {
+//     return process.env.NODE_ENV === 'production';
+// }
 
-if (!isInProduction()) {
-    templateMainMenu.push ({
-        label: 'DevTools',
-        submenu: [
-            {
-                label: 'Show/hide Dev Tools like a inspector of chrome',
-                accelerator: 'ctrl+D',
-                click(item, focusedWindow) {
-                    focusedWindow.toggleDevTools();
-                }
-            },
-            {
-                role: 'reload',
-                accelerator: 'ctrl+R'
-            }
-        ]
-    })
-}
+// if (!isInProduction()) {
+//     templateMainMenu.push ({
+//         label: 'DevTools',
+//         submenu: [
+//             {
+//                 label: 'Show/hide Dev Tools like a inspector of chrome',
+//                 accelerator: 'ctrl+D',
+//                 click(item, focusedWindow) {
+//                     focusedWindow.toggleDevTools();
+//                 }
+//             },
+//             {
+//                 role: 'reload',
+//                 accelerator: 'ctrl+R'
+//             }
+//         ]
+//     })
+// }
 
 chargeCounterInDataBase();

@@ -27,15 +27,17 @@ class DatabaseManager{
     }
 
     deleteAllProducts() {
+        
         this.database.remove({}, { multi: true }, function (err, numRemoved) {
         });
         this.database.insert({"flag":"counter","counter":"20","_id":"1"});
     }
+
     deleteProduct(product) {
         this.database.loadDatabase(function (err) {    // Callback is optional
             // Now commands will be executed
           });
-        this.database.remove({_id: product._id}, {multi: true}, function (err, numRemoved) {
+        this.database.remove(product, {multi: true}, function (err, numRemoved) {
             console.log(err);
             console.log(numRemoved);
         });
