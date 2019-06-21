@@ -3,7 +3,10 @@ const addNewWoodButton = document.querySelector('#addNewWood');
 const addNewCalaminaButton = document.querySelector('#addNewCalamina');
 const addNewIronmongeryButton = document.querySelector('#addNewIronmongery');
 const headButton = document.querySelector("#saleConfirmation");
+const returnShoppingCart = document.querySelector('#returnShoppingcart');
+// const ShoppingCartController = require("./ShoppingCartController");
 
+const shoppingCartController = new ShoppingCartController();
 headButton.addEventListener('click', event => {
     event.preventDefault();
     ipcRenderer.send('head:form');
@@ -22,4 +25,10 @@ addNewCalaminaButton.addEventListener('click', event => {
 addNewIronmongeryButton.addEventListener('click', event => {
     event.preventDefault();
     ipcRenderer.send('ironmongery:form');
+});
+
+returnShoppingCart.addEventListener('click', event => {
+    event.preventDefault();
+    shoppingCartController.returnShoppingCart();
+    location.reload();
 });

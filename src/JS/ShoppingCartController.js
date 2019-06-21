@@ -47,6 +47,7 @@ class ShoppingCartController {
     async returnProduct(newProduct) {
         
         let dataBasesFactory = new DatabaseFactory();
+        console.log(newProduct.typeProduct);
         let databaseProduct = dataBasesFactory.getDataBase(newProduct.typeProduct);
         
         const productInDB = {
@@ -56,12 +57,6 @@ class ShoppingCartController {
 
         let oldProductInDatabase = await this.getOneProduct.getProduct(productInDB, databaseProduct);
         let updatedProduct = await this.getOneProduct.getProduct(productInDB, databaseProduct);
-        
-        // updatedProduct[0].quantity = (parseFloat(updatedProduct[0].quantity) - parseFloat(newProduct.quantity)).toString();
-        // updatedProduct[0].quantity_sold = (parseFloat(updatedProduct[0].quantity_sold) + parseFloat(newProduct.quantity)).toString();
-        // updatedProduct[0].total_sold = (parseFloat(updatedProduct[0].total_sold) + (parseFloat(newProduct.quantity))).toString();
-        // updatedProduct[0].reaminingAmount = (parseFloat(updatedProduct[0].reaminingAmount) - parseFloat(newProduct.quantity)).toString();
-
 
         updatedProduct[0].total_sold = (parseFloat(updatedProduct[0].total_sold) - (parseFloat(newProduct.total_cost))).toString();
         updatedProduct[0].quantity_sold = (parseFloat(updatedProduct[0].quantity_sold) - parseFloat(newProduct.quantity)).toString();
@@ -103,7 +98,17 @@ class ShoppingCartController {
     async clearAllShoppingCart() {
         this.deleteAll.deleteAllProducts(this.databaseShoppingCartDB);
     }
+
+    async returnShoppingCart() {
+        let products = await this.getAllProducts();
+        for(let i = 0; i < products.length; i++) {
+            if(products[i].counter)
+                continue;
+            this.returnProduct(products[i]);
+        }
+    }
 }
 
-module.exports = ShoppingCartController;
 
+// request-amount
+module.exports = ShoppingCartController;

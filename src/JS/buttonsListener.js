@@ -5,7 +5,7 @@ const calaminaButton = document.querySelector('#calamina');
 const ironmongeryButton = document.querySelector('#ironmongery');
 const receiptButton = document.querySelector('#receipt');
 const shoppingCartButton = document.querySelector('#shoppingCart');
-
+const returnShoppingCartButton = document.querySelector('#returnShoppingcart');
 
 const addNewWood = document.querySelector('#addWoodForm');
 const addNewCalamina = document.querySelector('#addCalaminaForm');
@@ -20,6 +20,7 @@ woodButton.addEventListener('click', async event => {
   addNewCalamina.style.display = 'none';
   addNewIronmongery.style.display = 'none';
   addSaleConfirmation.style.display = 'none';
+  returnShoppingCartButton.style.display = 'none';
   await chargeListByProduct();
 });
 
@@ -29,6 +30,7 @@ calaminaButton.addEventListener('click', async event => {
   addNewCalamina.style.display = 'block';
   addNewIronmongery.style.display = 'none';
   addSaleConfirmation.style.display = 'none';
+  returnShoppingCartButton.style.display = 'none';
   await chargeListByProduct();
 });
 
@@ -38,6 +40,7 @@ ironmongeryButton.addEventListener('click',async event => {
   addNewCalamina.style.display = 'none';
   addNewIronmongery.style.display = 'block';
   addSaleConfirmation.style.display = 'none';
+  returnShoppingCartButton.style.display = 'none';
   await chargeListByProduct();
 });
 
@@ -55,7 +58,20 @@ function search() {
       } else {
         tr[i].style.display = "none";
       }
-    }       
+    }
+  }
+
+  table = document.getElementById("receiptList");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
   }
 }
 
@@ -73,6 +89,7 @@ receiptButton.addEventListener('click',async event => {
   addNewCalamina.style.display = 'none';
   addNewIronmongery.style.display = 'none';
   addSaleConfirmation.style.display = 'none';
+  returnShoppingCartButton.style.display = 'none';
   await chargeListByProduct();
 });
 
@@ -83,8 +100,8 @@ shoppingCartButton.addEventListener('click',async event => {
   addNewCalamina.style.display = 'none';
   addNewIronmongery.style.display = 'none';
   addSaleConfirmation.style.display = 'block';
+  returnShoppingCartButton.style.display = 'block';
   await chargeListByProduct();
-  location.reload();
 });
 
 const product_click = document.getElementById("productsList");
@@ -98,3 +115,20 @@ product_click.addEventListener('contextmenu', event => {
 
 }, false);
 
+function searchForReceipts() {
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("searchInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("receiptList");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
