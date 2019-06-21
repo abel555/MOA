@@ -114,10 +114,12 @@ async function chargeListInTable(woodsList){
         <tr class="dbl-click">
             <td class="clickable" onclick="showModal(${i})">${woodsList[i].idProduct}</td>
             <td id="dbl-menu" class="dbl-click">${woodsList[i].name_product}</td>
+            <div class="dropup">
             <div id="${i}" class="dropdown-content">
             <a href="#" onclick="renderSaleW(${i})">Agregar a venta</a>
                 <a href="#" onclick="editProduct(${i})">Editar ítem</a>
                 <a href="#" onclick="deleteProduct(${i})">Eliminar ítem</a>
+            </div>
             </div>
             <td>${woodsList[i].provider}</td>
             <td>${woodsList[i].descriptionProduct}</td>
@@ -145,8 +147,10 @@ function chargeShoppingCartListInTable(shoppingCartList) {
     <tr class="dbl-click">
         <td class="clickable" onclick="showModal(${i})">${shoppingCartList[i].idProduct}</td>
         <td id="dbl-menu" class="dbl-click">${shoppingCartList[i].name_product}</td>    
+        <div class="dropup">
         <div id="${i}" class="dropdown-content">
             <a href="#" onclick="returnProduct(${i})">Devolver producto al inventario</a>
+        </div>
         </div>
         <td>${shoppingCartList[i].descriptionProduct}</td>        
         <td>${shoppingCartList[i].sale_price}</td> 
