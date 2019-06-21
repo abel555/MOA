@@ -23,8 +23,6 @@ woodButton.addEventListener('click', async event => {
   await chargeListByProduct();
 });
 
-
-
 calaminaButton.addEventListener('click', async event => {
   await currentProductController.UpdateCurrentProduct("calamina");
   addNewWood.style.display = 'none';

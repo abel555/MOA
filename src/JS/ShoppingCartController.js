@@ -27,14 +27,14 @@ class ShoppingCartController {
             "idProduct": newProduct.idProduct,
             "descriptionProduct": newProduct.descriptionProduct,
         };
-
+        
         let oldProductInDatabase = await this.getOneProduct.getProduct(productInDB, databaseProduct);
         let updatedProduct = await this.getOneProduct.getProduct(productInDB, databaseProduct);
         
-        updatedProduct[0].quantity = (parseFloat(updatedProduct[0].quantity) - parseFloat(newProduct.quantity)).toString();
-        updatedProduct[0].quantity_sold = (parseFloat(updatedProduct[0].quantity_sold) + parseFloat(newProduct.quantity)).toString();
         updatedProduct[0].total_sold = (parseFloat(updatedProduct[0].total_sold) + (parseFloat(newProduct.quantity))).toString();
+        updatedProduct[0].quantity_sold = (parseFloat(updatedProduct[0].quantity_sold) + parseFloat(newProduct.quantity)).toString();
         updatedProduct[0].reaminingAmount = (parseFloat(updatedProduct[0].reaminingAmount) - parseFloat(newProduct.quantity)).toString();
+        // updatedProduct[0].quantity = (parseFloat(updatedProduct[0].quantity) - parseFloat(newProduct.quantity)).toString();        
 
         this.update.updateProduct(oldProductInDatabase[0], updatedProduct[0], databaseProduct);
         this.saveShppingCart.saveProduct(newProduct, this.databaseShoppingCartDB);

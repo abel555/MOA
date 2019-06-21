@@ -1,6 +1,2 @@
-{"flag":"counter","counter":"52","_id":"1"}
-{"idProduct":"312","descriptionProduct":"algo","quantity":"2000","purchase_price":"10","purchased_total":20000,"name_product":"madera","provider":"luis","quantity_sold":"50","sale_price":"20","total_sold":1000,"reaminingAmount":1950,"_id":"44"}
-{"idProduct":"8765","descriptionProduct":"algo","quantity":"100","purchase_price":"10","purchased_total":1000,"name_product":"madera","provider":"luis","quantity_sold":"50","sale_price":"20","total_sold":1000,"reaminingAmount":50,"_id":"48"}
-{"idProduct":"madera descp","descriptionProduct":"10","quantity":"15","purchase_price":"NOMBRE","purchased_total":null,"name_product":"PROVEEDOR","provider":"0","quantity_sold":"20","total_sold":null,"reaminingAmount":-5,"_id":"49"}
-{"idProduct":"desc","descriptionProduct":"1","quantity":"10","purchase_price":"name","purchased_total":null,"name_product":"providor","provider":"0","quantity_sold":"15","total_sold":null,"reaminingAmount":-5,"_id":"50"}
-{"idProduct":"000","descriptionProduct":"Desccc","quantity":"20","purchase_price":"10.5","purchased_total":400,"name_product":"nickname","provider":"pppppprovedor","quantity_sold":"0","sale_price":"14","total_sold":0,"reaminingAmount":20,"_id":"51"}
+{"flag":"counter","counter":"66","_id":"1"}
+{"idProduct":"0","descriptionProduct":"0","quantity":"0","purchase_price":"0","purchased_total":0,"name_product":"00","provider":"0","quantity_sold":"0","sale_price":"00","total_sold":0,"reaminingAmount":0,"_id":"65"}

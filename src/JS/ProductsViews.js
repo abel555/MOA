@@ -121,13 +121,13 @@ async function chargeListInTable(woodsList){
             </div>
             <td>${woodsList[i].provider}</td>
             <td>${woodsList[i].descriptionProduct}</td>
-            <td>${woodsList[i].quantity} <strong>${unity}.</strong></td>
+            <td>${woodsList[i].reaminingAmount}</td>
             <td>${woodsList[i].quantity_sold}</td>
             <td>${woodsList[i].purchase_price}</td>
             <td>${woodsList[i].sale_price}</td>
             <td>${woodsList[i].purchased_total}</td>
             <td>${woodsList[i].total_sold}</td>
-            <td>${woodsList[i].reaminingAmount}</td>
+            <td>${woodsList[i].quantity}</td>
         </tr>
         `;
         tableBody.insertAdjacentHTML('beforeEnd',content);
@@ -144,6 +144,9 @@ function chargeShoppingCartListInTable(shoppingCartList) {
     <tr class="dbl-click">
         <td class="clickable" onclick="showModal(${i})">${shoppingCartList[i].idProduct}</td>
         <td id="dbl-menu" class="dbl-click">${shoppingCartList[i].name_product}</td>    
+        <div id="${i}" class="dropdown-content">
+            <a href="#" onclick="returnProduct(${i})">Devolver producto al inventario</a>
+        </div>
         <td>${shoppingCartList[i].descriptionProduct}</td>        
         <td>${shoppingCartList[i].sale_price}</td> 
         <td>${shoppingCartList[i].total_cost}</td> 
@@ -154,19 +157,18 @@ function chargeShoppingCartListInTable(shoppingCartList) {
 }
 
 function chargeReceiptListInTable(receiptsList) {
-  const tableBody = document.getElementById("receipts-body");
-  for(i = 0; i < receiptsList.length; i++) {      
-    if(receiptsList[i].counter)
-        continue;
-    let content = `
-    <tr class="dbl-click">
-        <td class="clickable" onclick="showReceipt(${i})">${receiptsList[i].head.unique}</td>
-        <td id="dbl-menu" class="dbl-click">${receiptsList[i].head.client}</td>
-        
-    </tr>
-    `;
-    tableBody.insertAdjacentHTML('beforeEnd',content);
- }
+    const tableBody = document.getElementById("receipts-body");
+    for(i = 0; i < receiptsList.length; i++) {      
+        if(receiptsList[i].counter)
+            continue;
+        let content = `
+        <tr class="dbl-click">
+            <td class="clickable" onclick="showReceipt(${i})">${receiptsList[i].head.unique}</td>
+            <td id="dbl-menu" class="dbl-click">${receiptsList[i].head.client}</td>
+        </tr>
+        `;
+        tableBody.insertAdjacentHTML('beforeEnd',content);
+    }
 }
 
 function cleanTable() {
@@ -235,4 +237,11 @@ window.onclick = function(event) {
         }
       }
     }
+}
+
+
+function returnProduct(index) {
+    // const shoppingCart = new ShoppingCartController();
+    // shoppingCart.returnProduct();
+    console.log(index);
 }

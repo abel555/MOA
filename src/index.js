@@ -17,7 +17,6 @@ const dbShoppingCart = require ('./JS/DatabasesSingletons/ShoppingCartDB');
 const dbCurrentProduct = require ('./JS/DatabasesSingletons/CurrentProductDB');
 const ProductsController = require("./JS/ProductsController");
 
-
 function chargeCounterInDataBase() {
     dbWoods.insert({"flag":"counter","counter":"20","_id":"1"});
     dbCalimnas.insert({"flag":"counter","counter":"20","_id":"1"});
@@ -328,14 +327,16 @@ ipcMain.on('preview:pdf', (e, data) => {
         newClientInfoWindow.close();
 });
 
-ipcMain.on('wood:edit',(e, woodEdit)=> {
-    editWoodWindow(woodEdit);
+ipcMain.on('wood:edit',async (e, woodEdit)=> {
+    await editWoodWindow(woodEdit);
 });
 
-ipcMain.on('wood:delete',(e, productToDelete, typeOfProduct)=> {
+ipcMain.on('wood:delete',async (e, productToDelete, typeOfProduct)=> {
     const productsController = new ProductsController();
-    productsController.deleteProduct(productToDelete, typeOfProduct);
-    mainWindow.reload();
+    console.log(productToDelete);
+    // console.log(typeOfProduct);
+    await productsController.deleteProduct(productToDelete, typeOfProduct);
+    // mainWindow.reload();
 });
 
 ipcMain.on('print-to-pdf', event => {
@@ -481,4 +482,3 @@ if (!isInProduction()) {
 }
 
 chargeCounterInDataBase();
-

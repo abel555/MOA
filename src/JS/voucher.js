@@ -22,9 +22,10 @@ ipc.on('message', function(event, message){
     var sum = 0;
     product.prods.forEach(element => { 
         let temp = element.total_cost;
+        
         if (temp){
-            sum = sum + temp; 
-        }     
+            sum = sum + parseFloat(temp); 
+        }
     });
     total.innerHTML = sum;
     
