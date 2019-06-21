@@ -32,8 +32,9 @@ class DatabaseManager{
         this.database.insert({"flag":"counter","counter":"20","_id":"1"});
     }
     deleteProduct(product) {
-        console.log(this.database);
-        console.log(product._id);
+        this.database.loadDatabase(function (err) {    // Callback is optional
+            // Now commands will be executed
+          });
         this.database.remove({_id: product._id}, {multi: true}, function (err, numRemoved) {
             console.log(err);
             console.log(numRemoved);

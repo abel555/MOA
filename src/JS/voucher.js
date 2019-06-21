@@ -27,7 +27,7 @@ ipc.on('message', function(event, message){
             sum = sum + parseFloat(temp); 
         }
     });
-    total.innerHTML = sum;
+    total.innerHTML = sum.toFixed(2);
     
     let tLiteral = numeroALetras(sum, {
         plural: 'BOLIVIANOS',

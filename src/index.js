@@ -334,9 +334,9 @@ ipcMain.on('wood:edit',async (e, woodEdit)=> {
 ipcMain.on('wood:delete',async (e, productToDelete, typeOfProduct)=> {
     const productsController = new ProductsController();
     console.log(productToDelete);
-    // console.log(typeOfProduct);
+    console.log(typeOfProduct);
     await productsController.deleteProduct(productToDelete, typeOfProduct);
-    // mainWindow.reload();
+    mainWindow.reload();
 });
 
 ipcMain.on('print-to-pdf', event => {

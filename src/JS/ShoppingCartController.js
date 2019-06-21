@@ -31,10 +31,10 @@ class ShoppingCartController {
         let oldProductInDatabase = await this.getOneProduct.getProduct(productInDB, databaseProduct);
         let updatedProduct = await this.getOneProduct.getProduct(productInDB, databaseProduct);
         
-        updatedProduct[0].total_sold = (parseFloat(updatedProduct[0].total_sold) + (parseFloat(newProduct.quantity))).toString();
+        updatedProduct[0].total_sold = (parseFloat(updatedProduct[0].total_sold) + (parseFloat(newProduct.total_cost))).toString();
         updatedProduct[0].quantity_sold = (parseFloat(updatedProduct[0].quantity_sold) + parseFloat(newProduct.quantity)).toString();
         updatedProduct[0].reaminingAmount = (parseFloat(updatedProduct[0].reaminingAmount) - parseFloat(newProduct.quantity)).toString();
-        // updatedProduct[0].quantity = (parseFloat(updatedProduct[0].quantity) - parseFloat(newProduct.quantity)).toString();        
+                
 
         this.update.updateProduct(oldProductInDatabase[0], updatedProduct[0], databaseProduct);
         this.saveShppingCart.saveProduct(newProduct, this.databaseShoppingCartDB);
@@ -44,7 +44,8 @@ class ShoppingCartController {
         return await this.getAll.getAllProducts(this.databaseShoppingCartDB);
     }
 
-    async deleteProduct(newProduct) {
+    async returnProduct(newProduct) {
+        
         let dataBasesFactory = new DatabaseFactory();
         let databaseProduct = dataBasesFactory.getDataBase(newProduct.typeProduct);
         
@@ -56,10 +57,15 @@ class ShoppingCartController {
         let oldProductInDatabase = await this.getOneProduct.getProduct(productInDB, databaseProduct);
         let updatedProduct = await this.getOneProduct.getProduct(productInDB, databaseProduct);
         
-        updatedProduct[0].quantity = (parseFloat(updatedProduct[0].quantity) - parseFloat(newProduct.quantity)).toString();
-        updatedProduct[0].quantity_sold = (parseFloat(updatedProduct[0].quantity_sold) + parseFloat(newProduct.quantity)).toString();
-        updatedProduct[0].total_sold = (parseFloat(updatedProduct[0].total_sold) + (parseFloat(newProduct.quantity))).toString();
-        updatedProduct[0].reaminingAmount = (parseFloat(updatedProduct[0].reaminingAmount) - parseFloat(newProduct.quantity)).toString();
+        // updatedProduct[0].quantity = (parseFloat(updatedProduct[0].quantity) - parseFloat(newProduct.quantity)).toString();
+        // updatedProduct[0].quantity_sold = (parseFloat(updatedProduct[0].quantity_sold) + parseFloat(newProduct.quantity)).toString();
+        // updatedProduct[0].total_sold = (parseFloat(updatedProduct[0].total_sold) + (parseFloat(newProduct.quantity))).toString();
+        // updatedProduct[0].reaminingAmount = (parseFloat(updatedProduct[0].reaminingAmount) - parseFloat(newProduct.quantity)).toString();
+
+
+        updatedProduct[0].total_sold = (parseFloat(updatedProduct[0].total_sold) - (parseFloat(newProduct.total_cost))).toString();
+        updatedProduct[0].quantity_sold = (parseFloat(updatedProduct[0].quantity_sold) - parseFloat(newProduct.quantity)).toString();
+        updatedProduct[0].reaminingAmount = (parseFloat(updatedProduct[0].reaminingAmount) + parseFloat(newProduct.quantity)).toString();
 
         this.update.updateProduct(oldProductInDatabase[0], updatedProduct[0], databaseProduct);
         this.delete.deleteProduct(newProduct, this.databaseShoppingCartDB);

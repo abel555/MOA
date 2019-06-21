@@ -132,6 +132,7 @@ async function chargeListInTable(woodsList){
         `;
         tableBody.insertAdjacentHTML('beforeEnd',content);
     }
+
 }
 
 function chargeShoppingCartListInTable(shoppingCartList) {
@@ -240,8 +241,9 @@ window.onclick = function(event) {
 }
 
 
-function returnProduct(index) {
-    // const shoppingCart = new ShoppingCartController();
-    // shoppingCart.returnProduct();
-    console.log(index);
+async function returnProduct(index) {
+    const shoppingCart = new ShoppingCartController();
+    const shoppingCartList = await getShoppingCart();
+    shoppingCart.returnProduct(shoppingCartList[index]);
+    location.reload();
 }

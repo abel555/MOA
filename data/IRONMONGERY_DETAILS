@@ -1,5 +1,2 @@
-{"flag":"counter","counter":"36","_id":"1"}
-{"idProduct":"3","quantity":"22","sale_price":"4532","_id":"28"}
-{"idProduct":"98989","descriptionProduct":"ferre","quantity":"1","purchase_price":"10","purchased_total":"10","name_product":"martillo","provider":"martilleria","quantity_sold":"9","sale_price":"20","total_sold":"99","reaminingAmount":"-89","_id":"30"}
-{"idProduct":"1","descriptionProduct":"hshs","quantity":"10","purchase_price":"10","purchased_total":100,"name_product":"carlos","provider":"carlos","quantity_sold":"10","sale_price":"10","total_sold":100,"reaminingAmount":0,"_id":"33"}
-{"idProduct":"978","descriptionProduct":"89","quantity":"789","purchase_price":"87","purchased_total":622521,"name_product":"789","provider":"789","quantity_sold":"78978","sale_price":"97","total_sold":7660866,"reaminingAmount":-78189,"_id":"35"}
+{"flag":"counter","counter":"40","_id":"1"}
+{"idProduct":"000","descriptionProduct":"Ferreteria","quantity":"100","purchase_price":"10","purchased_total":1000,"name_product":"Ferreteria","provider":"Ferreteria","quantity_sold":"10","sale_price":"20","total_sold":"200","reaminingAmount":"90","_id":"39"}

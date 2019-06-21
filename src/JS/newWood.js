@@ -47,16 +47,16 @@ form.addEventListener('submit', async event => {
     const newProduct = {
         idProduct: formValues[0],
         descriptionProduct: formValues[1],
-        quantity: formValues[2],
-        purchase_price: formValues[3],
-        purchased_total: formValues[2] * formValues[2],
+        quantity: parseFloat(formValues[2]).toFixed(2),
+        purchase_price: parseFloat(formValues[3]),
+        purchased_total: (parseFloat(formValues[2]) * parseFloat(formValues[3])).toFixed(2),
 
         name_product: formValues[4],
         provider: formValues[5],
-        quantity_sold: formValues[6],
-        sale_price: formValues[7],
-        total_sold: formValues[7] * formValues[6],
-        reaminingAmount: formValues[2] - formValues[6],
+        quantity_sold: parseFloat(formValues[6]).toFixed(2),
+        sale_price: parseFloat(formValues[7]),
+        total_sold: (parseFloat(formValues[7]) * parseFloat(formValues[6])).toFixed(2),
+        reaminingAmount: (parseFloat(formValues[2]) - parseFloat(formValues[6])).toFixed(2),
         unitType: unitTypeFromHtml.value
     };
     let currentProduct = await currentProductController.getCurrentProduct();
