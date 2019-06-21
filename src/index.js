@@ -324,7 +324,8 @@ ipcMain.on('product:new', (e, newProduct) => {
 
 ipcMain.on('preview:pdf', (e, data) => {
     createPreview(data);
-    newClientInfoWindow.close();
+    if(newClientInfoWindow)
+        newClientInfoWindow.close();
 });
 
 ipcMain.on('wood:edit',(e, woodEdit)=> {
