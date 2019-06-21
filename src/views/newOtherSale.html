@@ -12,10 +12,10 @@
     <h3 id="product-description">Producto: </h3>
     <form class="form-container"action="" id="wood-form">
         <label for="">Cantidad
-                <input type="text" placeholder="Cantidad" id= "cant">
+                <input type="number" step="0.01" placeholder="Cantidad" id= "cant" required min="0">
         </label>
         <label for="">Precio unitario
-                <input type="text" id="punit">
+                <input type="number" step="0.01" id="punit" required min="0">
             </label>
         <div class="button-container">
             <input class="send-button" type="submit" value="Agregar">

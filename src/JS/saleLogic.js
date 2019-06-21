@@ -44,7 +44,7 @@ form.addEventListener('submit', async event => {
     largo = parseFloat(largo)
     cant = espesor * ancho * largo;
     product.quantity = cant;
-    product.total_cost = ((espesor * ancho * largo) / 12 ) * parseFloat(punit.value);
+    product.total_cost = parseFloat(((espesor * ancho * largo) / 12 )) * parseFloat(punit.value);
     product.total_cost = (product.total_cost).toFixed(2);
     product.typeProduct = await getCurrent();
     

@@ -77,12 +77,14 @@ receiptButton.addEventListener('click',async event => {
 });
 
 shoppingCartButton.addEventListener('click',async event => {
+  event.preventDefault();
   await currentProductController.UpdateCurrentProduct("shoppingCart");
   addNewWood.style.display = 'none';
   addNewCalamina.style.display = 'none';
   addNewIronmongery.style.display = 'none';
   addSaleConfirmation.style.display = 'block';
   await chargeListByProduct();
+  location.reload();
 });
 
 const product_click = document.getElementById("productsList");
