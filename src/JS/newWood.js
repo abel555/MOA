@@ -82,6 +82,7 @@ chargeCss();
 
 
 ipc.on('message', function(event, message){
+    
     editingProduct = message;
     idProduct.value = message.idProduct;
     descriptionProduct.value = message.descriptionProduct;
