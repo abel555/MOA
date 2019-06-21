@@ -9,8 +9,19 @@ const currentProduct = getCurrent();
 const punit = document.getElementById("punit");
 const productDescriptionInHtml = document.getElementById("product-description");
 const productQuantityInHtml = document.getElementById("product-quantity");
-
+const requestQuantity= document.getElementById("request-amount");
+let reaminingAmount;
 let product;
+
+let currentAmount = 0;
+const espesorElement = document.getElementById("espesor");
+const anchoElement = document.getElementById("ancho");
+const largoElement = document.getElementById("largo");
+
+espesorElement.value = 0.00;
+anchoElement.value = 0.00;
+largoElement.value = 0.00;
+
 
 async function getCurrent(){
     return await currentProductController.getCurrentProduct();
@@ -28,7 +39,8 @@ ipc.on('message', function(event, message){
     const productDescription = product.idProduct + " - " + product.name_product + " - " + product.descriptionProduct
     punit.value = product.sale_price;
     productDescriptionInHtml.innerText = productDescriptionInHtml.innerText + " " + productDescription;
-    productQuantityInHtml.innerHTML = productQuantityInHtml.innerText + " " + product.reaminingAmount;
+    productQuantityInHtml.innerHTML = productQuantityInHtml.innerText + " " + product.reaminingAmount + " ft.";
+    reaminingAmount = product.reaminingAmount;
 });
 
 form.addEventListener('submit', async event => {
@@ -43,13 +55,32 @@ form.addEventListener('submit', async event => {
     ancho = parseFloat(ancho)
     largo = parseFloat(largo)
     cant = espesor * ancho * largo;
-    product.quantity = cant;
+    product.quantity = cant.toFixed(2);
     product.total_cost = parseFloat(((espesor * ancho * largo) / 12 )) * parseFloat(punit.value);
     product.total_cost = (product.total_cost).toFixed(2);
     product.typeProduct = await getCurrent();
     
-    await shoppingCartController.addNewProductToShoppingCart(product);
-   
-    ipcRenderer.send('product:new', product);
+    if(parseFloat(reaminingAmount).toFixed(2) > product.quantity) {
+        await shoppingCartController.addNewProductToShoppingCart(product);    
+        ipcRenderer.send('product:new', product);
+    }
+
 });
 
+espesorElement.addEventListener("keyup", async event => {
+    event.preventDefault();
+    currentAmount = espesorElement.value * anchoElement.value * largoElement.value 
+    requestQuantity.innerHTML = "Cantidad solicitada: " + parseFloat(currentAmount).toFixed(2) + " ft.";
+});
+
+anchoElement.addEventListener("keyup", async event => {
+    event.preventDefault();
+    currentAmount = espesorElement.value * anchoElement.value * largoElement.value
+    requestQuantity.innerHTML = "Cantidad solicitada: " + parseFloat(currentAmount).toFixed(2) + " ft.";
+});
+
+largoElement.addEventListener("keyup", async event => {
+    event.preventDefault();
+    currentAmount = espesorElement.value * anchoElement.value * largoElement.value
+    requestQuantity.innerHTML = "Cantidad solicitada: " + parseFloat(currentAmount).toFixed(2) + " ft.";
+});

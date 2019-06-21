@@ -5,7 +5,7 @@ function showWoodButton(){
     addNewCalamina.style.display = 'none';
     addNewIronmongery.style.display = 'none';
     addSaleConfirmation.style.display = 'none';
-
+    returnShoppingCartButton.style.display = 'none';
 }
 
 function showIronmongeryButton(){
@@ -13,14 +13,14 @@ function showIronmongeryButton(){
     addNewCalamina.style.display = 'none';
     addNewIronmongery.style.display = 'block';
     addSaleConfirmation.style.display = 'none';
-
+    returnShoppingCartButton.style.display = 'none';
 }
 function showCalaminaButton(){
     addNewIronmongery.style.display = 'none';
     addNewCalamina.style.display = 'block';
     addNewIronmongery.style.display = 'none';
     addSaleConfirmation.style.display = 'none';
-
+    returnShoppingCartButton.style.display = 'none';
 }
 
 function showSaleButton(){
@@ -28,6 +28,7 @@ function showSaleButton(){
     addNewCalamina.style.display = 'none';
     addNewIronmongery.style.display = 'none';
     addSaleConfirmation.style.display = 'block';
+    returnShoppingCartButton.style.display = 'block';
 }
 
 function showNoButton(){

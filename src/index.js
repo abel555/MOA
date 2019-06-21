@@ -16,6 +16,8 @@ const dbReceipts = require ('./JS/DatabasesSingletons/ReceiptsDB');
 const dbShoppingCart = require ('./JS/DatabasesSingletons/ShoppingCartDB');
 const dbCurrentProduct = require ('./JS/DatabasesSingletons/CurrentProductDB');
 const ProductsController = require("./JS/ProductsController");
+const ShoppingCartController = require("./JS/ShoppingCartController");
+const shoppingCartController = new ShoppingCartController();
 
 function chargeCounterInDataBase() {
     dbWoods.insert({"flag":"counter","counter":"20","_id":"1"});
@@ -325,6 +327,8 @@ ipcMain.on('preview:pdf', (e, data) => {
     createPreview(data);
     if(newClientInfoWindow)
         newClientInfoWindow.close();
+    shoppingCartController.clearAllShoppingCart();
+    mainWindow.reload();
 });
 
 ipcMain.on('wood:edit',async (e, woodEdit)=> {

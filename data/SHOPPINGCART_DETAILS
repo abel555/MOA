@@ -1,3 +1,3 @@
-{"flag":"counter","counter":"111","_id":"1"}
-{"_id":"108","descriptionProduct":"madera","idProduct":"876","name_product":"madera","provider":"perez","purchase_price":"10","purchased_total":1000,"quantity":1,"quantity_sold":"0","reaminingAmount":100,"sale_price":"20","total_sold":0,"total_cost":"0.08","typeProduct":"wood"}
-{"_id":"109","descriptionProduct":"madera","idProduct":"876","name_product":"madera","provider":"perez","purchase_price":"10","purchased_total":1000,"quantity":24,"quantity_sold":"1","reaminingAmount":"99","sale_price":"20","total_sold":"0.08","total_cost":"40.00","typeProduct":"wood"}
+{"flag":"counter","counter":"22","_id":"1"}
+{"_id":"20","descriptionProduct":"8","idProduct":"8","name_product":"8,1","provider":"8,1","purchase_price":8.1,"purchased_total":"65.61","quantity":"173.91","quantity_sold":"8.10","reaminingAmount":"0.00","sale_price":8.1,"total_sold":"65.61","total_cost":"117.39","typeProduct":"wood"}
+{"_id":"21","descriptionProduct":"1000,1","idProduct":"1000,1","name_product":"1000,1","provider":"1000,1","purchase_price":1000.1,"purchased_total":"1000200.01","quantity":"132.65","quantity_sold":"0.00","reaminingAmount":"1000.10","sale_price":1000.1,"total_sold":"0.00","total_cost":"11055.36","typeProduct":"wood"}
