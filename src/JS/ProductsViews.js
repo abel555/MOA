@@ -1,4 +1,3 @@
-//const { ipcRenderer } = require('electron');
 const fs = require('fs');
 const ProductsController = require('../JS/ProductsController');
 const productsController = new ProductsController();
@@ -12,8 +11,6 @@ let woodsList;
 let calaminasList;
 let ironmongeryList;
 let receiptList;
-
-const headButton = document.getElementById("saleConfirmation");
 
 function chargeCss() {
     let link = document.createElement('link');
@@ -223,8 +220,10 @@ async function chargeListByProduct() {
         break;
     }
 }
+
 chargeCss();
 module.exports = {chargeListByProduct};
+
 window.onclick = function(event) {
     if (!event.target.matches('.clickable')) {
       var dropdowns = document.getElementsByClassName("dropdown-content");
@@ -237,10 +236,3 @@ window.onclick = function(event) {
       }
     }
 }
-
-
-headButton.addEventListener('click', event => {
-    event.preventDefault();
-    
-    ipcRenderer.send('head:form');
-});
