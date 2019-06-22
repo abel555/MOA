@@ -38,8 +38,6 @@ class DatabaseManager{
             // Now commands will be executed
           });
         this.database.remove(product, {multi: true}, function (err, numRemoved) {
-            console.log(err);
-            console.log(numRemoved);
         });
     }
 

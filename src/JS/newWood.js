@@ -37,7 +37,6 @@ var serializeArray = function (form) {
 form.addEventListener('submit', async event => {
     event.preventDefault();
     formValues = serializeArray(form);
-    console.log(form);
     let unitTypeFromHtml;
     if(currentProductController.getCurrentProduct() == "ironmongery")
         unitTypeFromHtml = document.getElementById("unity");

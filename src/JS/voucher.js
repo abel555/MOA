@@ -15,7 +15,6 @@ function chargeCss() {
     document.head.appendChild(link);
 }
 ipc.on('message', function(event, message){
-    console.log(message); // logs out "Hello second window!"
     product = message;
     chargeHead(product.head);
     chargeListInTable(product.prods);

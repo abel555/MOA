@@ -7,9 +7,12 @@ const returnShoppingCart = document.querySelector('#returnShoppingcart');
 // const ShoppingCartController = require("./ShoppingCartController");
 
 const shoppingCartController = new ShoppingCartController();
-headButton.addEventListener('click', event => {
+
+headButton.addEventListener('click', async event => {
     event.preventDefault();
-    ipcRenderer.send('head:form');
+    let lenghtOfShoppingCart = (await shoppingCartController.getAllProducts()).length;
+    if(lenghtOfShoppingCart > 1)
+        ipcRenderer.send('head:form');
 });
 
 addNewWoodButton.addEventListener('click', event => {

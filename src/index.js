@@ -337,8 +337,6 @@ ipcMain.on('wood:edit',async (e, woodEdit)=> {
 
 ipcMain.on('wood:delete',async (e, productToDelete, typeOfProduct)=> {
     const productsController = new ProductsController();
-    console.log(productToDelete);
-    console.log(typeOfProduct);
     await productsController.deleteProduct(productToDelete, typeOfProduct);
     mainWindow.reload();
 });
@@ -459,30 +457,30 @@ const templateMainMenu = [
     },
 ];
 
-// function isMac() {
-//     return process.platform === 'darwin';
-// }
-// function isInProduction() {
-//     return process.env.NODE_ENV === 'production';
-// }
+function isMac() {
+    return process.platform === 'darwin';
+}
+function isInProduction() {
+    return process.env.NODE_ENV === 'production';
+}
 
-// if (!isInProduction()) {
-//     templateMainMenu.push ({
-//         label: 'DevTools',
-//         submenu: [
-//             {
-//                 label: 'Show/hide Dev Tools like a inspector of chrome',
-//                 accelerator: 'ctrl+D',
-//                 click(item, focusedWindow) {
-//                     focusedWindow.toggleDevTools();
-//                 }
-//             },
-//             {
-//                 role: 'reload',
-//                 accelerator: 'ctrl+R'
-//             }
-//         ]
-//     })
-// }
+if (!isInProduction()) {
+    templateMainMenu.push ({
+        label: 'DevTools',
+        submenu: [
+            {
+                label: 'Show/hide Dev Tools like a inspector of chrome',
+                accelerator: 'ctrl+D',
+                click(item, focusedWindow) {
+                    focusedWindow.toggleDevTools();
+                }
+            },
+            {
+                role: 'reload',
+                accelerator: 'ctrl+R'
+            }
+        ]
+    })
+}
 
 chargeCounterInDataBase();

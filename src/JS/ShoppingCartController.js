@@ -45,9 +45,7 @@ class ShoppingCartController {
     }
 
     async returnProduct(newProduct) {
-        
         let dataBasesFactory = new DatabaseFactory();
-        console.log(newProduct.typeProduct);
         let databaseProduct = dataBasesFactory.getDataBase(newProduct.typeProduct);
         
         const productInDB = {
@@ -57,7 +55,12 @@ class ShoppingCartController {
 
         let oldProductInDatabase = await this.getOneProduct.getProduct(productInDB, databaseProduct);
         let updatedProduct = await this.getOneProduct.getProduct(productInDB, databaseProduct);
-
+        
+        if (oldProductInDatabase[0] === undefined) {
+            this.delete.deleteProduct(newProduct, this.databaseShoppingCartDB);
+            return;
+        }
+        
         updatedProduct[0].total_sold = ((parseFloat(updatedProduct[0].total_sold) - (parseFloat(newProduct.total_cost)))).toFixed(2).toString();
         updatedProduct[0].quantity_sold = ((parseFloat(updatedProduct[0].quantity_sold) - parseFloat(newProduct.quantity))).toFixed(2).toString();
         updatedProduct[0].reaminingAmount = ((parseFloat(updatedProduct[0].reaminingAmount) + parseFloat(newProduct.quantity))).toFixed(2).toString();
@@ -80,6 +83,4 @@ class ShoppingCartController {
     }
 }
 
-
-// request-amount
 module.exports = ShoppingCartController;

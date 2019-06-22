@@ -107,7 +107,6 @@ shoppingCartButton.addEventListener('click',async event => {
 
 const product_click = document.getElementById("productsList");
 product_click.addEventListener('contextmenu', event => {
-  console.log(event.target);
   if (event.target.matches('.dbl-click')) {
     const row = event.target.parentElement.cloneNode(true);
     const saleTable = document.getElementById("salesList")

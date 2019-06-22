@@ -17,11 +17,11 @@ let currentAmount = 0;
 const espesorElement = document.getElementById("espesor");
 const anchoElement = document.getElementById("ancho");
 const largoElement = document.getElementById("largo");
-
+const cantidadUnidadesElement = document.getElementById("cantidadUnidades");
 espesorElement.value = 0.00;
 anchoElement.value = 0.00;
 largoElement.value = 0.00;
-
+cantidadUnidadesElement.value = 1.00;
 
 async function getCurrent(){
     return await currentProductController.getCurrentProduct();
@@ -54,14 +54,12 @@ form.addEventListener('submit', async event => {
     espesor = parseFloat(espesor)
     ancho = parseFloat(ancho)
     largo = parseFloat(largo)
-    cant = (espesor * ancho * largo)/12;
+    cantidadUnid = parseFloat(cantidadUnidadesElement.value);
+    cant = ((espesor * ancho * largo)/12) * cantidadUnid;
     product.quantity = cant.toFixed(2);
-    product.total_cost = parseFloat(((espesor * ancho * largo) / 12 )).toFixed(2) * parseFloat(punit.value).toFixed(2);
+    product.total_cost = parseFloat(((espesor * ancho * largo) / 12 )).toFixed(2) * parseFloat(punit.value).toFixed(2) * cantidadUnid;
     product.total_cost = (product.total_cost).toFixed(2);
     product.typeProduct = await getCurrent();
-    
-    console.log(parseFloat(product.quantity).toFixed(2));
-    console.log(parseFloat(reaminingAmount).toFixed(2));
 
     if((parseFloat(reaminingAmount).toFixed(2) - parseFloat(product.quantity).toFixed(2)) > 0 ) {
         await shoppingCartController.addNewProductToShoppingCart(product);    
@@ -75,18 +73,25 @@ form.addEventListener('submit', async event => {
 
 espesorElement.addEventListener("keyup", async event => {
     event.preventDefault();
-    currentAmount = (espesorElement.value * anchoElement.value * largoElement.value)/12; 
+    currentAmount = ((espesorElement.value * anchoElement.value * largoElement.value)/12) * cantidadUnidadesElement.value; 
     requestQuantity.innerHTML = "Cantidad solicitada: " + parseFloat(currentAmount).toFixed(2) + " ft.";
 });
 
 anchoElement.addEventListener("keyup", async event => {
     event.preventDefault();
-    currentAmount = (espesorElement.value * anchoElement.value * largoElement.value)/12;
+    currentAmount = ((espesorElement.value * anchoElement.value * largoElement.value)/12) * cantidadUnidadesElement.value
     requestQuantity.innerHTML = "Cantidad solicitada: " + parseFloat(currentAmount).toFixed(2) + " ft.";
 });
 
 largoElement.addEventListener("keyup", async event => {
     event.preventDefault();
-    currentAmount = (espesorElement.value * anchoElement.value * largoElement.value)/12;
+    currentAmount = ((espesorElement.value * anchoElement.value * largoElement.value)/12) * cantidadUnidadesElement.value
     requestQuantity.innerHTML = "Cantidad solicitada: " + parseFloat(currentAmount).toFixed(2) + " ft.";
+});
+
+cantidadUnidadesElement.addEventListener("keyup", async event => {
+    event.preventDefault();
+    currentAmount = ((espesorElement.value * anchoElement.value * largoElement.value)/12) * cantidadUnidadesElement.value
+    requestQuantity.innerHTML = "Cantidad solicitada: " + parseFloat(currentAmount).toFixed(2) + " ft.";
+    
 });

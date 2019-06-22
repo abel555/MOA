@@ -27,6 +27,8 @@ form.addEventListener('submit', async event => {
         prods: prods
     }
 
+    console.log(prods);
+    
     await receiptController.saveReceipt(recibo);
     await shoppingCartController.clearAllShoppingCart();
     ipcRenderer.send('preview:pdf', recibo);
