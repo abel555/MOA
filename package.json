@@ -18,7 +18,7 @@
     "electron-packager": "^13.1.1",
     "electron-reload": "^1.4.0",
     "json2csv": "^4.5.1",
-    "jspdf": "^1.5.3",
+    "jspdf": "^2.3.1",
     "nedb": "^1.8.0",
     "nw": "^0.38.4"
   },
